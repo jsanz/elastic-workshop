@@ -19,3 +19,11 @@ Workshop about ElasticSearch and Kibana geospatial capabilities
 * Title: Let's go geospatial with Kibana and ElasticSearch
 * Description: TBD
 * URL: https://github.com/jsanz/wecode20
+
+### Agenda
+
+## Requirements
+
+What you need to bring to the workshop:
+
+* TBD
