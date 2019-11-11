@@ -21,7 +21,7 @@ Bio:
 
 * Title: Let's go geospatial with Kibana and ElasticSearch
 * Description: On this workhshop we will get introduced to Kibana and the Elastic Stack geospatial capabilities, starting with the Kibana Maps for easy exploration of our cluster geodata, and then continuing with the powerful Elastic query API to perform search and aggregating operations.ß
-* URL: https://github.com/jsanz/wecode20
+* URL: <https://github.com/jsanz/wecode20>
 
 ### Draft agenda
 
