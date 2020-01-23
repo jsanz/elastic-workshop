@@ -16,9 +16,7 @@ On this workhshop we will get introduced to Kibana and the Elastic Stack geospat
 
 Bio: 
 
-  > Jorge is a Cartographer from Valencia, Spain, with more than 10 years of experience in the geospatial industry and a strong focus in both Open Source and Data. Before joining [Elastic](https://www.elastic.co/) and the [Kibana Maps](https://www.elastic.co/products/maps) team, he managed a Technical Support team and did sales engineering at [CARTO](https://carto.com/).
-
-
+  > Jorge is a Cartographer from Valencia, Spain, with more than 14 years of experience in the geospatial industry and a strong focus in both Open Source and Data. Before joining [Elastic](https://www.elastic.co/) and the [Kibana Maps](https://www.elastic.co/products/maps) team, he managed a Technical Support team and did sales engineering at [CARTO](https://carto.com/).
 
 ## Agenda
 
