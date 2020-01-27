@@ -1,0 +1,52 @@
+# Minimal Docker Compose cluster for ElasticSearch and Kibana
+# Put this file any folder creating "logs" and "esdata" folders
+# to persist the cluster indices and kibana state
+
+version: "3"
+services:
+  opensky-loader:
+    build: ./opensky-loader/
+    container_name: opensky-loader.wecode
+    volumes: 
+      - ./opensky-loader:/usr/src/app
+    networks: 
+      - esnet
+    depends_on:
+      - elasticsearch
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    container_name: elasticsearch.wecode
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+    volumes:
+      - ./esdata:/usr/share/elasticsearch/data
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    networks: 
+      - esnet
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.1
+    container_name: kibana.wecode
+    ports:
+      - 5601:5601
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks: 
+      - esnet
+    depends_on:
+      - elasticsearch
+
+volumes:
+  esdata:
+  opensky-loader:
+
+networks:
+  esnet:

@@ -1,3 +1,4 @@
-node_modules
 .vscode
-yarn.lock
+lab/esdata
+lab/opensky-loader/config/*.js
+lab/opensky-loader/node_modules

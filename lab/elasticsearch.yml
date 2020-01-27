@@ -1,0 +1,10 @@
+cluster.name: "elasticsearch.wecode"
+node.name: "master.elasticsearch.wecode"
+
+network.host: 0.0.0.0
+
+discovery.type: "single-node"
+bootstrap.memory_lock: true
+
+http.cors.enabled: true
+http.cors.allow-origin: "*"
