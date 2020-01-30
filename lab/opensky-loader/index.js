@@ -34,18 +34,22 @@ async function loadFlights () {
 
   await checkConnection();
 
-  // Create the index if necessary
-  const doesIndexExistResp = await client.indices.exists({
-    index: ES_INDEX_NAME,
-  });
-  if (!doesIndexExistResp.body) {
-    createIndex();
-  }
 
   // Infinite loop to load the resources
   while(true) {
+    const today = (new Date()).toISOString().split('T')[0];
+    const index_name = ES_INDEX_NAME + '_' + today;
     try {
-      await indexFlights(await getFlights());
+
+    // Create the index if necessary
+    const doesIndexExistResp = await client.indices.exists({
+      index: index_name,
+    });
+    if (!doesIndexExistResp.body) {
+      createIndex(index_name);
+    }
+
+      await indexFlights(index_name, await getFlights());
     } catch (error) {
       console.log('There was an error')
     }
@@ -58,16 +62,24 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function createIndex() {
-  console.log(`Creating index ${ES_INDEX_NAME}`);
+async function createIndex(index_name) {
+  console.log(`Creating index ${index_name}`);
   await client.indices.create({
-    index: ES_INDEX_NAME,
+    index: index_name,
     body: {
       settings: { index: { number_of_shards: 1, auto_expand_replicas: '0-1' } },
       mappings: {
         properties: {
           icao24: { type: 'keyword' },
-          callsign: { type: 'keyword' },
+          callsign: { 
+            "type": 'keyword',
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            } 
+          },
           originCountry: { type: 'keyword' },
           location: { type: 'geo_point' },
           timePosition: { type: 'date' },
@@ -88,12 +100,12 @@ async function createIndex() {
   });
 }
 
-async function indexFlights(flights) {
-  console.log(`Indexing ${flights.length} flights into ${ES_INDEX_NAME}`);
+async function indexFlights(index_name, flights) {
+  console.log(`Indexing ${flights.length} flights into ${index_name}`);
 
   const bulk = [];
   flights.forEach(async (fligh) => {
-    bulk.push({ index: { _index: ES_INDEX_NAME } });
+    bulk.push({ index: { _index: index_name } });
     bulk.push(fligh);
   });
 
@@ -130,7 +142,7 @@ function convertStateToFlight(state) {
     flight.icao24 = state[0];
   }
   if (state[1]) {
-    flight.callsign = state[1];
+    flight.callsign = state[1] ? state[1].trim() : undefined;
   }
   if (state[2]) {
     flight.originCountry = state[2];
