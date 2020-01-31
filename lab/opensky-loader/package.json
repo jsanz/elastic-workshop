@@ -7,7 +7,12 @@
     "type": "git",
     "url": "git+https://github.com/jsanz/wecode20.git"
   },
-  "keywords": ["elastic", "kibana", "geo", "maps"],
+  "keywords": [
+    "elastic",
+    "kibana",
+    "geo",
+    "maps"
+  ],
   "author": "Jorge Sanz <jorge.sanz@elastic.co>",
   "license": "ISC",
   "dependencies": {
