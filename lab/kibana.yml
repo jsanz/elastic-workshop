@@ -1,6 +1,5 @@
-server.host: kibana
+server.host: "wecode-kibana"
 
 elasticsearch:
-  hosts: http://elasticsearch:9200/
-  #  username: elastic
-  #password: changeme
+  hosts: http://wecode-elasticsearch:9200/
+

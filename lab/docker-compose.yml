@@ -12,9 +12,9 @@ services:
     networks: 
       - esnet
 
-  elasticsearch:
+  wecode-elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
-    container_name: elasticsearch
+    container_name: wecode-elasticsearch
     ports:
       - 9200:9200
       - 9300:9300
@@ -30,9 +30,9 @@ services:
         soft: -1
         hard: -1
 
-  kibana:
+  wecode-kibana:
     image: docker.elastic.co/kibana/kibana:7.5.2
-    container_name: kibana
+    container_name: wecode-kibana
     ports:
       - 5601:5601
     volumes:
@@ -40,7 +40,7 @@ services:
     networks: 
       - esnet
     depends_on:
-      - elasticsearch
+      - wecode-elasticsearch
 
 volumes:
   esdata:

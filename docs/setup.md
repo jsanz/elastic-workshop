@@ -107,7 +107,7 @@ $ npm start
 The easiest way to check if your data is coming is going to the Kibana DevTools application and run this query
 
 ```
-GET /flight_tracking/_count
+GET /flight_tracking*/_count
 ```
 
 ```
