@@ -8,6 +8,8 @@ There are three ways to set up the Elastic Stack for this laboratory:
 * Use Docker Composer to start the stack locally
 * Run manually Elasticsearch and Kibana on your computer
 
+**NOTE:** Alternatively, you can just avoid all this part and use the facilitator cloud account.
+
 ### Set up: Elastic Stack with [Elastic Cloud][1]
 
 This is the easiest way to start this lab, simply create a new account at the [Elastic Cloud][1] and start a deployment. You can leave the default settings. Once you have the cluster up and running you need to save three important settings: 

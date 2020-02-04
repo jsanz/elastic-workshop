@@ -1,7 +1,7 @@
 # Wecode Lab
 
-* [Set up](setup.md)
-* [Elasticsearch Spatial Types](es-types.md)
-* [Elasticsearch Spatial Queries](es-queries.md)
-* [Kibana Maps](kibana-maps.md)
+* [Lab Set up](01-setup.md)
+* [Elasticsearch Queries](02-elasticsearch.md)
+* [Elasticsearch Spatial Querzies](03-elasticsearch-geo.md)
+
 

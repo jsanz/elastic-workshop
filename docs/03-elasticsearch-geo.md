@@ -1,0 +1,3 @@
+# Elasticsearch geospatial queries
+
+TBD

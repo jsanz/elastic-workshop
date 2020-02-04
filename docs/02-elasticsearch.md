@@ -1,10 +1,12 @@
 ## Elasticsearch queries 
 
+Elasticsearch is entirely managed via REST API endpoints. All management, ingesting, querying, aggregating, etc. is done through REST endpoints. Queries in particular need a rich query language that allow to express all kind of requirements. This is just a glimpse of some interesting queries to give you an idea but you should navigate the [documentation][apis] for further details.
+
 ### Management
 
-Creating a new user with a given password and role:
+Creating a [new user][users] with a given password and role:
 
-```
+```json
 POST /_security/user/wecode00
 {
   "password" : "pucela00",
@@ -12,9 +14,10 @@ POST /_security/user/wecode00
 }
 ```
 
-Create an index with a `geo_point` type:
-```
-PUT wecode_test
+Create an index with a given mapping that contains a [`geo_point`][geo_point] type:
+
+```json
+PUT wecode00_test
 {
   "mappings":{
     "properties": {
@@ -32,38 +35,47 @@ PUT wecode_test
 }
 ```
 
+**IMPORTANT**: if you are sharing the Elastic instance remember to use different prefixes instead of `wecode00_` to avoid overwriting other attendants data!!
 
-### Inserting
+### Inserting points
 
-Creating new documents: 
+As a string: latitude, longitude
 
-```
-# As a string: latitude, longitude
-POST wecode_test/_doc
+```json
+POST wecode00_test/_doc
 {
   "location": "41.12,-71.34",
   "category": "place name",
   "title": "Null Island"
 }
+```
 
-# As a geohash: https://en.wikipedia.org/wiki/Geohash
-POST wecode_test/_doc
+As a [geohash][geohash]:
+
+```json
+POST wecode00_test/_doc
 {
   "location": "drm3btev3e86",
   "category": "place name 2",
   "title": "Somewhere"
 }
+```
 
-# As an array: longitude, latitude
-POST wecode_test/_doc
+As an array: longitude, latitude
+
+```json
+POST wecode00_test/_doc
 {
   "location": [ -71.34, 41.12 ] ,
   "category": "place name 3",
   "title": "Somewhere 3"
 }
+```
 
-# As an object
-POST wecode_test/_doc
+As an object:
+
+```json
+POST wecode00_test/_doc
 {
   "location": {
       "lat": 41.12,
@@ -74,10 +86,11 @@ POST wecode_test/_doc
 }
 ```
 
-Bulk insertion:
+### Bulk insertion:
 
-Let's define a new index with a mapping
-```
+Let's define a new index with a mapping:
+
+```json
 PUT wecode00_airports
 {
     "mappings": {
@@ -101,7 +114,7 @@ PUT wecode00_airports
 
 We can insert more than one document in a single `_bulk` request:
 
-```
+```json
 PUT _bulk
 { "index" : { "_index" : "wecode00_airports", "_id" : "1" } }
 {"coords":[75.9570722,30.8503599],"name":"Sahnewal","abbrev":"LUH","type":"small"}
@@ -129,7 +142,7 @@ You can find a complete dataset with airports from all over the world in the `/l
 
 ### Querying
 
-Filter by value, get only a number of columns and order the results
+[Filter][bool] by value, get only a number of columns and order the results
 
 ```
 GET flight_tracking*/_search
@@ -153,7 +166,8 @@ GET flight_tracking*/_search
 }
 ```
 
-Just get the number of results using `_count` instead of `_search`
+Just get the number of results using `_count` instead of `_search` using a [`bool`][bool] query with a filter.
+
 ```
 GET flight_tracking*/_count
 {
@@ -169,7 +183,7 @@ GET flight_tracking*/_count
 }
 ```
 
-A more complex query using wildcards and operators
+A more complex [`query_string`][query_string] query using wildcards and operators
 
 ```
 GET flight_tracking*/_search
@@ -183,7 +197,8 @@ GET flight_tracking*/_search
 }
 ```
 
-Combining queries with filters
+
+Combining queries with filters using the [`bool` compounded query][bool].
 
 ```
 GET flight_tracking*/_search
@@ -208,33 +223,53 @@ GET flight_tracking*/_search
 }
 ```
 
+
 ### Aggregations
 
-Get some aggregation (metric and bucketed) for positions on the ground and for the last 30 minutes.
+Get some aggregations (metrics and histogram buckets) for positions that are not on the ground, for the last 30 minutes, and with positive altitudes.
 
-```
-get flight_tracking*/_search
+```GET flight_tracking*/_search
 {
   "size": 0,
   "query": {
     "bool": {
       "filter": [
-        { "term": { "onGround": "true" } },
-        { "range": { "timePosition": { "gte": "now-30m/m" } } }
+        { "term": { "onGround": "false" } },
+        { "range": { "timePosition": { "gte": "now-30m/m" } } },
+        { "range": { "geoAltitude": { "gte": 0 } } }
       ]
     }
   },
   "aggs": {
-    "time_stats": { "stats": { "field": "timePosition" } },
     "avg_speed": { "avg": { "field": "velocity" } },
+    "geoAltitude_stats": { "stats": { "field": "geoAltitude" } },
+    "altitude_percentiles": {
+      "percentiles": {
+        "field": "geoAltitude",
+        "percents": [ 0, 5, 10, 25, 50, 75, 90, 95, 100 ]
+      }
+    },
     "positions_over_time": {
       "date_histogram": {
         "field": "timePosition",
         "fixed_interval": "10m"
+      }
+    },
+    "speed_histogram": {
+      "histogram": {
+        "field": "velocity",
+        "interval": 50
       }
     }
   }
 }
 ```
 
-See that by default aggregations are returned along with the search results but usually you want one or another hence the `"size": 0` in this last query.
+See that by default aggregations are returned along with the search results but usually you want one or another, thus this query asks for no individual documents (`"size": 0`).
+
+[apis]: https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html
+[users]: https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html
+[geo_point]: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
+[query_string]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+[bool]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html 
+[geohash]: https://en.wikipedia.org/wiki/Geohash
