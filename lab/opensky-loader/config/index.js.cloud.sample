@@ -1,0 +1,13 @@
+module.exports = {
+    es_config: {
+        cloud:{
+            id: 'your-cloud-id'
+        },
+        auth: {
+            username: 'your-elastic-user',
+            password: 'your-elastic-password'
+          }
+    },
+    index_name: 'flight_tracking',
+    sleep_seconds: 60
+};
