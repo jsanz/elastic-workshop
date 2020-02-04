@@ -1,0 +1,891 @@
+{"coords":[75.9570722,30.8503599],"name":"Sahnewal","abbrev":"LUH","type":"small"}
+{"coords":[75.9330598,17.6254152],"name":"Solapur","abbrev":"SSE","type":"mid"}
+{"coords":[85.323597,23.3177246],"name":"Birsa Munda","abbrev":"IXR","type":"mid"}
+{"coords":[48.7471065,31.3431586],"name":"Ahwaz","abbrev":"AWZ","type":"mid"}
+{"coords":[78.2172187,26.2854877],"name":"Gwalior","abbrev":"GWL","type":"mid and military"}
+{"coords":[42.9710963,14.7552534],"name":"Hodeidah Int'l","abbrev":"HOD","type":"mid"}
+{"coords":[75.8092915,22.7277492],"name":"Devi Ahilyabai Holkar Int'l","abbrev":"IDR","type":"mid"}
+{"coords":[73.8105675,19.9660206],"name":"Gandhinagar","abbrev":"ISK","type":"mid"}
+{"coords":[76.8017261,30.6707249],"name":"Chandigarh Int'l","abbrev":"IXC","type":"major and military"}
+{"coords":[75.3958433,19.867297],"name":"Aurangabad","abbrev":"IXU","type":"mid"}
+{"coords":[72.9878191,31.3627435],"name":"Faisalabad Int'l","abbrev":"LYP","type":"mid and military"}
+{"coords":[73.3163595,54.9576483],"name":"Omsk Tsentralny","abbrev":"OMS","type":"mid"}
+{"coords":[82.6671525,55.0095847],"name":"Novosibirsk Tolmachev","abbrev":"OVB","type":"mid"}
+{"coords":[35.3018729,47.8732636],"name":"Zaporozhye Int'l","abbrev":"OZH","type":"mid and military"}
+{"coords":[101.4465693,0.4646009],"name":"Simpang Tiga","abbrev":"PKU","type":"mid"}
+{"coords":[145.2439803,14.1717713],"name":"Rota Int'l","abbrev":"ROP","type":"mid"}
+{"coords":[73.4084965,61.3401672],"name":"Surgut","abbrev":"SGC","type":"mid"}
+{"coords":[78.7089579,10.7603571],"name":"Tiruchirappalli","abbrev":"TRZ","type":"mid"}
+{"coords":[63.0279334,25.9887946],"name":"Turbat Int'l","abbrev":"TUK","type":"mid"}
+{"coords":[66.9487311,30.2490432],"name":"Quetta Int'l","abbrev":"UET","type":"mid"}
+{"coords":[60.9007086,29.4752942],"name":"Zahedan Int'l","abbrev":"ZAH","type":"mid"}
+{"coords":[112.7114186,-7.92998],"name":"Abdul Rachman Saleh","abbrev":"MLG","type":"mid and military"}
+{"coords":[83.5504532,53.3633851],"name":"Barnaul","abbrev":"BAX","type":"mid"}
+{"coords":[75.7584828,31.4329422],"name":"Adampur","abbrev":"VIAX","type":"military mid"}
+{"coords":[79.4520027,28.4218087],"name":"Bareilly","abbrev":"VIBY","type":"military"}
+{"coords":[73.0320498,33.5614146],"name":"Dhamial","abbrev":"OPQS","type":"small"}
+{"coords":[127.4959161,36.7220228],"name":"Cheongju Int'l","abbrev":"CJJ","type":"major"}
+{"coords":[126.8108395,35.1400051],"name":"Gwangju","abbrev":"KWJ","type":"mid and military"}
+{"coords":[128.6375377,35.8999278],"name":"Daegu Int'l","abbrev":"TAE","type":"mid"}
+{"coords":[129.355731,35.5928958],"name":"Ulsan","abbrev":"USN","type":"mid"}
+{"coords":[105.1760604,-5.2425668],"name":"Radin Inten II","abbrev":"WIIT","type":"mid"}
+{"coords":[81.7317271,25.443522],"name":"Allahabad","abbrev":"IXD","type":"military"}
+{"coords":[61.512259,55.2977919],"name":"Chelyabinsk","abbrev":"CEK","type":"mid"}
+{"coords":[120.2097333,22.9506679],"name":"Tainan","abbrev":"TNN","type":"military mid"}
+{"coords":[120.6307035,24.2666556],"name":"Taichung","abbrev":"RMQ","type":"military mid"}
+{"coords":[4.4338443,51.9491302],"name":"Rotterdam The Hague","abbrev":"RTM","type":"mid"}
+{"coords":[39.2254496,51.8126171],"name":"Voronezh-Chertovitskoye","abbrev":"VOZ","type":"mid"}
+{"coords":[-2.8586207,53.3363751],"name":"Liverpool John Lennon","abbrev":"LPL","type":"major"}
+{"coords":[83.2235216,17.7279577],"name":"Vishakapatnam","abbrev":"VTZ","type":"mid"}
+{"coords":[119.5456913,-5.0589369],"name":"Sultan Hasanuddin Int'l","abbrev":"UPG","type":"major"}
+{"coords":[-173.9680939,-18.5860059],"name":"Vava'u Int'l","abbrev":"VAV","type":"mid"}
+{"coords":[-1.7103458,55.0370849],"name":"Newcastle Int'l","abbrev":"NCL","type":"major"}
+{"coords":[-86.8514685,15.7451597],"name":"Goloson Int'l","abbrev":"LCE","type":"mid"}
+{"coords":[39.699136,24.544234],"name":"Madinah Int'l","abbrev":"MED","type":"major"}
+{"coords":[-74.0287383,45.6832251],"name":"Mirabel Int'l","abbrev":"YMX","type":"mid"}
+{"coords":[21.0974464,55.9713426],"name":"Palanga Int'l","abbrev":"PLQ","type":"mid"}
+{"coords":[75.8010104,26.8211798],"name":"Jaipur Int'l","abbrev":"JAI","type":"mid"}
+{"coords":[86.1724662,22.8154145],"name":"Sonari","abbrev":"IXW","type":"mid"}
+{"coords":[29.54492,40.2555395],"name":"Yenisehir","abbrev":"YEI","type":"mid"}
+{"coords":[35.2969614,36.9852091],"name":"Şakirpaşa","abbrev":"ADA","type":"major"}
+{"coords":[-152.4856385,57.7485921],"name":"Kodiak","abbrev":"ADQ","type":"mid"}
+{"coords":[-101.7053528,35.2184032],"name":"Amarillo Int'l","abbrev":"AMA","type":"major"}
+{"coords":[133.902918,-23.801968],"name":"Alice Springs","abbrev":"ASP","type":"mid"}
+{"coords":[74.807156,31.706822],"name":"Raja Sansi Int'l","abbrev":"ATQ","type":"mid and military"}
+{"coords":[85.81689,20.252666],"name":"Biju Patnaik","abbrev":"BBI","type":"mid"}
+{"coords":[-161.838987,60.778738],"name":"Bethel","abbrev":"BET","type":"mid"}
+{"coords":[-73.1809208,7.1277092],"name":"Palonegro","abbrev":"BGA","type":"mid"}
+{"coords":[-86.7523774,33.5618673],"name":"Birmingham Int'l","abbrev":"BHM","type":"major"}
+{"coords":[141.4704073,-31.9989967],"name":"Broken Hill","abbrev":"BHQ","type":"mid"}
+{"coords":[-108.5369294,45.8036856],"name":"Logan Int'l","abbrev":"BIL","type":"major"}
+{"coords":[-100.7574713,46.7751067],"name":"Bismarck Muni.","abbrev":"BIS","type":"mid"}
+{"coords":[-101.4787534,20.9858871],"name":"Del Bajio Int'l","abbrev":"BJX","type":"mid"}
+{"coords":[5.6036826,6.3171669],"name":"Benin","abbrev":"BNI","type":"mid"}
+{"coords":[27.5164094,42.5670835],"name":"Bourgas","abbrev":"BOJ","type":"major"}
+{"coords":[8.7858618,53.0522871],"name":"Bremen","abbrev":"BRE","type":"major"}
+{"coords":[-69.356102,10.0453],"name":"Jacinto Lara Int'l","abbrev":"BRM","type":"mid"}
+{"coords":[-97.4317653,25.9062744],"name":"Brownsville-South Padre Island Int'l","abbrev":"BRO","type":"mid"}
+{"coords":[-2.7108647,51.3862934],"name":"Bristol Int'l","abbrev":"BRS","type":"major"}
+{"coords":[-91.1567544,30.5326138],"name":"Baton Rouge Metro","abbrev":"BTR","type":"major"}
+{"coords":[17.199985,48.1698379],"name":"Bratislava-M.R. Štefánik","abbrev":"BTS","type":"major"}
+{"coords":[-73.1550788,44.4692066],"name":"Burlington Int'l","abbrev":"BTV","type":"mid"}
+{"coords":[-81.1093352,33.9342055],"name":"Columbia Metro","abbrev":"CAE","type":"major"}
+{"coords":[75.9509931,11.1395521],"name":"Calicut Int'l","abbrev":"CCJ","type":"major"}
+{"coords":[96.8287472,-12.1851586],"name":"Cocos (Keeling) Islands","abbrev":"CCK","type":"mid"}
+{"coords":[19.9147562,39.6067555],"name":"Corfu Int'l (Ioannis Kapodistrias)","abbrev":"CFU","type":"mid"}
+{"coords":[125.6904568,43.9930115],"name":"Changchun Longjia Int'l","abbrev":"CGQ","type":"major"}
+{"coords":[-80.0369337,32.8845302],"name":"Charleston Int'l","abbrev":"CHS","type":"major and military"}
+{"coords":[77.0388938,11.0301415],"name":"Coimbatore","abbrev":"CJB","type":"mid"}
+{"coords":[23.6869813,46.7826626],"name":"Someseni","abbrev":"CLJ","type":"mid"}
+{"coords":[-77.845104,21.4247037],"name":"Ignacio Agramonte","abbrev":"CMW","type":"mid"}
+{"coords":[-106.4644448,42.89719],"name":"Casper/Natrona County Int'l","abbrev":"CPR","type":"major"}
+{"coords":[120.5507702,15.1876422],"name":"Clark Int'l","abbrev":"CRK","type":"major"}
+{"coords":[-81.5964165,38.3705914],"name":"Yeager","abbrev":"CRW","type":"major and military"}
+{"coords":[15.0674605,37.4700728],"name":"Catania Fontanarossa","abbrev":"CTA","type":"major"}
+{"coords":[-88.32426,18.5064342],"name":"Chetumal Int'l","abbrev":"CTM","type":"mid"}
+{"coords":[-3.3395688,51.3986221],"name":"Cardiff","abbrev":"CWL","type":"major"}
+{"coords":[-79.8794616,19.6898654],"name":"Gerrard Smith","abbrev":"CYB","type":"mid"}
+{"coords":[-86.9304064,20.5115544],"name":"Cozumel Int'l","abbrev":"CZM","type":"mid"}
+{"coords":[-84.2204594,39.8990403],"name":"James M. Cox Dayton Int'l","abbrev":"DAY","type":"major"}
+{"coords":[148.569717,-32.218681],"name":"Dubbo","abbrev":"DBO","type":"mid"}
+{"coords":[-77.0433374,38.8537162],"name":"Washington Nat'l","abbrev":"DCA","type":"major"}
+{"coords":[-104.533846,24.1261948],"name":"Durango Int'l","abbrev":"DGO","type":"mid"}
+{"coords":[35.093906,48.3675718],"name":"Voloskoye","abbrev":"DNK","type":"mid"}
+{"coords":[37.7448086,48.0691671],"name":"Donetsk","abbrev":"DOK","type":"major"}
+{"coords":[-56.4992636,-33.3591084],"name":"Santa Bernardina Int'l","abbrev":"DZO","type":"mid"}
+{"coords":[-3.3642847,55.948554],"name":"Edinburgh Int'l","abbrev":"EDI","type":"major"}
+{"coords":[-64.5371514,18.4443619],"name":"Terrance B. Lettsome Int'l","abbrev":"EIS","type":"mid"}
+{"coords":[-115.7864792,40.8276059],"name":"Elko Reg.","abbrev":"EKO","type":"mid"}
+{"coords":[-116.5957244,31.797714],"name":"Ensenada","abbrev":"ESE","type":"mid"}
+{"coords":[-7.2708,62.0625],"name":"Vágar","abbrev":"FAE","type":"mid"}
+{"coords":[-96.8254561,46.9198179],"name":"Hector Int'l","abbrev":"FAR","type":"mid and military"}
+{"coords":[-119.7200013,36.7698128],"name":"Fresno Yosemite Int'l","abbrev":"FAT","type":"mid"}
+{"coords":[-111.6746562,35.1389117],"name":"Flagstaff Pulliam","abbrev":"FLG","type":"mid"}
+{"coords":[-89.8778404,16.9149742],"name":"Mundo Maya Int'l","abbrev":"FRS","type":"mid"}
+{"coords":[-96.7313831,43.5801935],"name":"Sioux Falls Reg.","abbrev":"FSD","type":"mid"}
+{"coords":[-117.5368366,47.6254781],"name":"Spokane Int'l","abbrev":"GEG","type":"major"}
+{"coords":[-75.8726131,23.5638829],"name":"Exuma Int'l","abbrev":"GGT","type":"mid"}
+{"coords":[-5.3467718,36.1512748],"name":"Gibraltar","abbrev":"GIB","type":"mid"}
+{"coords":[-85.5295732,42.8847776],"name":"Gerald R. Ford Int'l","abbrev":"GRR","type":"mid"}
+{"coords":[-79.9364868,36.1053782],"name":"Triad Int'l","abbrev":"GSO","type":"major"}
+{"coords":[-111.3566847,47.4822707],"name":"Great Falls Int'l","abbrev":"GTF","type":"mid"}
+{"coords":[37.4738033,36.9453633],"name":"Gaziantep Oğuzeli Int'l","abbrev":"GZT","type":"major"}
+{"coords":[75.0863156,15.3591833],"name":"Hubli","abbrev":"HBX","type":"mid"}
+{"coords":[100.3937513,6.9363423],"name":"Hat Yai Int'l","abbrev":"HDY","type":"mid"}
+{"coords":[117.304197,31.7798577],"name":"Hefei-Luogang","abbrev":"HFE","type":"mid"}
+{"coords":[33.8071606,27.1804261],"name":"Hurghada Int'l","abbrev":"HRG","type":"major"}
+{"coords":[36.2822011,49.9215361],"name":"Kharkov Int'l","abbrev":"HRK","type":"major"}
+{"coords":[-86.7749431,34.6483345],"name":"Huntsville Int'l","abbrev":"HSV","type":"major"}
+{"coords":[3.9738133,7.360344],"name":"Ibadan","abbrev":"IBA","type":"mid"}
+{"coords":[-97.4287388,37.652928],"name":"Kansas City Int'l","abbrev":"ICT","type":"major"}
+{"coords":[-77.9103757,34.2667841],"name":"Wilmington Int'l","abbrev":"ILM","type":"mid"}
+{"coords":[4.4948404,8.4353765],"name":"Ilorin Int'l","abbrev":"ILR","type":"mid"}
+{"coords":[-93.3980028,48.5659931],"name":"Falls Int'l","abbrev":"INL","type":"mid"}
+{"coords":[-4.0635918,57.5395003],"name":"Inverness","abbrev":"INV","type":"mid"}
+{"coords":[-115.5719956,32.8339587],"name":"Imperial Cty.","abbrev":"IPL","type":"mid"}
+{"coords":[74.8423078,32.6810429],"name":"Jammu","abbrev":"IXJ","type":"mid"}
+{"coords":[78.0911395,9.8371863],"name":"Madurai","abbrev":"IXM","type":"mid"}
+{"coords":[73.0505492,26.2637623],"name":"Jodhpur","abbrev":"JDH","type":"major and military"}
+{"coords":[80.0587439,23.1845329],"name":"Jabalpur","abbrev":"JLR","type":"mid"}
+{"coords":[37.0651896,-3.424445],"name":"Kilimanjaro Int'l","abbrev":"JRO","type":"mid"}
+{"coords":[7.3252535,10.6946193],"name":"Kaduna","abbrev":"KAD","type":"mid"}
+{"coords":[22.4783332,-5.9001666],"name":"Kananga","abbrev":"KGA","type":"mid"}
+{"coords":[-1.5925753,6.7146064],"name":"Kumasi","abbrev":"KMS","type":"mid"}
+{"coords":[-71.4806025,-32.9483918],"name":"Viña del Mar","abbrev":"KNA","type":"mid"}
+{"coords":[80.3675339,26.4388334],"name":"Kanpur","abbrev":"KNU","type":"mid"}
+{"coords":[-156.0408895,19.7370991],"name":"Kona Int'l at Keahole","abbrev":"KOA","type":"mid"}
+{"coords":[-2.9013785,58.9544289],"name":"Kirkwall","abbrev":"KOI","type":"mid"}
+{"coords":[75.8504978,25.1634187],"name":"Kota","abbrev":"KTU","type":"mid"}
+{"coords":[32.5756733,37.9839946],"name":"Konya","abbrev":"KYA","type":"major and military"}
+{"coords":[-84.5982682,38.0374273],"name":"Blue Grass","abbrev":"LEX","type":"major"}
+{"coords":[-159.3490843,21.9781243],"name":"Lihue","abbrev":"LIH","type":"mid"}
+{"coords":[-92.2205881,34.72843],"name":"Clinton National","abbrev":"LIT","type":"major"}
+{"coords":[-109.0826946,25.6885088],"name":"Los Mochis","abbrev":"LMM","type":"mid"}
+{"coords":[-101.46496,26.9553927],"name":"Venustiano Carranza Int'l","abbrev":"LOV","type":"mid"}
+{"coords":[-99.4556604,27.5436657],"name":"Laredo Int'l","abbrev":"LRD","type":"mid"}
+{"coords":[-1.2880607,59.87669],"name":"Sumburgh","abbrev":"LSI","type":"mid"}
+{"coords":[35.9442407,35.4073115],"name":"Bassel Al-Assad Int'l","abbrev":"LTK","type":"major"}
+{"coords":[-0.3762273,51.8802953],"name":"London Luton","abbrev":"LTN","type":"major"}
+{"coords":[15.495229,78.246717],"name":"Svalbard Longyear","abbrev":"LYR","type":"mid"}
+{"coords":[-77.9183908,18.5011549],"name":"Sangster Int'l","abbrev":"MBJ","type":"mid"}
+{"coords":[95.9706536,21.7055491],"name":"Mandalay Int'l","abbrev":"MDL","type":"mid"}
+{"coords":[-87.7421267,41.7883493],"name":"Chicago Midway Int'l","abbrev":"MDW","type":"major"}
+{"coords":[-80.6833846,-0.949557],"name":"Eloy Alfaro Int'l","abbrev":"MEC","type":"mid and military"}
+{"coords":[-86.3903075,32.304588],"name":"Montgomery Reg.","abbrev":"MGM","type":"major"}
+{"coords":[-71.4375239,42.927914],"name":"Manchester-Boston Reg.","abbrev":"MHT","type":"major"}
+{"coords":[13.085139,11.8534713],"name":"Maiduguri Int'l","abbrev":"DNMA","type":"mid"}
+{"coords":[23.5721092,-6.1248454],"name":"Mbuji Mayi","abbrev":"MJM","type":"mid"}
+{"coords":[-101.2913855,48.2556049],"name":"Minot Int'l","abbrev":"MOT","type":"mid"}
+{"coords":[-114.0836949,46.9187605],"name":"Missoula Int'l","abbrev":"MSO","type":"mid"}
+{"coords":[-115.247874,32.6285643],"name":"Gen R.S. Taboada Int'l","abbrev":"MXL","type":"mid"}
+{"coords":[8.7129595,45.6274405],"name":"Malpensa","abbrev":"MXP","type":"major"}
+{"coords":[167.9433941,-29.0351593],"name":"Norfolk Island","abbrev":"NLK","type":"mid"}
+{"coords":[11.077418,49.4945052],"name":"Nurnberg","abbrev":"NUE","type":"major"}
+{"coords":[30.6768308,46.4406269],"name":"Odessa Int'l","abbrev":"ODS","type":"major"}
+{"coords":[153.5128763,-28.1665169],"name":"Gold Coast","abbrev":"OOL","type":"mid"}
+{"coords":[-0.606797,35.6202747],"name":"Oran Es Senia","abbrev":"ORN","type":"mid"}
+{"coords":[85.0909021,25.5944434],"name":"Lok Nayak Jaiprakash","abbrev":"PAT","type":"mid"}
+{"coords":[-58.0685347,-32.3614545],"name":"Paysandu","abbrev":"PDU","type":"mid"}
+{"coords":[32.4832322,34.7134013],"name":"Paphos Int'l","abbrev":"PFO","type":"major"}
+{"coords":[104.6991283,-2.8999935],"name":"Sultan Mahmud Badaruddin II","abbrev":"PLM","type":"mid"}
+{"coords":[29.4533404,-23.8589863],"name":"Polokwane Int'l","abbrev":"PTG","type":"mid"}
+{"coords":[-68.3632351,18.563039],"name":"Punta Cana","abbrev":"PUJ","type":"mid"}
+{"coords":[-100.1873594,20.6224661],"name":"Queretaro Int'l","abbrev":"QRO","type":"mid"}
+{"coords":[70.7799548,22.3092817],"name":"Rajkot","abbrev":"RAJ","type":"mid"}
+{"coords":[-77.3331196,37.50829],"name":"Richmond Int'l","abbrev":"RIC","type":"major"}
+{"coords":[88.6138046,24.4448069],"name":"Shah Makhdum","abbrev":"RJH","type":"mid"}
+{"coords":[-77.6652445,43.127552],"name":"Greater Rochester Int'l","abbrev":"ROC","type":"major"}
+{"coords":[150.478897,-23.378599],"name":"Rockhampton","abbrev":"ROK","type":"mid"}
+{"coords":[39.8035144,47.255112],"name":"Rostov-on-Don","abbrev":"ROV","type":"mid"}
+{"coords":[46.0350232,51.5606457],"name":"Saratov","abbrev":"RTW","type":"mid"}
+{"coords":[-87.9272365,15.4558631],"name":"Ramón Villeda Morales Int'l","abbrev":"SAP","type":"mid"}
+{"coords":[-119.8366016,34.4257313],"name":"Santa Barbara Muni.","abbrev":"SBA","type":"mid"}
+{"coords":[-148.457855,70.19751],"name":"Deadhorse","abbrev":"SCC","type":"mid"}
+{"coords":[-50.694199,67.018097],"name":"Kangerlussuaq","abbrev":"SFJ","type":"mid"}
+{"coords":[-93.3826379,37.2421445],"name":"Springfield Reg.","abbrev":"SGF","type":"major"}
+{"coords":[-93.8285222,32.4545799],"name":"Shreveport Reg.","abbrev":"SHV","type":"major"}
+{"coords":[33.9960529,45.0202174],"name":"Simferopol Int'l","abbrev":"SIP","type":"major"}
+{"coords":[-135.365692,57.05349],"name":"Sitka Rocky Gutierrez","abbrev":"SIT","type":"mid"}
+{"coords":[-109.7178584,23.1626574],"name":"Los Cabos Int'l","abbrev":"SJD","type":"major"}
+{"coords":[-123.0078715,44.9105138],"name":"McNary Field","abbrev":"SLE","type":"major"}
+{"coords":[-100.9322605,25.5479976],"name":"Plan de Guadalupe","abbrev":"SLW","type":"mid"}
+{"coords":[-8.9224289,52.6934537],"name":"Shannon","abbrev":"SNN","type":"major"}
+{"coords":[167.2208949,-15.5055387],"name":"Santo Pekoa Int'l","abbrev":"SON","type":"mid"}
+{"coords":[110.3785563,-6.9787348],"name":"Achmad Yani","abbrev":"SRG","type":"mid"}
+{"coords":[74.7826244,33.9830909],"name":"Srinagar","abbrev":"SXR","type":"military mid"}
+{"coords":[-92.370003,14.7911281],"name":"Tapachula Int'l","abbrev":"TAP","type":"mid"}
+{"coords":[19.2466869,42.3679335],"name":"Podgorica","abbrev":"TGD","type":"major"}
+{"coords":[-84.3449954,30.3955576],"name":"Tallahassee Reg.","abbrev":"TLH","type":"major"}
+{"coords":[7.6441623,45.1916601],"name":"Turin Int'l","abbrev":"TRN","type":"major"}
+{"coords":[112.6258915,37.7545118],"name":"Taiyuan Wusu Int'l","abbrev":"TYN","type":"major"}
+{"coords":[-45.4164009,61.1625968],"name":"Narsarsuaq","abbrev":"UAK","type":"mid"}
+{"coords":[101.0002093,12.6852931],"name":"U-Tapao","abbrev":"UTP","type":"military mid"}
+{"coords":[25.8467677,-18.0990156],"name":"Victoria Falls","abbrev":"VFA","type":"mid"}
+{"coords":[80.797308,16.5286428],"name":"Vijaywada","abbrev":"VGA","type":"mid"}
+{"coords":[82.8538742,25.4499077],"name":"Varanasi","abbrev":"VNS","type":"mid"}
+{"coords":[-81.4367104,23.0395422],"name":"Juan Gualberto Gomez","abbrev":"VRA","type":"major"}
+{"coords":[-92.8190676,17.993066],"name":"Villahermosa","abbrev":"VSA","type":"mid"}
+{"coords":[-99.9458959,49.9047279],"name":"Brandon","abbrev":"YBR","type":"mid"}
+{"coords":[-113.4788391,53.6749157],"name":"CFB Edmonton","abbrev":"YED","type":"military major"}
+{"coords":[-68.5367292,63.7511524],"name":"Iqaluit","abbrev":"YFB","type":"mid"}
+{"coords":[-79.9264231,43.1633605],"name":"John C. Munro Hamilton Int'l","abbrev":"YHM","type":"mid"}
+{"coords":[-111.22384,56.6563171],"name":"Fort McMurray","abbrev":"YMM","type":"mid"}
+{"coords":[121.3720474,37.4077045],"name":"Yantai","abbrev":"YNT","type":"major and military"}
+{"coords":[-117.4436632,56.231924],"name":"Peace River","abbrev":"YPE","type":"mid"}
+{"coords":[-64.6886697,46.116206],"name":"Greater Moncton Int'l","abbrev":"YQM","type":"mid"}
+{"coords":[-60.0469372,46.1673406],"name":"Sydney/J.A. Douglas McCurdy","abbrev":"YQY","type":"mid"}
+{"coords":[-94.9708023,74.7181861],"name":"Resolute Bay","abbrev":"YRB","type":"mid"}
+{"coords":[-111.9610599,60.019875],"name":"Fort Smith","abbrev":"YSM","type":"mid"}
+{"coords":[-97.860733,55.797482],"name":"Thompson","abbrev":"YTH","type":"mid"}
+{"coords":[-81.372047,48.566158],"name":"Timmins","abbrev":"YTS","type":"mid"}
+{"coords":[-86.25,66.533302],"name":"Repulse Bay","abbrev":"YUT","type":"mid"}
+{"coords":[-68.433342,58.101959],"name":"Kuujjuaq","abbrev":"YVP","type":"mid"}
+{"coords":[-66.873009,52.926071],"name":"Wabush","abbrev":"YWK","type":"mid"}
+{"coords":[-113.5229737,53.5709437],"name":"Edmonton City Centre","abbrev":"YXD","type":"mid"}
+{"coords":[-120.736439,56.246035],"name":"Fort St. John (N. Peace)","abbrev":"YXJ","type":"mid"}
+{"coords":[-79.42491,46.358711],"name":"North Bay/Jack Garland","abbrev":"YYB","type":"mid"}
+{"coords":[7.6872676,11.1352959],"name":"Zaria","abbrev":"ZAR","type":"mid"}
+{"coords":[21.6281972,41.9564546],"name":"Skopje","abbrev":"SKP","type":"mid"}
+{"coords":[86.9745468,23.6312179],"name":"Burnpur","abbrev":"VE23","type":"mid"}
+{"coords":[77.3507889,28.7077969],"name":"Hindon Air Force Station","abbrev":"VIDX","type":"mid"}
+{"coords":[125.8908251,39.411966],"name":"Sunchon","abbrev":null,"type":"major"}
+{"coords":[19.4032149,51.727207],"name":"Łódź Władysław Reymont","abbrev":"EPLL","type":"mid"}
+{"coords":[76.878264,43.3554191],"name":"Alma Ata N.W.","abbrev":"BXJ","type":"mid and military"}
+{"coords":[130.4562047,46.843015],"name":"Jiamusi Dongjiao","abbrev":"JMU","type":"mid"}
+{"coords":[129.5801515,44.5342936],"name":"Mudanjiang Hailang","abbrev":"MDG","type":"major"}
+{"coords":[33.2903528,69.0168712],"name":"Severomorsk-3 (Murmansk N.E.)","abbrev":"ULMM","type":"military major"}
+{"coords":[43.145802,36.308601],"name":"Mosul Int'l","abbrev":"OSB","type":"mid"}
+{"coords":[39.6353996,47.2774209],"name":"Rostov N.","abbrev":null,"type":"military mid"}
+{"coords":[39.7972215,47.1158577],"name":"Rostov S.W.","abbrev":null,"type":"mid"}
+{"coords":[25.3728375,64.9287992],"name":"Oulu","abbrev":"OUL","type":"mid"}
+{"coords":[-0.7017934,44.8321109],"name":"Bordeaux","abbrev":"BOD","type":"major"}
+{"coords":[6.9543161,43.546098],"name":"Mandelieu","abbrev":"CEQ","type":"mid"}
+{"coords":[0.1586535,49.361661],"name":"St Gatien","abbrev":"DOL","type":"mid"}
+{"coords":[3.105965,50.5716424],"name":"Lille-Lesquin","abbrev":"LIL","type":"mid"}
+{"coords":[1.3735092,43.6304626],"name":"Toulouse-Blagnac","abbrev":"TLS","type":"major"}
+{"coords":[130.4441895,33.5848164],"name":"Fukuoka","abbrev":"FUK","type":"major"}
+{"coords":[132.4193727,34.3713816],"name":"Hiroshima-Nishi","abbrev":"HIW","type":"mid"}
+{"coords":[136.9196284,35.2540532],"name":"Nagoya","abbrev":"NKM","type":"mid"}
+{"coords":[140.9302474,38.1382076],"name":"Sendai","abbrev":"SDJ","type":"mid"}
+{"coords":[29.891349,69.7238318],"name":"Kirkenes Hoybuktmoen","abbrev":"KKN","type":"mid"}
+{"coords":[-56.1201775,-15.651147],"name":"Marechal Rondon Int'l","abbrev":"CGB","type":"mid"}
+{"coords":[-48.5448122,-27.6646277],"name":"Hercilio Luz Int'l","abbrev":"FLN","type":"major"}
+{"coords":[-48.8016498,-26.2242941],"name":"Joinville-Lauro C. de Loyola","abbrev":"JOI","type":"mid"}
+{"coords":[-34.9488926,-7.1461746],"name":"Presidente Castro Pinto Int'l","abbrev":"JPA","type":"mid"}
+{"coords":[-35.248841,-5.8991205],"name":"Augusto Severo Int'l","abbrev":"NAT","type":"major"}
+{"coords":[-8.6712724,41.2368709],"name":"Francisco Sa Carneiro","abbrev":"OPO","type":"major"}
+{"coords":[-44.2362345,-2.5835092],"name":"Marechal Cunha Machado Int'l","abbrev":"SLZ","type":"mid"}
+{"coords":[-46.3052705,-23.923759],"name":"Santos Air Force Base","abbrev":"SSZ","type":"military mid"}
+{"coords":[-42.8212402,-5.063463],"name":"Teresina-Senador Petronio Portella","abbrev":"THE","type":"mid"}
+{"coords":[-47.1410792,-23.0096239],"name":"Viracopos-Campinas Int'l","abbrev":"VCP","type":"mid"}
+{"coords":[-40.2885369,-20.2574163],"name":"Eurico de Aguiar Salles","abbrev":"VIX","type":"mid"}
+{"coords":[-0.5572304,38.2866409],"name":"Alicante","abbrev":"ALC","type":"major"}
+{"coords":[-2.3716014,36.8477673],"name":"Almeria","abbrev":"LEI","type":"mid"}
+{"coords":[-0.4734749,39.4914598],"name":"Valencia","abbrev":"VLC","type":"mid"}
+{"coords":[20.3351523,67.8256066],"name":"Kiruna_Airport","abbrev":"KRN","type":"mid"}
+{"coords":[16.2339408,58.5833805],"name":"Norrköping Airport","abbrev":"NRK","type":"major"}
+{"coords":[107.5756119,-6.9004241],"name":"Husein Sastranegara Int'l","abbrev":"BDO","type":"mid"}
+{"coords":[-60.7800787,-32.916227],"name":"Rosario – Islas Malvinas Int'l","abbrev":"ROS","type":"mid"}
+{"coords":[-35.7924951,-9.5149412],"name":"Maceio/Zumbi dos Palmares Int'l","abbrev":"MCZ","type":"mid"}
+{"coords":[34.3901189,27.9804044],"name":"Sharm el-Sheikh Int'l","abbrev":"SSH","type":"mid"}
+{"coords":[34.7758379,29.5944991],"name":"Taba Int'l","abbrev":"TCP","type":"mid"}
+{"coords":[77.9609092,27.1577277],"name":"Agra","abbrev":"AGR","type":"major and military"}
+{"coords":[73.226289,22.336164],"name":"Vadodara","abbrev":"BDQ","type":"mid"}
+{"coords":[47.1565835,34.3464168],"name":"Shahid Ashrafi Esfahani","abbrev":"KSH","type":"mid"}
+{"coords":[20.2680398,32.0872775],"name":"Benina Int'l","abbrev":"BEN","type":"mid"}
+{"coords":[50.1477246,26.2703681],"name":"King Abdulaziz AB","abbrev":"DHA","type":"military major"}
+{"coords":[-57.9840821,-31.4373883],"name":"Nueva Hespérides Int'l","abbrev":"STY","type":"mid"}
+{"coords":[63.3073544,45.9635739],"name":"Baikonur Cosmodrome","abbrev":"BAIK","type":"spaceport"}
+{"coords":[-80.6369681,28.5163705],"name":"Kennedy Space Center","abbrev":"KSC","type":"spaceport"}
+{"coords":[-52.7684297,5.23941],"name":"Centre Spatial Guyanais","abbrev":"CSG","type":"spaceport"}
+{"coords":[-70.0076229,12.5034644],"name":"Queen Beatrix Int'l","abbrev":"AUA","type":"mid"}
+{"coords":[43.1497128,11.5521018],"name":"Djibouti-Ambouli Int'l","abbrev":"JIB","type":"mid"}
+{"coords":[-70.1786354,-20.5478401],"name":"Diego Aracena Int'l","abbrev":"IQQ","type":"mid and military"}
+{"coords":[29.3095991,40.9043004],"name":"Sabiha Gökçen Havaalani","abbrev":"SAW","type":"major"}
+{"coords":[162.9570412,5.3520099],"name":"Kosrae Island","abbrev":"KSA","type":"mid"}
+{"coords":[179.195442,-8.5248542],"name":"Funafuti Int'l","abbrev":"FUN","type":"mid"}
+{"coords":[79.0537976,21.0899318],"name":"Dr. Babasaheb Ambedkar Int'l","abbrev":"NAG","type":"mid"}
+{"coords":[98.3060385,8.1076848],"name":"Phuket Int'l","abbrev":"HKT","type":"mid"}
+{"coords":[177.4511512,-17.7529129],"name":"Nadi Int'l","abbrev":"NAN","type":"mid"}
+{"coords":[-102.3140937,21.701339],"name":"Lic. Jesús Terán Peredo Int'l","abbrev":"AGU","type":"mid"}
+{"coords":[8.1231454,44.0458774],"name":"Albenga","abbrev":"ALL","type":"mid"}
+{"coords":[35.9897072,31.7226622],"name":"Queen Alia Int'l","abbrev":"AMM","type":"major"}
+{"coords":[-70.3357301,-18.3492062],"name":"Chacalluta Int'l","abbrev":"ARI","type":"mid"}
+{"coords":[-13.0511704,20.4982706],"name":"Atar Int'l","abbrev":"ATR","type":"mid"}
+{"coords":[-74.776556,10.8866776],"name":"Ernesto Cortissoz Int'l","abbrev":"BAQ","type":"mid"}
+{"coords":[-71.1614301,-41.1459977],"name":"Teniente Luis Candelaria Int'l","abbrev":"BRC","type":"mid"}
+{"coords":[-5.0689422,7.736105],"name":"Bouaké","abbrev":"BYK","type":"mid"}
+{"coords":[-88.3082064,17.5360687],"name":"Philip S. W. Goldson Int'l","abbrev":"BZE","type":"major"}
+{"coords":[-97.5022679,27.7744561],"name":"Corpus Christi Int'l","abbrev":"CRP","type":"major"}
+{"coords":[-68.9568788,12.1848346],"name":"Hato Int'l","abbrev":"CUR","type":"mid"}
+{"coords":[-71.9436641,-13.5382187],"name":"Velazco Astete Int'l","abbrev":"CUZ","type":"major"}
+{"coords":[39.2074715,-6.86672],"name":"Julius Nyerere Int'l","abbrev":"DAR","type":"mid"}
+{"coords":[-83.0039681,42.4090938],"name":"Detroit City","abbrev":"DET","type":"mid"}
+{"coords":[125.5248542,-8.5493116],"name":"Presidente Nicolau Lobato Int'l","abbrev":"DIL","type":"mid"}
+{"coords":[37.9002531,55.4141528],"name":"Moscow Domodedovo Int'l","abbrev":"DME","type":"major"}
+{"coords":[170.200027,-45.923431],"name":"Dunedin Int'l","abbrev":"DUD","type":"mid"}
+{"coords":[45.2817864,-12.8049474],"name":"Dzaoudzi Pamanzi Int'l","abbrev":"DZA","type":"mid"}
+{"coords":[-106.3957147,31.799086],"name":"El Paso Int'l","abbrev":"ELP","type":"mid"}
+{"coords":[44.4000631,40.1523679],"name":"Zvartnots Int'l","abbrev":"EVN","type":"major"}
+{"coords":[-97.3551349,32.8207529],"name":"Fort Worth Meacham Field","abbrev":"FTW","type":"major"}
+{"coords":[-71.1461337,21.4421237],"name":"JAGS McCartney Int'l","abbrev":"GDT","type":"mid"}
+{"coords":[-94.8554014,29.2671239],"name":"Scholes Int'l","abbrev":"GLS","type":"mid"}
+{"coords":[29.2400535,-1.658318],"name":"Goma Int'l","abbrev":"GOM","type":"mid"}
+{"coords":[13.3724309,9.3306887],"name":"Garoua Int'l","abbrev":"GOU","type":"mid"}
+{"coords":[144.8058504,13.4926462],"name":"Antonio B. Won Pat Int'l","abbrev":"GUM","type":"major"}
+{"coords":[-87.4083596,41.617793],"name":"Gary/Chicago Int'l","abbrev":"GYY","type":"mid"}
+{"coords":[43.2745612,-11.5366394],"name":"Prince Said Ibrahim Int'l","abbrev":"HAH","type":"mid"}
+{"coords":[147.5059962,-42.8376084],"name":"Hobart Int'l","abbrev":"HBA","type":"mid"}
+{"coords":[160.0458551,-9.4275757],"name":"Honiara Int'l","abbrev":"HIR","type":"mid"}
+{"coords":[30.4451305,50.4128082],"name":"Kiev Zhuliany Int'l","abbrev":"IEV","type":"mid"}
+{"coords":[104.3558597,52.2728894],"name":"Irkutsk S.E.","abbrev":"IKT","type":"mid and military"}
+{"coords":[-86.2734004,39.7302044],"name":"Indianapolis Int'l","abbrev":"IND","type":"major"}
+{"coords":[166.9161397,-0.5450372],"name":"Nauru Int'l","abbrev":"INU","type":"mid"}
+{"coords":[-109.4300644,-27.1587738],"name":"Mataveri Int'l","abbrev":"IPC","type":"mid"}
+{"coords":[-65.0937665,-24.3861011],"name":"Gob. Horacio Guzman Int'l","abbrev":"JUJ","type":"mid"}
+{"coords":[115.9119799,28.8624891],"name":"Nanchang Changbei Int'l","abbrev":"KHN","type":"mid"}
+{"coords":[102.7421176,24.9999961],"name":"Kunming Wujiaba Int'l","abbrev":"KMG","type":"major"}
+{"coords":[-1.6598311,53.8690819],"name":"Leeds Bradford","abbrev":"LBA","type":"major"}
+{"coords":[9.4102234,0.4571392],"name":"Libreville Leon M'ba Int'l","abbrev":"LBV","type":"mid"}
+{"coords":[1.2509321,6.1668736],"name":"Lomé Tokoin","abbrev":"LFW","type":"mid"}
+{"coords":[23.946127,49.8178506],"name":"Lviv Danylo Halytskyi Int'l","abbrev":"LWO","type":"mid and military"}
+{"coords":[171.2819194,7.0681185],"name":"Marshall Islands Int'l","abbrev":"MAJ","type":"mid"}
+{"coords":[113.5745129,22.1576573],"name":"Macau Int'l","abbrev":"MFM","type":"major"}
+{"coords":[45.3036374,2.0163531],"name":"Aden Adde Int'l","abbrev":"MGQ","type":"mid"}
+{"coords":[32.5741915,-25.9242767],"name":"Maputo Int'l","abbrev":"MPM","type":"mid"}
+{"coords":[57.676986,-20.4317568],"name":"Sir Seewoosagur Ramgoolam Int'l","abbrev":"MRU","type":"mid"}
+{"coords":[14.2828444,40.8780729],"name":"Naples Int'l","abbrev":"NAP","type":"major"}
+{"coords":[-17.0334399,20.9290523],"name":"Nouadhibou Int'l","abbrev":"NDB","type":"mid"}
+{"coords":[121.4618194,29.8208232],"name":"Ningbo Lishe Int'l","abbrev":"NGB","type":"major"}
+{"coords":[-15.9519259,18.0979232],"name":"Nouakchott Int'l","abbrev":"NKC","type":"mid"}
+{"coords":[166.2172321,-22.0136386],"name":"La Tontouta Int'l","abbrev":"NOU","type":"mid"}
+{"coords":[-122.2132613,37.7123037],"name":"Oakland Int'l","abbrev":"OAK","type":"major"}
+{"coords":[-117.5923277,34.0601911],"name":"Ontario Int'l","abbrev":"ONT","type":"major"}
+{"coords":[-8.490142,51.8485405],"name":"Cork","abbrev":"ORK","type":"major"}
+{"coords":[100.2854559,-0.7860457],"name":"Minangkabau Int'l","abbrev":"PDG","type":"mid"}
+{"coords":[-25.6969882,37.7433316],"name":"João Paulo II","abbrev":"PDL","type":"mid"}
+{"coords":[71.518815,33.9914028],"name":"Bacha Khan Int'l","abbrev":"PEW","type":"mid"}
+{"coords":[-4.6109716,55.5088918],"name":"Glasgow Prestwick","abbrev":"PIK","type":"mid"}
+{"coords":[-55.7060794,-22.5517866],"name":"Ponta Porã Int'l","abbrev":"PMG","type":"mid"}
+{"coords":[175.6212833,-40.3233179],"name":"Palmerston N. Int'l","abbrev":"PMR","type":"mid"}
+{"coords":[158.2033045,6.9813068],"name":"Pohnpei Int'l","abbrev":"PNI","type":"mid"}
+{"coords":[-149.6097579,-17.5594578],"name":"Tahiti Faa'a Int'l","abbrev":"PPT","type":"mid"}
+{"coords":[10.4001344,43.6983224],"name":"Pisa Galileo Galilei Int'l","abbrev":"PSA","type":"major and military"}
+{"coords":[37.2160658,19.5760637],"name":"Port Sudan","abbrev":"PZU","type":"mid and military"}
+{"coords":[-23.486202,14.9449889],"name":"Praia Int'l","abbrev":"RAI","type":"mid"}
+{"coords":[-8.0246054,31.6022947],"name":"Marrakech-Menara","abbrev":"RAK","type":"mid"}
+{"coords":[-159.7981563,-21.2009822],"name":"Rarotonga Int'l","abbrev":"RAR","type":"mid"}
+{"coords":[103.8157805,13.408797],"name":"Siem Reap Int'l","abbrev":"REP","type":"major"}
+{"coords":[-67.7530268,-53.7814746],"name":"Hermes Quijada Int'l","abbrev":"RGA","type":"mid"}
+{"coords":[-69.3064712,-51.6116981],"name":"Piloto Civil Norberto Fernandez Int'l","abbrev":"RGL","type":"mid"}
+{"coords":[-119.7752833,39.5058499],"name":"Reno-Tahoe Int'l","abbrev":"RNO","type":"major"}
+{"coords":[134.5329535,7.3644955],"name":"Roman Tmetuchl Int'l","abbrev":"ROR","type":"mid"}
+{"coords":[-22.9440574,16.7347933],"name":"Amilcar Cabral Int'l","abbrev":"SID","type":"mid"}
+{"coords":[18.3366185,43.8258872],"name":"Sarajevo","abbrev":"SJJ","type":"major"}
+{"coords":[-62.7142125,17.3111258],"name":"Robert L. Bradshaw Int'l","abbrev":"SKB","type":"mid"}
+{"coords":[-65.478476,-24.8443743],"name":"Martín Miguel de Güemes Int","abbrev":"SLA","type":"mid"}
+{"coords":[145.7236947,15.1215167],"name":"Saipan Int'l","abbrev":"SPN","type":"mid"}
+{"coords":[-65.2928631,-19.0139158],"name":"Juana Azurduy de Padilla Int'l","abbrev":"SRE","type":"mid"}
+{"coords":[-63.1122761,18.042244],"name":"Princess Juliana Int'l","abbrev":"SXM","type":"major"}
+{"coords":[44.1347827,13.685497],"name":"Ta'izz Int'l","abbrev":"TAI","type":"mid"}
+{"coords":[120.3806859,36.2677578],"name":"Qingdao Liuting Int'l","abbrev":"TAO","type":"mid"}
+{"coords":[151.842046,7.4576178],"name":"Chuuk Int'l","abbrev":"TKK","type":"mid"}
+{"coords":[-5.9128809,35.7257656],"name":"Tangier Ibn Battouta","abbrev":"TNG","type":"mid"}
+{"coords":[173.1459908,1.3806687],"name":"Bonriki Int'l","abbrev":"TRW","type":"mid"}
+{"coords":[71.4609441,51.0269353],"name":"Astana Int'l","abbrev":"TSE","type":"major"}
+{"coords":[117.3527232,39.129461],"name":"Tianjin Binhai Int'l","abbrev":"TSN","type":"major"}
+{"coords":[146.7706789,-19.2561814],"name":"Townsville","abbrev":"TSV","type":"major and military"}
+{"coords":[-65.1081246,-26.835731],"name":"Teniente Gen. Benjamin Matienzo Int'l","abbrev":"TUC","type":"mid"}
+{"coords":[10.2176992,36.8474482],"name":"Aeroport Tunis","abbrev":"TUN","type":"major"}
+{"coords":[-110.9377132,32.1203523],"name":"Tucson Int'l","abbrev":"TUS","type":"major"}
+{"coords":[106.762874,47.8525261],"name":"Chinggis Khaan Int'l","abbrev":"ULN","type":"mid"}
+{"coords":[87.4671298,43.8983382],"name":"Ürümqi Diwopu Int'l","abbrev":"URC","type":"major"}
+{"coords":[168.3196227,-17.7016991],"name":"Bauerfield Int'l","abbrev":"VLI","type":"mid"}
+{"coords":[143.6691023,-3.5802269],"name":"Wewak Int'l","abbrev":"WWK","type":"mid"}
+{"coords":[4.1911198,48.7803946],"name":"Châlons Vatry","abbrev":"XCR","type":"military mid"}
+{"coords":[118.1269688,24.5371926],"name":"Xiamen Gaoqi Int'l","abbrev":"XMN","type":"major"}
+{"coords":[138.0864303,9.4979173],"name":"Yap Int'l","abbrev":"YAP","type":"mid"}
+{"coords":[-104.5600952,19.148086],"name":"Playa de Oro Int'l","abbrev":"ZLO","type":"mid"}
+{"coords":[-52.3638069,4.8212671],"name":"Cayenne – Rochambeau","abbrev":"CAY","type":"mid"}
+{"coords":[104.1973593,52.3616477],"name":"Irkutsk N.W.","abbrev":"UIII","type":"mid"}
+{"coords":[114.6922666,38.2781409],"name":"Shijiazhuang Zhengding Int'l","abbrev":"SJW","type":"major"}
+{"coords":[50.0498395,40.4627469],"name":"Heydar Aliyev Int'l","abbrev":"GYD","type":"major"}
+{"coords":[33.3222013,35.1063448],"name":"Lakatamia Airbase","abbrev":"LAK","type":"military mid"}
+{"coords":[-42.0792518,-22.9256317],"name":"Cabo Frio Int'l","abbrev":"CFB","type":"mid"}
+{"coords":[25.0455354,60.2493778],"name":"Helsinki-Malmi","abbrev":"HEM","type":"mid"}
+{"coords":[6.2164212,49.6343041],"name":"Luxembourg-Findel","abbrev":"LUX","type":"major"}
+{"coords":[12.3410673,45.5048478],"name":"Venice Marco Polo","abbrev":"VCE","type":"major"}
+{"coords":[128.6629887,38.0587824],"name":"Yangyang Int'l","abbrev":"YNY","type":"mid"}
+{"coords":[-69.9394739,-4.2503247],"name":"Tabatinga Int'l","abbrev":"TBT","type":"mid"}
+{"coords":[-60.6922206,2.8411953],"name":"Boa Vista Int'l","abbrev":"BVB","type":"mid"}
+{"coords":[-15.3899245,27.93689],"name":"Gran Canaria","abbrev":"LPA","type":"major"}
+{"coords":[-72.0538569,-50.2839009],"name":"Com. Armando Tola Int'l","abbrev":"ING","type":"mid"}
+{"coords":[16.9216056,58.7851041],"name":"Stockholm-Skavsta","abbrev":"NYO","type":"mid"}
+{"coords":[98.6761926,3.5665918],"name":"Polonia Int'l","abbrev":"MES","type":"mid"}
+{"coords":[18.5241236,4.3988515],"name":"Bangui M'Poko Int'l","abbrev":"BGF","type":"mid"}
+{"coords":[120.4320974,30.2351863],"name":"Hangzhou Xiaoshan Int'l","abbrev":"HGH","type":"major"}
+{"coords":[-157.3497779,1.9861612],"name":"Cassidy Int'l","abbrev":"CXI","type":"mid"}
+{"coords":[23.3831886,55.9037695],"name":"Šiauliai Int'l","abbrev":"SQQ","type":"mid"}
+{"coords":[-169.9261298,-19.0767129],"name":"Niue Int'l","abbrev":"IUE","type":"mid"}
+{"coords":[-54.8393995,-25.4568571],"name":"Guaraní Int'l","abbrev":"AGT","type":"mid"}
+{"coords":[-71.5679335,-16.3445521],"name":"Rodríguez Ballón Int'l","abbrev":"AQP","type":"mid"}
+{"coords":[132.1398417,43.3776493],"name":"Vladivostok Int'l","abbrev":"VVO","type":"mid and military"}
+{"coords":[21.030269,42.5850331],"name":"Pristina","abbrev":"PRN","type":"major"}
+{"coords":[4.4509228,51.1891285],"name":"Deurne","abbrev":"ANR","type":"mid"}
+{"coords":[-110.3671979,24.0760904],"name":"Gen. Márquez de León Int'l","abbrev":"LAP","type":"mid"}
+{"coords":[126.236983,45.6206012],"name":"Harbin Taiping","abbrev":"HRB","type":"major"}
+{"coords":[76.9189026,8.4765099],"name":"Trivandrum Int'l","abbrev":"TRV","type":"mid"}
+{"coords":[27.1492976,38.2912348],"name":"Adnan Menderes","abbrev":"ADB","type":"major"}
+{"coords":[118.8661021,31.7353249],"name":"Nanjing Lukou Int'l","abbrev":"NKG","type":"major"}
+{"coords":[-78.7039343,26.5482467],"name":"Freeport Int'l","abbrev":"FPO","type":"mid"}
+{"coords":[13.144259,32.6691696],"name":"Tripoli Int'l","abbrev":"TIP","type":"major"}
+{"coords":[-54.5755719,48.946598],"name":"Gander Int'l","abbrev":"YQX","type":"mid"}
+{"coords":[51.5585488,25.2682461],"name":"Doha Int'l","abbrev":"DOH","type":"major and military"}
+{"coords":[-106.6166852,35.0491578],"name":"Albuquerque Int'l","abbrev":"ABQ","type":"major"}
+{"coords":[-61.7923677,17.1403599],"name":"V.C. Bird Int'l","abbrev":"ANU","type":"mid"}
+{"coords":[-171.9973222,-13.8325013],"name":"Faleolo","abbrev":"APW","type":"mid"}
+{"coords":[31.016249,27.0508158],"name":"Asyut","abbrev":"ATZ","type":"mid"}
+{"coords":[50.6260029,26.2696971],"name":"Bahrain Int'l","abbrev":"BAH","type":"major"}
+{"coords":[-72.6853947,41.930316],"name":"Bradley Int'l","abbrev":"BDL","type":"major"}
+{"coords":[-59.4874189,13.0796611],"name":"Grantley Adams Int'l","abbrev":"BGI","type":"mid"}
+{"coords":[-16.6523133,13.3438605],"name":"Yundum Int'l","abbrev":"BJL","type":"mid"}
+{"coords":[29.320984,-3.3220443],"name":"Bujumbura Int'l","abbrev":"BJM","type":"mid"}
+{"coords":[34.9719442,-15.6813845],"name":"Chileka Int'l","abbrev":"BLZ","type":"mid"}
+{"coords":[122.2338505,-17.9525761],"name":"Broome Int'l","abbrev":"BME","type":"mid"}
+{"coords":[56.3688865,27.2103258],"name":"Bandar Abbass Int'l","abbrev":"BND","type":"mid"}
+{"coords":[47.6683767,30.552799],"name":"Basrah Int'l","abbrev":"BSR","type":"major"}
+{"coords":[-106.4358466,31.6357566],"name":"Ciudad Juarez Int'l","abbrev":"CJS","type":"mid"}
+{"coords":[79.8852573,7.1780771],"name":"Katunayake Int'l","abbrev":"CMB","type":"major"}
+{"coords":[145.7535848,-16.8767422],"name":"Cairns Int'l","abbrev":"CNS","type":"mid"}
+{"coords":[98.9681181,18.7688474],"name":"Chiang Mai Int'l","abbrev":"CNX","type":"major"}
+{"coords":[-104.7008803,38.7974249],"name":"City of Colorado Springs","abbrev":"COS","type":"major"}
+{"coords":[-90.5036284,19.8142248],"name":"Ign. Alberto Ongay Int'l","abbrev":"CPE","type":"mid"}
+{"coords":[113.2140542,28.1899219],"name":"Changsha Huanghua Int'l","abbrev":"CSX","type":"major"}
+{"coords":[-84.6561699,39.0554189],"name":"Greater Cincinnati Int'l","abbrev":"CVG","type":"major"}
+{"coords":[108.2027063,16.0531441],"name":"Da Nang","abbrev":"DAD","type":"major"}
+{"coords":[-96.8498638,32.8444254],"name":"Dallas Love Field","abbrev":"DAL","type":"major"}
+{"coords":[36.5128955,33.4114367],"name":"Damascus Int'l","abbrev":"DAM","type":"major"}
+{"coords":[-82.4317583,8.3912611],"name":"Enrique Malek Int'l","abbrev":"DAV","type":"mid"}
+{"coords":[41.8577567,9.6126778],"name":"Aba Tenna D. Yilma Int'l","abbrev":"DIR","type":"mid"}
+{"coords":[115.162323,-8.7447573],"name":"Bali Int'l","abbrev":"DPS","type":"major"}
+{"coords":[-93.6484613,41.5327904],"name":"Des Moines Int'l","abbrev":"DSM","type":"major"}
+{"coords":[32.4427573,0.0449409],"name":"Entebbe Int'l","abbrev":"EBB","type":"mid"}
+{"coords":[25.3302715,0.4922251],"name":"Kisangani Bangoka Int'l","abbrev":"FKI","type":"mid"}
+{"coords":[119.6680438,25.9318233],"name":"Fuzhou Changle Int'l","abbrev":"FOC","type":"mid"}
+{"coords":[91.5882291,26.1052476],"name":"Lokpriya G. Bordoloi Int'l","abbrev":"GAU","type":"mid"}
+{"coords":[18.4684422,54.3807025],"name":"Gdansk Lech Walesa","abbrev":"GDN","type":"major"}
+{"coords":[-61.785853,12.0072683],"name":"Point Salines Int'l","abbrev":"GND","type":"mid"}
+{"coords":[43.7896337,56.2185526],"name":"Nizhny Novgorod Int'l","abbrev":"GOJ","type":"mid"}
+{"coords":[-110.9216513,27.9694554],"name":"Gen. José M. Yáñez Int'l","abbrev":"GYM","type":"mid"}
+{"coords":[111.8146818,40.8540601],"name":"Hohhot Baita Int'l","abbrev":"HET","type":"mid"}
+{"coords":[-111.9898969,46.6102044],"name":"Helena Reg.","abbrev":"HLN","type":"mid"}
+{"coords":[-111.0519017,29.0900773],"name":"Gen. Ignacio P. Garcia Int'l","abbrev":"HMO","type":"mid"}
+{"coords":[-77.4477926,38.952774],"name":"Dulles Int'l","abbrev":"IAD","type":"major"}
+{"coords":[-155.0396297,19.7147977],"name":"Hilo Int'l","abbrev":"ITO","type":"mid"}
+{"coords":[-90.0750986,32.31006],"name":"Jackson Int'l","abbrev":"JAN","type":"major"}
+{"coords":[-81.6835767,30.4913527],"name":"Jacksonville Int'l","abbrev":"JAX","type":"major"}
+{"coords":[110.3418371,1.4872079],"name":"Kuching Int'l","abbrev":"KCH","type":"mid"}
+{"coords":[30.1348768,-1.9636544],"name":"Kigali Int'l","abbrev":"KGL","type":"mid"}
+{"coords":[19.8009773,50.0722631],"name":"Kraków-Balice","abbrev":"KRK","type":"major"}
+{"coords":[50.1472655,53.5083848],"name":"Kurumoch","abbrev":"KUF","type":"major"}
+{"coords":[110.0468935,25.2176055],"name":"Guilin Liangjiang Int'l","abbrev":"KWL","type":"major"}
+{"coords":[120.5338762,18.1824181],"name":"Laoag Int'l","abbrev":"LAO","type":"mid"}
+{"coords":[-73.8719858,40.7745539],"name":"LaGuardia","abbrev":"LGA","type":"major"}
+{"coords":[-0.1629616,51.1557568],"name":"London Gatwick","abbrev":"LGW","type":"major"}
+{"coords":[14.4548126,46.2305446],"name":"Ljubljana","abbrev":"LJU","type":"major"}
+{"coords":[80.884172,26.7639329],"name":"Amausi Int'l","abbrev":"LKO","type":"mid"}
+{"coords":[-57.8953821,-34.9655442],"name":"La Plata","abbrev":"LPG","type":"mid"}
+{"coords":[-97.5308217,25.7708413],"name":"Gen. Sevando Canales","abbrev":"MAM","type":"mid"}
+{"coords":[-2.2733716,53.3624896],"name":"Manchester Int'l","abbrev":"MAN","type":"major"}
+{"coords":[-94.7159149,39.2978958],"name":"Kansas City Int'l","abbrev":"MCI","type":"major"}
+{"coords":[58.2904805,23.5885704],"name":"Seeb Int'l","abbrev":"MCT","type":"major"}
+{"coords":[10.7533682,35.7607104],"name":"Habib Bourguiba Int'l","abbrev":"MIR","type":"mid"}
+{"coords":[5.2213792,43.44106],"name":"Marseille Provence Airport","abbrev":"MRS","type":"major"}
+{"coords":[-99.5680082,27.4496897],"name":"Quetzalcoatl Int'l","abbrev":"NLD","type":"mid"}
+{"coords":[108.1680123,22.6120371],"name":"Nanning Wuwu Int'l","abbrev":"NNG","type":"major"}
+{"coords":[-96.7217959,17.0005593],"name":"Xoxocotlán Int'l","abbrev":"OAX","type":"mid"}
+{"coords":[-156.4374296,20.8932885],"name":"Kahului","abbrev":"OGG","type":"mid"}
+{"coords":[-97.5961178,35.3952775],"name":"Will Rogers","abbrev":"OKC","type":"major"}
+{"coords":[-76.2044232,36.8982395],"name":"Norfolk Int'l","abbrev":"ORF","type":"major"}
+{"coords":[-80.0901893,26.6884417],"name":"Palm Beach Int'l","abbrev":"PBI","type":"major"}
+{"coords":[-55.1999114,5.4559997],"name":"Pengel Int'l","abbrev":"PBM","type":"mid"}
+{"coords":[56.0195603,57.9197711],"name":"Bolshesavino","abbrev":"PEE","type":"mid"}
+{"coords":[100.2657864,5.2926563],"name":"Penang Int'l","abbrev":"PEN","type":"mid"}
+{"coords":[6.9498974,5.0070035],"name":"Port Harcourt Int'l","abbrev":"PHC","type":"mid"}
+{"coords":[118.6317978,-20.3781273],"name":"Port Hedland Int'l","abbrev":"PHE","type":"mid"}
+{"coords":[-100.292642,44.3801535],"name":"Pierre Regional","abbrev":"PIR","type":"mid"}
+{"coords":[-80.2561291,40.4960519],"name":"Greater Pittsburgh Int'l","abbrev":"PIT","type":"major"}
+{"coords":[-170.7133071,-14.3290642],"name":"Pago Pago Int'l","abbrev":"PPG","type":"mid"}
+{"coords":[-1.7337317,52.4529086],"name":"Birmingham Int'l","abbrev":"BHX","type":"major"}
+{"coords":[-10.3530852,6.2418346],"name":"Roberts Int'l","abbrev":"ROB","type":"mid"}
+{"coords":[81.7403776,21.1859869],"name":"Raipur","abbrev":"RPR","type":"mid"}
+{"coords":[-89.0572036,13.4447481],"name":"El Salvador Int'l","abbrev":"SAL","type":"mid"}
+{"coords":[-117.197511,32.7322646],"name":"San Diego Int'l","abbrev":"SAN","type":"major"}
+{"coords":[-98.47197,29.5266203],"name":"San Antonio Int'l","abbrev":"SAT","type":"major"}
+{"coords":[-81.2099648,32.1356416],"name":"Savannah Int'l","abbrev":"SAV","type":"major"}
+{"coords":[-75.8398878,19.9724289],"name":"Antonio Maceo","abbrev":"SCU","type":"mid"}
+{"coords":[-100.9364778,22.255713],"name":"Ponciano Arriaga Int'l","abbrev":"SLP","type":"mid"}
+{"coords":[-121.5878949,38.6927239],"name":"Sacramento Int'l","abbrev":"SMF","type":"major"}
+{"coords":[-70.6941783,19.4659219],"name":"Cibao Int'l","abbrev":"STI","type":"mid"}
+{"coords":[60.8058033,56.7322456],"name":"Koltsovo","abbrev":"SVX","type":"major"}
+{"coords":[-76.113079,43.1317845],"name":"Syracuse Hancock Int'l","abbrev":"SYR","type":"major"}
+{"coords":[46.2447134,38.1311108],"name":"Tabriz","abbrev":"TBZ","type":"mid"}
+{"coords":[-103.3987878,25.5632164],"name":"Torreon Int'l","abbrev":"TRC","type":"mid"}
+{"coords":[-95.8898823,36.1901276],"name":"Tulsa Int'l","abbrev":"TUL","type":"major"}
+{"coords":[-83.9899378,35.8057448],"name":"Mcghee Tyson","abbrev":"TYS","type":"major"}
+{"coords":[55.8840773,54.5651324],"name":"Ufa Int'l","abbrev":"UFA","type":"major"}
+{"coords":[-60.9499738,13.7365238],"name":"Hewanorra Int'l","abbrev":"UVF","type":"mid"}
+{"coords":[17.4632259,-22.4869531],"name":"Windhoek Hosea Kutako Int'l","abbrev":"WDH","type":"mid"}
+{"coords":[-84.500609,46.4854175],"name":"Sault Ste Marie","abbrev":"YAM","type":"mid"}
+{"coords":[-120.1855956,55.7394117],"name":"Dawson Cr.","abbrev":"YDQ","type":"mid"}
+{"coords":[-113.5844926,53.3072002],"name":"Edmonton Int'l","abbrev":"YEG","type":"major"}
+{"coords":[-63.5149653,44.8865455],"name":"Halifax Int'l","abbrev":"YHZ","type":"major"}
+{"coords":[-120.4417348,50.7051955],"name":"Kamloops","abbrev":"YKA","type":"mid"}
+{"coords":[-80.7957748,46.6227508],"name":"Sudbury","abbrev":"YSB","type":"mid"}
+{"coords":[-65.8905574,45.3292306],"name":"Saint John","abbrev":"YSJ","type":"mid"}
+{"coords":[-122.6740147,53.8842486],"name":"Prince George","abbrev":"YXS","type":"mid"}
+{"coords":[-123.4306245,48.6405295],"name":"Victoria Int'l","abbrev":"YYJ","type":"major"}
+{"coords":[122.0624323,6.9197577],"name":"Zamboanga Int'l","abbrev":"ZAM","type":"mid"}
+{"coords":[103.6154154,36.5078842],"name":"Lanzhou Zhongchuan","abbrev":"ZGC","type":"mid"}
+{"coords":[-73.8093519,42.745662],"name":"Albany Int'l","abbrev":"ALB","type":"mid"}
+{"coords":[-87.9021056,42.9479199],"name":"General Mitchell Int'l","abbrev":"MKE","type":"major"}
+{"coords":[114.2469474,30.6017141],"name":"Wang-Chia Tun Airbase","abbrev":"ZHHH","type":"military mid"}
+{"coords":[109.4082395,18.309096],"name":"Sanya Phoenix Int'l","abbrev":"SYX","type":"major"}
+{"coords":[90.900561,29.2936936],"name":"Lhasa Gonggar","abbrev":"LXA","type":"mid"}
+{"coords":[79.8723005,37.0400364],"name":"Hotan","abbrev":"HTN","type":"mid"}
+{"coords":[13.7649671,51.1250912],"name":"Dresden","abbrev":"DRS","type":"major"}
+{"coords":[-6.5977536,34.2986674],"name":"Kenitra Air Base","abbrev":"NNA","type":"military major"}
+{"coords":[6.2649109,46.1957283],"name":"Annemasse","abbrev":"QNJ","type":"mid"}
+{"coords":[-110.9727213,31.2255372],"name":"Nogales Int'l","abbrev":"NOG","type":"mid"}
+{"coords":[7.627842,48.5446962],"name":"Strasbourg","abbrev":"SXB","type":"mid"}
+{"coords":[7.1223598,50.8782597],"name":"Cologne/Bonn","abbrev":"CGN","type":"major"}
+{"coords":[128.9488014,35.1702841],"name":"Kimhae Int'l","abbrev":"PUS","type":"major"}
+{"coords":[126.4916294,33.5247173],"name":"Jeju Int'l","abbrev":"CJU","type":"major"}
+{"coords":[5.6298103,58.8821565],"name":"Stavanger Sola","abbrev":"SVG","type":"major"}
+{"coords":[10.9168095,63.4720294],"name":"Trondheim Vaernes","abbrev":"TRD","type":"major"}
+{"coords":[-57.6636079,-19.0141663],"name":"Corumbá Int'l","abbrev":"CMG","type":"mid"}
+{"coords":[-16.7756375,32.6933643],"name":"Madeira","abbrev":"FNC","type":"mid"}
+{"coords":[-54.4885923,-25.5976832],"name":"Foz do Iguaçu Int'l","abbrev":"IGU","type":"mid"}
+{"coords":[-63.8984625,-8.7144248],"name":"Gov. Jorge Teixeira de Oliveira Int'l","abbrev":"PVH","type":"mid"}
+{"coords":[-2.9060901,43.305083],"name":"Bilbao","abbrev":"BIO","type":"mid"}
+{"coords":[2.7299766,39.5657759],"name":"Palma de Mallorca","abbrev":"PMI","type":"major"}
+{"coords":[-16.3463176,28.487577],"name":"Tenerife N.","abbrev":"TFN","type":"major"}
+{"coords":[12.2938269,57.6857494],"name":"Gothenburg","abbrev":"GOT","type":"major"}
+{"coords":[22.1230271,65.5490362],"name":"Lulea","abbrev":"LLA","type":"major"}
+{"coords":[54.6463293,24.4272272],"name":"Abu Dhabi Int'l","abbrev":"AUH","type":"major"}
+{"coords":[6.6219467,36.2834409],"name":"Mohamed Boudiaf Int'l","abbrev":"CZL","type":"mid"}
+{"coords":[32.8244372,23.9682765],"name":"Aswan Int'l","abbrev":"ASW","type":"mid"}
+{"coords":[25.829441,66.5595564],"name":"Rovaniemi","abbrev":"RVN","type":"mid"}
+{"coords":[-58.2541192,6.4985529],"name":"Cheddi Jagan Int'l","abbrev":"GEO","type":"mid"}
+{"coords":[76.3905199,10.1551188],"name":"Cochin Int'l","abbrev":"COK","type":"major"}
+{"coords":[35.2236931,0.4050715],"name":"Eldoret Int'l","abbrev":"EDL","type":"mid"}
+{"coords":[126.450876,37.4492089],"name":"Incheon Int'l","abbrev":"ICN","type":"major"}
+{"coords":[-107.4698638,24.766804],"name":"Federal de Bachigualato Int'l","abbrev":"CUL","type":"mid"}
+{"coords":[73.1007936,33.6074458],"name":"Benazir Bhutto Int'l","abbrev":"ISB","type":"major and military"}
+{"coords":[4.4846403,50.897295],"name":"Brussels","abbrev":"BRU","type":"major"}
+{"coords":[7.2702599,9.0043766],"name":"Abuja Int'l","abbrev":"ABV","type":"major"}
+{"coords":[-124.1070655,40.9719245],"name":"Arcata-Eureka","abbrev":"ACV","type":"mid"}
+{"coords":[-97.6668368,30.2021082],"name":"Austin-Bergstrom Int'l","abbrev":"AUS","type":"major"}
+{"coords":[30.8025526,36.9153233],"name":"Antalya","abbrev":"AYT","type":"major"}
+{"coords":[-6.2161694,54.6615575],"name":"Belfast Int'l","abbrev":"BFS","type":"major"}
+{"coords":[9.6989177,45.6654981],"name":"Orio Al Serio","abbrev":"BGY","type":"major"}
+{"coords":[116.0510879,5.9228945],"name":"Kota Kinabalu Int'l","abbrev":"BKI","type":"mid"}
+{"coords":[77.709558,13.2006108],"name":"Bengaluru Int'l","abbrev":"BLR","type":"major"}
+{"coords":[149.1907605,-35.3071856],"name":"Canberra Int'l","abbrev":"CBR","type":"major"}
+{"coords":[-82.8840306,39.9981182],"name":"Port Columbus Int'l","abbrev":"CMH","type":"major"}
+{"coords":[-7.581456,33.3747275],"name":"Mohamed V Int'l","abbrev":"CMN","type":"major"}
+{"coords":[6.7649445,51.278182],"name":"Düsseldorf Int'l","abbrev":"DUS","type":"major"}
+{"coords":[32.9930101,40.1151278],"name":"Esenboğa Int'l","abbrev":"ESB","type":"major"}
+{"coords":[175.3362214,-37.8658411],"name":"Hamilton Int'l","abbrev":"HLZ","type":"mid"}
+{"coords":[78.4295361,17.2359832],"name":"Rajiv Gandhi Int'l","abbrev":"HYD","type":"major"}
+{"coords":[-73.7863269,40.6459596],"name":"John F Kennedy Int'l","abbrev":"JFK","type":"major"}
+{"coords":[30.8951622,50.3409023],"name":"Boryspil Int'l","abbrev":"KBP","type":"major"}
+{"coords":[32.5501533,15.5922227],"name":"Khartoum","abbrev":"KRT","type":"major"}
+{"coords":[-89.3457848,43.1363082],"name":"Dane Cty. Reg. (Truax Field)","abbrev":"MSN","type":"major"}
+{"coords":[28.0341933,53.8893792],"name":"Minsk Int'l","abbrev":"MSQ","type":"major"}
+{"coords":[13.105531,38.1863351],"name":"Palermo","abbrev":"PMO","type":"major"}
+{"coords":[-71.4357841,41.726002],"name":"T.F. Green","abbrev":"PVD","type":"mid"}
+{"coords":[-81.7551231,26.5279288],"name":"Southwest Florida Int'l","abbrev":"RSW","type":"major"}
+{"coords":[123.4879744,41.6347891],"name":"Shenyang Taoxian Int'l","abbrev":"SHE","type":"major"}
+{"coords":[55.5205072,25.3211964],"name":"Sharjah Int'l","abbrev":"SHJ","type":"major"}
+{"coords":[-121.929429,37.3694906],"name":"San Jose Int'l","abbrev":"SJC","type":"major"}
+{"coords":[-117.8614892,33.6794857],"name":"John Wayne","abbrev":"SNA","type":"major"}
+{"coords":[9.1939511,48.6901051],"name":"Stuttgart","abbrev":"STR","type":"major"}
+{"coords":[-84.1386092,9.9582785],"name":"Nacional Tobías Bolaños","abbrev":"SYQ","type":"mid"}
+{"coords":[113.8158528,22.6465077],"name":"Shenzhen Bao'an Int'l","abbrev":"SZX","type":"major"}
+{"coords":[-85.7417028,38.1860207],"name":"Louisville Int'l","abbrev":"SDF","type":"major"}
+{"coords":[6.1079458,46.2310095],"name":"Geneva","abbrev":"GVA","type":"major"}
+{"coords":[5.0759443,45.7210187],"name":"Lyon-Saint Exupery","abbrev":"LYS","type":"mid"}
+{"coords":[135.2444598,34.4347942],"name":"Kansai Int'l","abbrev":"KIX","type":"major"}
+{"coords":[-9.1306944,38.7707623],"name":"Lisbon Portela","abbrev":"LIS","type":"major"}
+{"coords":[-43.9635815,-19.6327821],"name":"Tancredo Neves Int'l","abbrev":"CNF","type":"major"}
+{"coords":[17.9456175,59.3555902],"name":"Bromma","abbrev":"BMA","type":"mid"}
+{"coords":[112.7770346,-7.383579],"name":"Juanda Int'l","abbrev":"SUB","type":"major"}
+{"coords":[-57.5816151,-37.9332161],"name":"Astor Piazzolla Int'l","abbrev":"MDQ","type":"mid"}
+{"coords":[-81.3576706,19.2959107],"name":"Owen Roberts Int'l","abbrev":"GCM","type":"major"}
+{"coords":[113.8418313,34.5263027],"name":"Zhengzhou Xinzheng Int'l","abbrev":"CGO","type":"major"}
+{"coords":[121.5389138,38.9615702],"name":"Dalian Zhoushuizi Int'l","abbrev":"DLC","type":"major"}
+{"coords":[25.1740558,35.3369024],"name":"Heraklion Int'l","abbrev":"HER","type":"major"}
+{"coords":[44.9646146,41.669442],"name":"Tbilisi Int'l","abbrev":"TBS","type":"major"}
+{"coords":[-9.3545824,38.7235353],"name":"Cascais","abbrev":"XXC","type":"mid"}
+{"coords":[120.3451563,22.5717061],"name":"Kaohsiung Int'l","abbrev":"KHH","type":"major"}
+{"coords":[5.2002262,12.9174824],"name":"Sadiq Abubakar III","abbrev":"SKO","type":"mid"}
+{"coords":[-78.4899926,-0.1455524],"name":"Mariscal Sucre Int'l","abbrev":"UIO","type":"mid"}
+{"coords":[67.1521284,24.8985244],"name":"Karachi Civil","abbrev":"KHI","type":"mid"}
+{"coords":[28.9360488,46.934162],"name":"Kishinev S.E.","abbrev":"KIV","type":"mid"}
+{"coords":[-77.1075657,-12.0237162],"name":"Jorge Chávez","abbrev":"LIM","type":"major"}
+{"coords":[-89.3121421,48.3718811],"name":"Thunder Bay Int'l","abbrev":"YQT","type":"mid"}
+{"coords":[25.2807164,54.6430549],"name":"Vilnius","abbrev":"VNO","type":"major"}
+{"coords":[108.7558113,34.4429391],"name":"Hsien Yang","abbrev":"XIY","type":"major"}
+{"coords":[-100.2383942,25.8598738],"name":"Del Norte Int'l","abbrev":"NTR","type":"mid"}
+{"coords":[-175.135635,-21.24861],"name":"Fua'amotu Int'l","abbrev":"TBU","type":"mid"}
+{"coords":[51.8763917,32.7460805],"name":"Esfahan Int'l","abbrev":"IFN","type":"mid"}
+{"coords":[31.1014,-17.9228],"name":"Harare Int'l","abbrev":"HRE","type":"mid"}
+{"coords":[47.9714826,29.2396801],"name":"Kuwait Int'l","abbrev":"KWI","type":"major"}
+{"coords":[-75.6648934,45.3201348],"name":"Macdonald-Cartier Int'l","abbrev":"YOW","type":"major"}
+{"coords":[69.2100736,34.5633979],"name":"Kabul Int'l","abbrev":"KBL","type":"mid"}
+{"coords":[-3.9322193,5.2543984],"name":"Abidjan Port Bouet","abbrev":"ABJ","type":"mid"}
+{"coords":[-99.7545086,16.7619674],"name":"General Juan N Alvarez Int'l","abbrev":"ACA","type":"major"}
+{"coords":[-0.1714029,5.6069815],"name":"Kotoka Int'l","abbrev":"ACC","type":"major"}
+{"coords":[38.7931904,8.9817303],"name":"Bole Int'l","abbrev":"ADD","type":"mid"}
+{"coords":[45.030602,12.8278],"name":"Aden Int'l","abbrev":"ADE","type":"mid"}
+{"coords":[138.5321015,-34.940586],"name":"Adelaide Int'l","abbrev":"ADL","type":"mid"}
+{"coords":[77.0120459,43.3464943],"name":"Almaty Int'l","abbrev":"ALA","type":"major"}
+{"coords":[3.2120735,36.6997207],"name":"Houari Boumediene","abbrev":"ALG","type":"major"}
+{"coords":[37.2273414,36.1846237],"name":"Aleppo Int'l","abbrev":"ALP","type":"major"}
+{"coords":[72.6209001,23.0707455],"name":"Sardar Vallabhbhai Patel Int'l","abbrev":"AMD","type":"mid"}
+{"coords":[-70.4409909,-23.4489545],"name":"Cerro Moreno Int'l","abbrev":"ANF","type":"mid"}
+{"coords":[58.3639659,37.9848534],"name":"Ashkhabad Northwest","abbrev":"ASB","type":"mid"}
+{"coords":[38.906354,15.293616],"name":"Yohannes Iv Int'l","abbrev":"ASM","type":"mid"}
+{"coords":[-57.5139078,-25.2416593],"name":"Silvio Pettirossi Int'l","abbrev":"ASU","type":"mid"}
+{"coords":[-64.7027741,32.359174],"name":"Bermuda Int'l","abbrev":"BDA","type":"mid"}
+{"coords":[20.2912846,44.8190767],"name":"Surcin","abbrev":"BEG","type":"major"}
+{"coords":[35.4930854,33.8254401],"name":"Beirut Int'l","abbrev":"BEY","type":"major"}
+{"coords":[77.3408715,23.2855685],"name":"Bairagarh","abbrev":"BHO","type":"mid"}
+{"coords":[-7.9472723,12.5393363],"name":"Bamako Sénou","abbrev":"BKO","type":"mid"}
+{"coords":[-86.6692867,36.1314876],"name":"Nashville Int'l","abbrev":"BNA","type":"major"}
+{"coords":[153.1202564,-27.3853966],"name":"Brisbane Int'l","abbrev":"BNE","type":"major"}
+{"coords":[-116.2218411,43.5689592],"name":"Boise Air Terminal","abbrev":"BOI","type":"major"}
+{"coords":[-156.771835,71.289299],"name":"Wiley Post Will Rogers Mem.","abbrev":"BRW","type":"mid"}
+{"coords":[-78.7319966,42.9340337],"name":"Greater Buffalo Int'l","abbrev":"BUF","type":"major"}
+{"coords":[28.622552,-20.0155684],"name":"Bulawayo","abbrev":"BUQ","type":"mid"}
+{"coords":[114.933119,4.9454753],"name":"Brunei Int'l","abbrev":"BWN","type":"major"}
+{"coords":[113.2975166,23.3891512],"name":"Guangzhou Baiyun Int'l","abbrev":"CAN","type":"major"}
+{"coords":[-73.0621062,-36.7763727],"name":"Carriel Sur Int'l","abbrev":"CCP","type":"mid"}
+{"coords":[88.440001,22.6453894],"name":"Netaji Subhash Chandra Bose Int'l","abbrev":"CCU","type":"major"}
+{"coords":[91.8147107,22.2455659],"name":"Chittagong","abbrev":"CGP","type":"mid"}
+{"coords":[172.5386756,-43.4885487],"name":"Christchurch Int'l","abbrev":"CHC","type":"major"}
+{"coords":[-13.6210656,9.5741812],"name":"Conakry","abbrev":"CKY","type":"mid"}
+{"coords":[-81.8384406,41.4111916],"name":"Hopkins Int'l","abbrev":"CLE","type":"major"}
+{"coords":[-76.3850715,3.5432864],"name":"Alfonso Bonilla Aragón Int'l","abbrev":"CLO","type":"mid"}
+{"coords":[2.3838001,6.3582465],"name":"Cotonou Cadjehon","abbrev":"COO","type":"mid"}
+{"coords":[-64.2123158,-31.3156812],"name":"Ingeniero Ambrosio L.V. Taravella Int'l","abbrev":"COR","type":"mid"}
+{"coords":[-75.512335,10.4449382],"name":"Rafael Nunez","abbrev":"CTG","type":"mid"}
+{"coords":[-86.8744173,21.0401967],"name":"Cancún","abbrev":"CUN","type":"major"}
+{"coords":[-105.9692047,28.7039985],"name":"General R F Villalobos Int'l","abbrev":"CUU","type":"mid"}
+{"coords":[90.4049242,23.8481243],"name":"Zia Int'l Dhaka","abbrev":"DAC","type":"mid"}
+{"coords":[130.8775014,-12.408056],"name":"Darwin Int'l","abbrev":"DRW","type":"major and military"}
+{"coords":[30.9457082,-29.9659143],"name":"Louis Botha","abbrev":"DUR","type":"mid"}
+{"coords":[27.5292,-11.5908],"name":"Lubumbashi Luano Int'l","abbrev":"FBM","type":"mid"}
+{"coords":[-4.9821464,33.9305252],"name":"Saiss","abbrev":"FEZ","type":"mid"}
+{"coords":[15.4465162,-4.3891688],"name":"Kinshasa N Djili Int'l","abbrev":"FIH","type":"mid"}
+{"coords":[-13.2002297,8.6154236],"name":"Freetown Lungi","abbrev":"FNA","type":"mid"}
+{"coords":[125.6753216,39.2001772],"name":"Sunan","abbrev":"FNJ","type":"mid"}
+{"coords":[74.4688003,43.0554527],"name":"Vasilyevka","abbrev":"FRU","type":"major"}
+{"coords":[25.9243808,-24.5580718],"name":"Sir Seretse Khama Int'l","abbrev":"GBE","type":"mid"}
+{"coords":[-103.3007662,20.5246863],"name":"Don Miguel Hidalgo Int'l","abbrev":"GDL","type":"major"}
+{"coords":[-4.431678,55.8641829],"name":"Glasgow Int'l","abbrev":"GLA","type":"major"}
+{"coords":[-90.5301811,14.5881608],"name":"La Aurora","abbrev":"GUA","type":"mid"}
+{"coords":[-79.8870096,-2.1583379],"name":"Simon Bolivar Int'l","abbrev":"GYE","type":"mid"}
+{"coords":[105.8037594,21.2145597],"name":"Noi Bai","abbrev":"HAN","type":"major"}
+{"coords":[-82.4074206,22.9973533],"name":"José Martí Int'l","abbrev":"HAV","type":"major"}
+{"coords":[29.692666,30.9183713],"name":"Borg El Arab Int'l","abbrev":"HBE","type":"mid"}
+{"coords":[39.1504997,21.6706858],"name":"King Abdul Aziz Int'l","abbrev":"JED","type":"major"}
+{"coords":[8.5221372,12.0457072],"name":"Kano Mallam Aminu Int'l","abbrev":"KAN","type":"mid"}
+{"coords":[76.0130148,39.5379686],"name":"Kashi","abbrev":"KHG","type":"mid"}
+{"coords":[-76.7786898,17.9375752],"name":"Norman Manley Int'l","abbrev":"KIN","type":"major"}
+{"coords":[85.3571395,27.7002817],"name":"Tribhuvan Int'l","abbrev":"KTM","type":"mid"}
+{"coords":[13.2347958,-8.8483133],"name":"Luanda 4 de Fevereiro","abbrev":"LAD","type":"mid"}
+{"coords":[30.3070976,59.8054062],"name":"Pulkovo 2","abbrev":"LED","type":"major"}
+{"coords":[74.410881,31.5206297],"name":"Allama Iqbal Int'l","abbrev":"LHE","type":"mid"}
+{"coords":[33.7827885,-13.7886228],"name":"Kamuzu Int'l","abbrev":"LLW","type":"mid"}
+{"coords":[3.3211244,6.5782594],"name":"Lagos Murtala Muhammed","abbrev":"LOS","type":"major"}
+{"coords":[-68.1780055,-16.5098792],"name":"El Alto Int'l","abbrev":"LPB","type":"mid"}
+{"coords":[28.4455443,-15.3268523],"name":"Lusaka Int'l","abbrev":"LUN","type":"mid"}
+{"coords":[32.7032971,25.6730348],"name":"Luxor","abbrev":"LXR","type":"mid"}
+{"coords":[80.163776,12.9825302],"name":"Chennai Int'l","abbrev":"MAA","type":"major"}
+{"coords":[-71.7237688,10.5557595],"name":"La Chinita Int'l","abbrev":"MAR","type":"mid"}
+{"coords":[-75.4269557,6.1710016],"name":"José María Córdova","abbrev":"MDE","type":"mid"}
+{"coords":[-89.981628,35.0444101],"name":"Memphis Int'l","abbrev":"MEM","type":"major"}
+{"coords":[-86.1712846,12.1446359],"name":"Augusto Cesar Sandino Int'l","abbrev":"MGA","type":"mid"}
+{"coords":[59.6421944,36.2275503],"name":"Mashhad","abbrev":"MHD","type":"major"}
+{"coords":[-80.2789718,25.7949407],"name":"Miami Int'l","abbrev":"MIA","type":"major"}
+{"coords":[-89.6630236,20.9338604],"name":"Lic M Crecencio Rejon Int'l","abbrev":"MID","type":"mid"}
+{"coords":[14.4952645,35.8489308],"name":"Luqa","abbrev":"MLA","type":"major"}
+{"coords":[39.6026632,-4.0326526],"name":"Moi Int'l","abbrev":"MBA","type":"major"}
+{"coords":[27.559216,-29.455574],"name":"Moshoeshoe I Int'l","abbrev":"MSU","type":"mid"}
+{"coords":[-90.2566939,29.9851141],"name":"New Orleans Int'l","abbrev":"MSY","type":"major"}
+{"coords":[71.4189954,30.1950781],"name":"Multan","abbrev":"MUX","type":"major and military"}
+{"coords":[-56.0266361,-34.8410486],"name":"Carrasco Int'l","abbrev":"MVD","type":"major"}
+{"coords":[-106.2700166,23.1665961],"name":"General Rafael Buelna Int'l","abbrev":"MZT","type":"mid"}
+{"coords":[-77.4648472,25.0486911],"name":"Nassau Int'l","abbrev":"NAS","type":"major"}
+{"coords":[15.0330446,12.12954],"name":"Ndjamena","abbrev":"NDJ","type":"mid"}
+{"coords":[2.1773067,13.4767573],"name":"Niamey","abbrev":"NIM","type":"mid"}
+{"coords":[123.9791345,10.3158757],"name":"Mactan-Cebu Int'l","abbrev":"CEB","type":"major"}
+{"coords":[15.7497618,-12.8025415],"name":"Nova Lisboa","abbrev":"NOV","type":"mid"}
+{"coords":[-95.8994158,41.2997111],"name":"Eppley Airfield","abbrev":"OMA","type":"mid"}
+{"coords":[-165.4416417,64.5072207],"name":"Nome","abbrev":"OME","type":"mid"}
+{"coords":[-1.5138054,12.35358],"name":"Ouagadougou","abbrev":"OUA","type":"mid"}
+{"coords":[-72.294478,18.5756829],"name":"Mais Gate Int'l","abbrev":"PAP","type":"mid"}
+{"coords":[-98.3757598,19.1637935],"name":"Puebla","abbrev":"PBC","type":"mid"}
+{"coords":[-122.5927389,45.5889569],"name":"Portland Int'l","abbrev":"PDX","type":"major"}
+{"coords":[115.9742249,-31.9411298],"name":"Perth Int'l","abbrev":"PER","type":"major"}
+{"coords":[25.6117778,-33.9840877],"name":"H F Verwoerd","abbrev":"PLZ","type":"mid"}
+{"coords":[-73.0983841,-41.4333821],"name":"El Tepual Int'l","abbrev":"PMC","type":"mid"}
+{"coords":[104.8450276,11.5526449],"name":"Pochentong","abbrev":"PNH","type":"major"}
+{"coords":[73.9089838,18.5791766],"name":"Pune","abbrev":"PNQ","type":"major and military"}
+{"coords":[147.2112509,-9.4386527],"name":"Port Moresby Int'l","abbrev":"POM","type":"major"}
+{"coords":[-79.3871348,9.0668724],"name":"Tocumen Int'l","abbrev":"PTY","type":"major"}
+{"coords":[-70.8431238,-53.0050698],"name":"Carlos Ibáñez de Campo Int'l","abbrev":"PUQ","type":"mid"}
+{"coords":[-78.7913814,35.8752323],"name":"Durham Int'l","abbrev":"RDU","type":"major"}
+{"coords":[96.1341946,16.9011543],"name":"Mingaladon","abbrev":"RGN","type":"major"}
+{"coords":[23.9793791,56.9220039],"name":"Riga","abbrev":"RIX","type":"major"}
+{"coords":[44.2246468,15.4739028],"name":"Sanaa Int'l","abbrev":"SAH","type":"mid"}
+{"coords":[44.2289125,33.268163],"name":"Baghdad Int'l","abbrev":"SDA","type":"major"}
+{"coords":[-69.6764727,18.4302197],"name":"De Las Américas Int'l","abbrev":"SDQ","type":"major"}
+{"coords":[106.6642461,10.8163006],"name":"Tan Son Nhat","abbrev":"SGN","type":"major"}
+{"coords":[22.9764354,40.5238737],"name":"Thessaloniki","abbrev":"SKG","type":"major"}
+{"coords":[23.4024521,42.6891841],"name":"Vrazhdebna","abbrev":"SOF","type":"major"}
+{"coords":[72.7424384,21.1204503],"name":"Surat","abbrev":"STV","type":"major"}
+{"coords":[178.5600484,-18.0458997],"name":"Nausori Int'l","abbrev":"SUV","type":"mid"}
+{"coords":[52.5897713,29.5458014],"name":"Shiraz Int'l","abbrev":"SYZ","type":"major"}
+{"coords":[-97.8698138,22.289332],"name":"Gen Francisco J Mina Int'l","abbrev":"TAM","type":"mid"}
+{"coords":[-87.2192116,14.0599852],"name":"Toncontin Int'l","abbrev":"TGU","type":"mid"}
+{"coords":[51.320807,35.6913743],"name":"Mehrabad Int'l","abbrev":"THR","type":"major"}
+{"coords":[19.7150324,41.4208515],"name":"Tirane Rinas","abbrev":"TIA","type":"major"}
+{"coords":[-116.9754761,32.5460499],"name":"General Abelardo L Rodriguez Int'l","abbrev":"TIJ","type":"major"}
+{"coords":[-99.5706494,19.338688],"name":"Jose Maria Morelos Y Pavon","abbrev":"TLC","type":"mid"}
+{"coords":[24.7989649,59.4165015],"name":"Ulemiste","abbrev":"TLL","type":"major"}
+{"coords":[34.8708499,32.0007469],"name":"Ben Gurion","abbrev":"TLV","type":"major"}
+{"coords":[6.7128219,0.3747442],"name":"São Tomé Salazar","abbrev":"TMS","type":"mid"}
+{"coords":[47.475354,-18.7993349],"name":"Antananarivo Ivato","abbrev":"TNR","type":"mid"}
+{"coords":[-82.5348243,27.9800401],"name":"Tampa Int'l","abbrev":"TPA","type":"major"}
+{"coords":[-67.9223617,10.1540057],"name":"Zim Valencia","abbrev":"VLN","type":"mid"}
+{"coords":[44.354768,48.7916765],"name":"Gumrak","abbrev":"VOG","type":"mid"}
+{"coords":[102.5682382,17.9754596],"name":"Vientiane","abbrev":"VTE","type":"mid"}
+{"coords":[-63.1403888,-17.6479468],"name":"Viru Viru Int'l","abbrev":"VVI","type":"mid"}
+{"coords":[174.8116653,-41.3289892],"name":"Wellington Int'l","abbrev":"WLG","type":"major"}
+{"coords":[-130.445587,54.292],"name":"Prince Rupert","abbrev":"YPR","type":"mid"}
+{"coords":[-82.9600877,42.2658785],"name":"Windsor","abbrev":"YQG","type":"mid"}
+{"coords":[-104.655434,50.4332193],"name":"Regina","abbrev":"YQR","type":"mid"}
+{"coords":[-123.180867,49.193559],"name":"Vancouver Int'l","abbrev":"YVR","type":"major"}
+{"coords":[-97.2267695,49.9033302],"name":"Winnipeg Int'l","abbrev":"YWG","type":"major"}
+{"coords":[-106.690182,52.1701439],"name":"John G Diefenbaker Int'l","abbrev":"YXE","type":"mid"}
+{"coords":[-135.0762101,60.7141521],"name":"Whitehorse Int'l","abbrev":"YXY","type":"mid"}
+{"coords":[-114.0105605,51.1308573],"name":"Calgary Int'l","abbrev":"YYC","type":"major"}
+{"coords":[-63.1312341,46.2858131],"name":"Charlottetown","abbrev":"YYG","type":"mid"}
+{"coords":[-94.081364,58.7497238],"name":"Churchill","abbrev":"YYQ","type":"mid"}
+{"coords":[-52.7433337,47.6131179],"name":"St John's Int'l","abbrev":"YYT","type":"mid"}
+{"coords":[-114.4378463,62.4707374],"name":"Yellowknife","abbrev":"YZF","type":"mid"}
+{"coords":[16.0615138,45.7333267],"name":"Zagreb","abbrev":"ZAG","type":"major"}
+{"coords":[39.222332,-6.2185703],"name":"Zanzibar","abbrev":"ZNZ","type":"mid"}
+{"coords":[-21.9466344,64.1318729],"name":"Reykjavik Air Terminal","abbrev":"REK","type":"mid"}
+{"coords":[40.7133466,64.5967438],"name":"Arkhangelsk-Talagi","abbrev":"ARH","type":"mid"}
+{"coords":[49.2984458,55.6080601],"name":"Kazan Int'l","abbrev":"KZN","type":"major"}
+{"coords":[2.3673791,48.731303],"name":"Paris Orly","abbrev":"ORY","type":"major"}
+{"coords":[-71.3839281,46.7915684],"name":"Québec","abbrev":"YQB","type":"major"}
+{"coords":[-73.7493163,45.4583512],"name":"Montréal-Trudeau","abbrev":"YUL","type":"major"}
+{"coords":[140.3844017,35.7640561],"name":"Narita Int'l","abbrev":"NRT","type":"major"}
+{"coords":[136.8147713,34.8590297],"name":"Chubu Centrair Int'l","abbrev":"NGO","type":"major"}
+{"coords":[141.3821005,43.1106496],"name":"Okadama","abbrev":"OKD","type":"mid"}
+{"coords":[5.2272531,60.2890611],"name":"Bergen Flesland","abbrev":"BGO","type":"major"}
+{"coords":[18.9072624,69.679679],"name":"Tromsø Langnes","abbrev":"TOS","type":"major"}
+{"coords":[-48.4795603,-1.3897463],"name":"Val de Caes Int'l","abbrev":"BEL","type":"mid"}
+{"coords":[-54.6689499,-20.4572717],"name":"Campo Grande Int'l","abbrev":"CGR","type":"mid"}
+{"coords":[-49.1737094,-25.5360001],"name":"Afonso Pena Int'l","abbrev":"CWB","type":"mid"}
+{"coords":[-38.5407472,-3.778595],"name":"Pinto Martins Int'l","abbrev":"FOR","type":"mid"}
+{"coords":[-46.4817536,-23.4261156],"name":"São Paulo-Guarulhos Int'l","abbrev":"GRU","type":"major"}
+{"coords":[-49.2266465,-16.6323666],"name":"Santa Genoveva","abbrev":"GYN","type":"mid"}
+{"coords":[-51.1770409,-29.990193],"name":"Salgado Filho Int'l","abbrev":"POA","type":"mid"}
+{"coords":[-34.9182667,-8.1316255],"name":"Gilberto Freyre Int'l","abbrev":"REC","type":"mid"}
+{"coords":[-38.334799,-12.9143615],"name":"Deputado Luis Eduardo Magalhaes Int'l","abbrev":"SSA","type":"mid"}
+{"coords":[-68.7984838,-32.8278002],"name":"El Plumerillo","abbrev":"MDZ","type":"mid"}
+{"coords":[-60.0460646,-3.032139],"name":"Eduardo Gomes Int'l","abbrev":"MAO","type":"mid"}
+{"coords":[11.5479941,3.7148452],"name":"Yaoundé Nsimalen Int'l","abbrev":"NSI","type":"mid"}
+{"coords":[121.8015188,31.152309],"name":"Shanghai Pudong Int'l","abbrev":"PVG","type":"major"}
+{"coords":[35.9841052,31.9741994],"name":"Marka Int'l","abbrev":"ADJ","type":"mid"}
+{"coords":[73.5273903,4.1887009],"name":"Male Int'l","abbrev":"MLE","type":"major"}
+{"coords":[-96.1835702,19.1424237],"name":"Gen. Heriberto Jara Int'l","abbrev":"VER","type":"mid"}
+{"coords":[-15.6511856,11.8889231],"name":"Osvaldo Vieira Int'l","abbrev":"OXB","type":"mid"}
+{"coords":[125.6450666,7.1305375],"name":"Francisco Bangoy Int'l","abbrev":"DVO","type":"major"}
+{"coords":[55.5115519,-4.6710691],"name":"Seychelles Int'l","abbrev":"SEZ","type":"mid"}
+{"coords":[-17.4904079,14.7456306],"name":"Léopold Sedar Senghor Int'l","abbrev":"DKR","type":"major"}
+{"coords":[37.2387476,19.4341052],"name":"Port Sudan New Int'l","abbrev":"PZU","type":"mid"}
+{"coords":[69.2666137,41.2622339],"name":"Tashkent Int'l","abbrev":"TAS","type":"major"}
+{"coords":[12.6493509,55.6285017],"name":"Copenhagen","abbrev":"CPH","type":"major"}
+{"coords":[26.0857252,44.4970415],"name":"Aeroportul National Bucuresti-Baneasa","abbrev":"BBU","type":"mid"}
+{"coords":[19.2622302,47.4332743],"name":"Ferihegy","abbrev":"BUD","type":"major"}
+{"coords":[106.6380197,29.7240422],"name":"Chongqing Jiangbei Int'l","abbrev":"CKG","type":"major"}
+{"coords":[-80.9439277,35.2204282],"name":"Douglas Int'l","abbrev":"CLT","type":"major"}
+{"coords":[-83.3478935,42.2257205],"name":"Detroit Metro","abbrev":"DTW","type":"major"}
+{"coords":[-6.2438849,53.4270083],"name":"Dublin","abbrev":"DUB","type":"major"}
+{"coords":[-147.8657211,64.8180981],"name":"Fairbanks Int'l","abbrev":"FAI","type":"major"}
+{"coords":[10.0056478,53.6320012],"name":"Hamburg","abbrev":"HAM","type":"major"}
+{"coords":[101.7138863,2.747513],"name":"Kuala Lumpur Int'l","abbrev":"KUL","type":"major"}
+{"coords":[-115.151324,36.0849602],"name":"Mccarran Int'l","abbrev":"LAS","type":"major"}
+{"coords":[-81.3073713,28.4311507],"name":"Orlando Int'l","abbrev":"MCO","type":"major"}
+{"coords":[-93.2081004,44.8820264],"name":"Minneapolis St. Paul Int'l","abbrev":"MSP","type":"major"}
+{"coords":[11.7880627,48.3538374],"name":"Franz-Josef-Strauss","abbrev":"MUC","type":"major"}
+{"coords":[-75.2429858,39.8760872],"name":"Philadelphia Int'l","abbrev":"PHL","type":"major"}
+{"coords":[-112.0136353,33.4358608],"name":"Sky Harbor Int'l","abbrev":"PHX","type":"major"}
+{"coords":[-111.9819849,40.786729],"name":"Salt Lake City Int'l","abbrev":"SLC","type":"major"}
+{"coords":[-90.3659545,38.7427163],"name":"Lambert St Louis Int'l","abbrev":"STL","type":"major"}
+{"coords":[20.9727263,52.1710267],"name":"Okecie Int'l","abbrev":"WAW","type":"major"}
+{"coords":[8.5622128,47.4523895],"name":"Zurich Int'l","abbrev":"ZRH","type":"major"}
+{"coords":[4.4543736,50.4571297],"name":"Gosselies","abbrev":"CRL","type":"mid"}
+{"coords":[11.7694829,48.3497964],"name":"Munich Freight Terminal","abbrev":"MUCf","type":"major"}
+{"coords":[2.0780033,41.3031553],"name":"Barcelona","abbrev":"BCN","type":"major"}
+{"coords":[14.267485,50.1076512],"name":"Ruzyn","abbrev":"PRG","type":"major"}
+{"coords":[113.9350164,22.3153328],"name":"Hong Kong Int'l","abbrev":"HKG","type":"major"}
+{"coords":[121.2313705,25.0767411],"name":"Taoyuan","abbrev":"TPE","type":"major"}
+{"coords":[4.7643769,52.3089324],"name":"Schiphol","abbrev":"AMS","type":"major"}
+{"coords":[103.9864139,1.3561608],"name":"Singapore Changi","abbrev":"SIN","type":"major"}
+{"coords":[-0.4531567,51.4709959],"name":"London Heathrow","abbrev":"LHR","type":"major"}
+{"coords":[174.7917194,-37.0063551],"name":"Auckland Int'l","abbrev":"AKL","type":"major"}
+{"coords":[-149.9817251,61.1728937],"name":"Anchorage Int'l","abbrev":"ANC","type":"major"}
+{"coords":[-84.4253974,33.6405291],"name":"Hartsfield-Jackson Atlanta Int'l","abbrev":"ATL","type":"major"}
+{"coords":[116.588174,40.0787663],"name":"Beijing Capital","abbrev":"PEK","type":"major"}
+{"coords":[-74.1433718,4.6988328],"name":"Eldorado Int'l","abbrev":"BOG","type":"major"}
+{"coords":[72.874564,19.0951019],"name":"Chhatrapati Shivaji Int'l","abbrev":"BOM","type":"major"}
+{"coords":[-71.0164066,42.3665658],"name":"Gen E L Logan Int'l","abbrev":"BOS","type":"major"}
+{"coords":[-76.6686428,39.1793944],"name":"Baltimore-Washington Int'l Thurgood Marshall","abbrev":"BWI","type":"major"}
+{"coords":[31.399743,30.1119904],"name":"Cairo Int'l","abbrev":"CAI","type":"major"}
+{"coords":[-7.6632188,33.5627884],"name":"Casablanca-Anfa","abbrev":"CAS","type":"mid"}
+{"coords":[-67.0057488,10.5973549],"name":"Simón Bolivar Int'l","abbrev":"CCS","type":"mid"}
+{"coords":[18.5976565,-33.9704466],"name":"Cape Town Int'l","abbrev":"CPT","type":"major"}
+{"coords":[103.9561365,30.5810713],"name":"Chengdushuang Liu","abbrev":"CTU","type":"major"}
+{"coords":[77.0878363,28.559204],"name":"Indira Gandhi Int'l","abbrev":"DEL","type":"major"}
+{"coords":[-104.6737973,39.8494614],"name":"Denver Int'l","abbrev":"DEN","type":"major"}
+{"coords":[-97.0403711,32.9001506],"name":"Dallas-Ft. Worth Int'l","abbrev":"DFW","type":"major"}
+{"coords":[100.6025786,13.9202766],"name":"Don Muang Int'l","abbrev":"DMK","type":"major"}
+{"coords":[55.3540769,25.2525656],"name":"Dubai Int'l","abbrev":"DXB","type":"major"}
+{"coords":[-74.1771473,40.6904798],"name":"Newark Int'l","abbrev":"EWR","type":"major"}
+{"coords":[-58.5412457,-34.8136469],"name":"Ministro Pistarini Int'l","abbrev":"EZE","type":"major"}
+{"coords":[-80.1452588,26.0717096],"name":"Fort Lauderdale Hollywood Int'l","abbrev":"FLL","type":"major"}
+{"coords":[-95.3337048,29.9865909],"name":"George Bush Intercontinental","abbrev":"IAH","type":"major"}
+{"coords":[28.8195493,40.9778388],"name":"Atatürk Hava Limani","abbrev":"IST","type":"major"}
+{"coords":[28.2319886,-26.1320954],"name":"OR Tambo Int'l","abbrev":"JNB","type":"major"}
+{"coords":[-134.583573,58.3589441],"name":"Juneau Int'l","abbrev":"JNU","type":"mid"}
+{"coords":[-118.4024685,33.9441743],"name":"Los Angeles Int'l","abbrev":"LAX","type":"major"}
+{"coords":[9.2799663,45.4603938],"name":"Linate","abbrev":"LIN","type":"major"}
+{"coords":[144.8489981,-37.6699412],"name":"Melbourne Int'l","abbrev":"MEL","type":"major"}
+{"coords":[-99.082608,19.4354696],"name":"Lic Benito Juarez Int'l","abbrev":"MEX","type":"major"}
+{"coords":[121.0041221,14.5068324],"name":"Ninoy Aquino Int'l","abbrev":"MNL","type":"major"}
+{"coords":[36.9250887,-1.3305296],"name":"Jomo Kenyatta Int'l","abbrev":"NBO","type":"major"}
+{"coords":[-157.9197832,21.3320223],"name":"Honolulu Int'l","abbrev":"HNL","type":"major"}
+{"coords":[-87.9051344,41.9765291],"name":"Chicago O'Hare Int'l","abbrev":"ORD","type":"major"}
+{"coords":[46.701829,24.9590317],"name":"King Khalid Int'l","abbrev":"RUH","type":"major"}
+{"coords":[-70.793686,-33.3968336],"name":"Arturo Merino Benitez Int'l","abbrev":"SCL","type":"major"}
+{"coords":[-122.3022897,47.4435819],"name":"Tacoma Int'l","abbrev":"SEA","type":"major"}
+{"coords":[-122.3834703,37.6170251],"name":"San Francisco Int'l","abbrev":"SFO","type":"major"}
+{"coords":[121.3411838,31.1872574],"name":"Hongqiao","abbrev":"SHA","type":"major"}
+{"coords":[37.415969,55.9664472],"name":"Sheremtyevo","abbrev":"SVO","type":"major"}
+{"coords":[-79.6114193,43.6809595],"name":"Toronto-Pearson Int'l","abbrev":"YYZ","type":"major"}
+{"coords":[151.1660673,-33.9365832],"name":"Kingsford Smith","abbrev":"SYD","type":"major"}
+{"coords":[24.9682079,60.3187159],"name":"Helsinki Vantaa","abbrev":"HEL","type":"major"}
+{"coords":[2.5418678,49.0144201],"name":"Charles de Gaulle Int'l","abbrev":"CDG","type":"major"}
+{"coords":[13.2903091,52.5544287],"name":"Berlin-Tegel Int'l","abbrev":"TXL","type":"major"}
+{"coords":[16.560768,48.1197563],"name":"Vienna Schwechat Int'l","abbrev":"VIE","type":"major"}
+{"coords":[8.5718229,50.0506771],"name":"Frankfurt Int'l","abbrev":"FRA","type":"major"}
+{"coords":[12.2501009,41.7950786],"name":"Leonardo da Vinci Int'l","abbrev":"FCO","type":"major"}
+{"coords":[135.4424753,34.7901981],"name":"Osaka Int'l","abbrev":"ITM","type":"major"}
+{"coords":[126.8023929,37.5573005],"name":"Gimpo Int'l","abbrev":"GMP","type":"major"}
+{"coords":[11.0991033,60.1935783],"name":"Oslo Gardermoen","abbrev":"OSL","type":"major"}
+{"coords":[-47.9207885,-15.8699985],"name":"Juscelino Kubitschek Int'l","abbrev":"BSB","type":"major"}
+{"coords":[-46.6591155,-23.6268588],"name":"Congonhas Int'l","abbrev":"CGH","type":"major"}
+{"coords":[-43.2483814,-22.8123437],"name":"Rio de Janeiro-Antonio Carlos Jobim Int'l","abbrev":"GIG","type":"major"}
+{"coords":[-3.5690267,40.4681283],"name":"Madrid Barajas","abbrev":"MAD","type":"major"}
+{"coords":[-66.00423,18.4380771],"name":"Luis Muñoz Marin","abbrev":"SJU","type":"major"}
+{"coords":[17.9307299,59.6511203],"name":"Arlanda","abbrev":"ARN","type":"major"}
+{"coords":[106.6542962,-6.126603],"name":"Soekarno-Hatta Int'l","abbrev":"CGK","type":"major"}
+{"coords":[23.9471161,37.9362331],"name":"Eleftherios Venizelos Int'l","abbrev":"ATH","type":"major"}
