@@ -24,7 +24,7 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 ### Set up: Docker Compose
 
-On this folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose up --no-start` from a location with good bandwidth *before* the workshop to ensure you have all the docker images installed.
+On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose up --no-start` from a location with good bandwidth *before* the workshop to ensure you have all the docker images installed.
 
 To start the Elastic Stack services you can run `docker-compose start elasticsearch kibana` and then check their status with `docker-compose ps` and `docker-compose logs -f`.
 

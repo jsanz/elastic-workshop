@@ -1,5 +1,5 @@
-cluster.name: "elasticsearch.wecode"
-node.name: "master.elasticsearch.wecode"
+cluster.name: "elasticsearch"
+node.name: "master.elasticsearch"
 
 network.host: 0.0.0.0
 
