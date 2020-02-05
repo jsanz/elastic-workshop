@@ -6,8 +6,6 @@
 
 On this workhshop we will get introduced to Kibana and the Elastic Stack geospatial capabilities, starting with the Kibana Maps for easy exploration of our cluster geodata, and then continuing with the powerful Elastic query API to perform search and aggregating operations.
 
-<https://ela.st/wecode2020>
-
 ## Facilitator
 
 * Name: [Jorge Sanz](https://www.jorgesanz.net)
