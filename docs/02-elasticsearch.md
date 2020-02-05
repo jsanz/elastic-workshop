@@ -2,23 +2,24 @@
 
 Elasticsearch is entirely managed via REST API endpoints. All management, ingesting, querying, aggregating, etc. is done through REST endpoints. Queries in particular need a rich query language that allow to express all kind of requirements. This is just a glimpse of some interesting queries to give you an idea but you should navigate the [documentation][apis] for further details.
 
-### Management
+There's plenty of resources to learn more about Elasticsearch, you may want to start from:
 
-Creating a [new user][users] with a given password and role:
+* [DZone article][dzone] covering non geospatial queries
+* Official Elasticsearch [webinar][webinar]
+* [Documentation][docs]
 
-```json
-POST /_security/user/wecode00
-{
-  "password" : "pucela00",
-  "roles" : [ "wecode_student"]
-}
-```
+
+### Index creation
 
 Create an index with a given mapping that contains a [`geo_point`][geo_point] type:
 
 ```json
 PUT wecode00_test
 {
+  "settings": {
+    "number_of_replicas": 1,
+    "number_of_shards": 1
+  },
   "mappings":{
     "properties": {
       "location": {
@@ -38,6 +39,8 @@ PUT wecode00_test
 **IMPORTANT**: if you are sharing the Elastic instance remember to use different prefixes instead of `wecode00_` to avoid overwriting other attendants data!!
 
 ### Inserting points
+
+Inserting documents in Elasticsearch means making a `POST` request with your document fields in a simple JSON format, but for geospatial data there are a number of different ways to specify the coordinates.
 
 As a string: latitude, longitude
 
@@ -144,7 +147,7 @@ You can find a complete dataset with airports from all over the world in the `/l
 
 [Filter][bool] by value, get only a number of columns and order the results
 
-```
+```json
 GET flight_tracking*/_search
 {
   "size": 5,
@@ -168,7 +171,7 @@ GET flight_tracking*/_search
 
 Just get the number of results using `_count` instead of `_search` using a [`bool`][bool] query with a filter.
 
-```
+```json
 GET flight_tracking*/_count
 {
   "query":{
@@ -185,7 +188,7 @@ GET flight_tracking*/_count
 
 A more complex [`query_string`][query_string] query using wildcards and operators
 
-```
+```json
 GET flight_tracking*/_search
 {
   "query": {
@@ -200,7 +203,7 @@ GET flight_tracking*/_search
 
 Combining queries with filters using the [`bool` compounded query][bool].
 
-```
+```json
 GET flight_tracking*/_search
 {
   "_source": [ "callsign", "timePosition", "onGround" ],
@@ -228,7 +231,8 @@ GET flight_tracking*/_search
 
 Get some aggregations (metrics and histogram buckets) for positions that are not on the ground, for the last 30 minutes, and with positive altitudes.
 
-```GET flight_tracking*/_search
+```json
+GET flight_tracking*/_search
 {
   "size": 0,
   "query": {
@@ -268,6 +272,11 @@ Get some aggregations (metrics and histogram buckets) for positions that are not
 See that by default aggregations are returned along with the search results but usually you want one or another, thus this query asks for no individual documents (`"size": 0`).
 
 [apis]: https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html
+[webinar]: https://www.elastic.co/webinars/getting-started-elasticsearch
+[docs]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+[dzone]: https://dzone.com/articles/23-useful-elasticsearch-example-queries
+
+
 [users]: https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html
 [geo_point]: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
 [query_string]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
