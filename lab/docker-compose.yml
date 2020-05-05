@@ -19,7 +19,7 @@ services:
       - 9200:9200
       - 9300:9300
     environment:
-      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+      - "ES_JAVA_OPTS=-Xms4g -Xmx2g"
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
       - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
