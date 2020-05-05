@@ -1,5 +1,5 @@
-server.host: "wecode-kibana"
+server.host: "workshop-kibana"
 
 elasticsearch:
-  hosts: http://wecode-elasticsearch:9200/
+  hosts: http://workshop-elasticsearch:9200/
 
