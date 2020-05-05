@@ -1,4 +1,4 @@
-# Wecode Lab
+# Elastic Lab
 
 * [Lab Set up](01-setup.md)
 * [Elasticsearch Queries](02-elasticsearch.md)

@@ -11,12 +11,12 @@ Sample execution:
 ```
 $ bash download.sh 2
 Iterating 2 times
-Writing to wecode_flight_tracking_2020-02-05_18_42.csv
+Writing to flight_tracking_2020-02-05_18_42.csv
 [1] Downloading... (mié feb  5 18:42:03 CET 2020)
 Done, sleeping 60 seconds
 [2] Downloading... (mié feb  5 18:43:12 CET 2020)
 Finished downloading
-Generating the GeoJSON file: wecode_flight_tracking_2020-02-05_18_42.geojson
+Generating the GeoJSON file: flight_tracking_2020-02-05_18_42.geojson
 ```
 
 

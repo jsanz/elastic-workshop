@@ -5,7 +5,7 @@
   "description": "Loading OpenSky data into Elasticsearch",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsanz/wecode20.git"
+    "url": "git+https://github.com/jsanz/elastic-workshop.git"
   },
   "keywords": [
     "elastic",

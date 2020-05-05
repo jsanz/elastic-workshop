@@ -1,16 +1,16 @@
 {
-  "name": "wecode20",
+  "name": "elastic-workshop",
   "version": "1.0.0",
   "description": "Workshop about ElasticSearch and Kibana geospatial capabilities",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsanz/wecode20.git"
+    "url": "git+https://github.com/jsanz/elastic-workshop.git"
   },
   "keywords": ["elastic", "kibana", "geo", "maps"],
   "author": "Jorge Sanz <jorge.sanz@elastic.co>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jsanz/wecode20/issues"
+    "url": "https://github.com/jsanz/elastic-workshop/issues"
   },
-  "homepage": "https://github.com/jsanz/wecode20"
+  "homepage": "https://github.com/jsanz/elastic-workshop"
 }

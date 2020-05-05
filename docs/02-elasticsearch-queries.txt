@@ -1,19 +1,11 @@
-## Elasticsearch queries 
+###
+# INDEX CREATION
+###
 
-Elasticsearch is entirely managed via REST API endpoints. All management, ingesting, querying, aggregating, etc. is done through REST endpoints. Queries in particular need a rich query language that allow to express all kind of requirements. This is just a glimpse of some interesting queries to give you an idea but you should navigate the [documentation][apis] for further details.
+# Delete (if exists)
+DELETE workshop_test
 
-There's plenty of resources to learn more about Elasticsearch, you may want to start from:
-
-* [DZone article][dzone] covering non geospatial queries
-* Official Elasticsearch [webinar][webinar]
-* [Documentation][docs]
-
-
-### Index creation
-
-Create an index with a given mapping that contains a [`geo_point`][geo_point] type:
-
-```json
+# Create an index with geo_point field
 PUT workshop_test
 {
   "settings": {
@@ -34,48 +26,32 @@ PUT workshop_test
     }
   }
 }
-```
 
-### Inserting points
-
-Inserting documents in Elasticsearch means making a `POST` request with your document fields in a simple JSON format, but for geospatial data there are a number of different ways to specify the coordinates.
-
-As a string: latitude, longitude
-
-```json
+# Add point using string 
 POST workshop_test/_doc/1
 {
   "location": "41.12,-71.34",
   "category": "place name",
   "title": "Null Island"
 }
-```
 
-As a [geohash][geohash]:
-
-```json
+# Add point using geohash
 POST workshop_test/_doc/2
 {
   "location": "drm3btev3e86",
   "category": "place name 2",
   "title": "Somewhere"
 }
-```
 
-As an array: longitude, latitude
-
-```json
+# Add point using array
 POST workshop_test/_doc/3
 {
   "location": [ -71.34, 41.12 ] ,
   "category": "place name 3",
   "title": "Somewhere 3"
 }
-```
 
-As an object:
-
-```json
+# Add point using an object
 POST workshop_test/_doc/4
 {
   "location": {
@@ -85,13 +61,14 @@ POST workshop_test/_doc/4
   "category": "place name 4",
   "title": "Somewhere 4"
 }
-```
 
-### Bulk insertion:
+# Data count
+GET workshop_test/_count
 
-Let's define a new index with a mapping:
+# Get the first documents
+GET workshop_test/_search
 
-```json
+# Create an airports index
 PUT workshop_airports
 {
     "mappings": {
@@ -111,41 +88,36 @@ PUT workshop_airports
         }
     }
 }
-```
 
-We can insert more than one document in a single `_bulk` request:
-
-```json
+# Bulk data insert
 PUT _bulk
-{ "index" : { "_index" : "workshop_airports", "_id" : "1" } }
+{"index":{"_index":"workshop_airports","_id":"1"}}
 {"coords":[75.9570722,30.8503599],"name":"Sahnewal","abbrev":"LUH","type":"small"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "2" } }
+{"index":{"_index":"workshop_airports","_id":"2"}}
 {"coords":[75.9330598,17.6254152],"name":"Solapur","abbrev":"SSE","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "3" } }
+{"index":{"_index":"workshop_airports","_id":"3"}}
 {"coords":[85.323597,23.3177246],"name":"Birsa Munda","abbrev":"IXR","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "4" } }
+{"index":{"_index":"workshop_airports","_id":"4"}}
 {"coords":[48.7471065,31.3431586],"name":"Ahwaz","abbrev":"AWZ","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "5" } }
+{"index":{"_index":"workshop_airports","_id":"5"}}
 {"coords":[78.2172187,26.2854877],"name":"Gwalior","abbrev":"GWL","type":"mid and military"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "6" } }
+{"index":{"_index":"workshop_airports","_id":"6"}}
 {"coords":[42.9710963,14.7552534],"name":"Hodeidah Int'l","abbrev":"HOD","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "7" } }
+{"index":{"_index":"workshop_airports","_id":"7"}}
 {"coords":[75.8092915,22.7277492],"name":"Devi Ahilyabai Holkar Int'l","abbrev":"IDR","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "8" } }
+{"index":{"_index":"workshop_airports","_id":"8"}}
 {"coords":[73.8105675,19.9660206],"name":"Gandhinagar","abbrev":"ISK","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "9" } }
+{"index":{"_index":"workshop_airports","_id":"9"}}
 {"coords":[76.8017261,30.6707249],"name":"Chandigarh Int'l","abbrev":"IXC","type":"major and military"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "10" } }
+{"index":{"_index":"workshop_airports","_id":"10"}}
 {"coords":[75.3958433,19.867297],"name":"Aurangabad","abbrev":"IXU","type":"mid"}
-```
 
-You can find a complete dataset with airports from all over the world in the `/lab/airports/airports.bulk` file if you want to populate your index with almost 900 points.
+###
+# QUERYING
+###
 
-### Querying
-
-[Filter][bool] by value, get only a number of columns and order the results
-
-```json
+# Search with sorting, and only projecting
+# a few fields
 GET flight_tracking*/_search
 {
   "size": 5,
@@ -165,11 +137,8 @@ GET flight_tracking*/_search
     }
   ]
 }
-```
 
-Just get the number of results using `_count` instead of `_search` using a [`bool`][bool] query with a filter.
-
-```json
+# Just get a count of a query
 GET flight_tracking*/_count
 {
   "query":{
@@ -182,11 +151,8 @@ GET flight_tracking*/_count
     }
   }
 }
-```
 
-A more complex [`query_string`][query_string] query using wildcards and operators
-
-```json
+# Wildcard query
 GET flight_tracking*/_search
 {
   "query": {
@@ -196,12 +162,8 @@ GET flight_tracking*/_search
     }
   }
 }
-```
 
-
-Combining queries with filters using the [`bool` compounded query][bool].
-
-```json
+# Bool query and filter
 GET flight_tracking*/_search
 {
   "_source": [ "callsign", "timePosition", "onGround" ],
@@ -222,14 +184,12 @@ GET flight_tracking*/_search
     }
   }
 }
-```
 
+###
+# AGGREGATIONS
+###
 
-### Aggregations
-
-Get some aggregations (metrics and histogram buckets) for positions that are not on the ground, for the last 30 minutes, and with positive altitudes.
-
-```json
+# Metric and bucket agg, with filter query
 GET flight_tracking*/_search
 {
   "size": 0,
@@ -265,18 +225,3 @@ GET flight_tracking*/_search
     }
   }
 }
-```
-
-See that by default aggregations are returned along with the search results but usually you want one or another, thus this query asks for no individual documents (`"size": 0`).
-
-[apis]: https://www.elastic.co/guide/en/elasticsearch/reference/current/rest-apis.html
-[webinar]: https://www.elastic.co/webinars/getting-started-elasticsearch
-[docs]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
-[dzone]: https://dzone.com/articles/23-useful-elasticsearch-example-queries
-
-
-[users]: https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html
-[geo_point]: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
-[query_string]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
-[bool]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-bool-query.html 
-[geohash]: https://en.wikipedia.org/wiki/Geohash

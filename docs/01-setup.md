@@ -1,4 +1,4 @@
-# Wecode Lab
+# Laboratory
 
 ## Elastic Stack set up
 
@@ -7,8 +7,6 @@ There are three ways to set up the Elastic Stack for this laboratory:
 * Create a trial account with the [Elastic Cloud][1]
 * Use Docker Composer to start the stack locally
 * Run manually Elasticsearch and Kibana on your computer
-
-**NOTE:** Alternatively, you can just avoid all this part and use the facilitator cloud account.
 
 ### Set up: Elastic Stack with [Elastic Cloud][1]
 
@@ -28,7 +26,7 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose up --no-start` from a location with good bandwidth *before* the workshop to ensure you have all the docker images installed.
 
-To start the Elastic Stack services you can run `docker-compose start elasticsearch kibana` and then check their status with `docker-compose ps` and `docker-compose logs -f`.
+To start the Elastic Stack services you can run `docker-compose start workshop-elasticsearch workshop-kibana` and then check their status with `docker-compose ps` and `docker-compose logs -f`.
 
 ### Set up: Local installation
 
@@ -66,12 +64,12 @@ module.exports = {
 };
 ```
 
-From **Docker Compose**:
+From **Docker Compose** (this is the default setting):
 
 ```js
 module.exports = {
     es_config: {
-        node: 'http://elasticsearch.wecode:9200',
+        node: 'http://workshop-elasticsearch:9200/',
     },
     index_name: 'flight_tracking',
     sleep_seconds: 60

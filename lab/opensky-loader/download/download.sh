@@ -1,6 +1,6 @@
 #!/bin/bash
 
-filename_base=wecode_flight_tracking_$(date "+%Y-%m-%d_%H_%M")
+filename_base=flight_tracking_$(date "+%Y-%m-%d_%H_%M")
 
 csv_file="${filename_base}.csv"
 geojson_file="${filename_base}.geojson"

@@ -77,7 +77,7 @@ GET flight_tracking*/_search
   "size": 0, 
   "query": {
     "match": {
-      "originCountry": "Monaco"
+      "originCountry": "Italy"
     }
   },
   "aggs": {
