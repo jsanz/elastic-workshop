@@ -109,7 +109,12 @@ async function indexFlights(index_name, flights) {
     bulk.push(fligh);
   });
 
-  const resp = await client.bulk({ body: bulk });
+  const bulkObj = { body: bulk };
+  if (config.pipeline_name){
+    console.log('Using pipeline ',config.pipeline_name);
+    bulkObj['pipeline'] = config.pipeline_name;
+  }
+  const resp = await client.bulk(bulkObj);
 
   if (resp.errors) {
     console.log(`Failed to load some flights`);
