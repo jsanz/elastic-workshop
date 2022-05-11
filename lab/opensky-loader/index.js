@@ -4,54 +4,54 @@ const { Client } = require('@elastic/elasticsearch');
 const rp = require('request-promise-native');
 const config = require('./config');
 
-const CONFIG = config.es_config || { node: 'http://localhost:9200'}
+const CONFIG = config.es_config || { node: 'http://localhost:9200' }
 const INTERVAL_SECS = config.sleep_seconds || 60;
 const ES_INDEX_NAME = config.index_name || 'flight_tracking';
 
 const client = new Client(CONFIG);
 
 function checkConnection() {
-    return new Promise(async (resolve) => {
-      console.log("Checking connection to ElasticSearch...");
-      let isConnected = false;
-      while (!isConnected) {
-        try {
-          await client.cluster.health({});
-          console.log("Successfully connected to ElasticSearch");
-          isConnected = true;
-          sleep(1000);
-        } catch (_) {
-        }
+  return new Promise(async (resolve) => {
+    let isConnected = false;
+    while (!isConnected) {
+      try {
+        sleep(1000);
+        console.log("Checking connection to ElasticSearch...");
+        await client.cluster.health({});
+        console.log("Successfully connected to ElasticSearch");
+        isConnected = true;
+      } catch (e) {
+        console.log(e)
       }
-      resolve(true);
-    });
-  }
+    }
+    resolve(true);
+  });
+}
 
-async function loadFlights () {
+async function loadFlights() {
   console.log('---- OPENSKY CONFIG ----');
-  console.log(config);
+  console.log(`Elasticsearch node: ${config?.es_config?.node}`);
   console.log('---- OPENSKY CONFIG ----');
 
   await checkConnection();
 
 
   // Infinite loop to load the resources
-  while(true) {
+  while (true) {
     const today = (new Date()).toISOString().split('T')[0];
     const index_name = ES_INDEX_NAME + '_' + today;
     try {
 
-    // Create the index if necessary
-    const doesIndexExistResp = await client.indices.exists({
-      index: index_name,
-    });
-    if (!doesIndexExistResp.body) {
-      createIndex(index_name);
-    }
+      // Create the index if necessary
+      const doesIndexExistResp = await client.indices.exists({ index: index_name, });
+
+      if (!doesIndexExistResp) {
+        createIndex(index_name);
+      }
 
       await indexFlights(index_name, await getFlights());
     } catch (error) {
-      console.log('There was an error')
+      console.log(error)
     }
     await sleep(INTERVAL_SECS * 1000);
   }
@@ -71,14 +71,14 @@ async function createIndex(index_name) {
       mappings: {
         properties: {
           icao24: { type: 'keyword' },
-          callsign: { 
+          callsign: {
             "type": 'keyword',
-            "fields" : {
-              "keyword" : {
-                "type" : "keyword",
-                "ignore_above" : 256
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
               }
-            } 
+            }
           },
           originCountry: { type: 'keyword' },
           location: { type: 'geo_point' },
@@ -104,9 +104,9 @@ async function indexFlights(index_name, flights) {
   console.log(`Indexing ${flights.length} flights into ${index_name}`);
 
   const bulk = [];
-  flights.forEach(async (fligh) => {
+  flights.forEach(async (flight) => {
     bulk.push({ index: { _index: index_name } });
-    bulk.push(fligh);
+    bulk.push(flight);
   });
 
   const bulkObj = { body: bulk };
@@ -121,7 +121,7 @@ async function indexFlights(index_name, flights) {
   }
 }
 
-async function getFlights () {
+async function getFlights() {
   console.log(`Fetching flights @ ${(new Date()).toISOString()}`);
 
   const options = {

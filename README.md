@@ -6,13 +6,14 @@ On this workhshop we will get introduced to Kibana and the Elastic Stack geospat
 
 ## Facilitator
 
-* Name: [Jorge Sanz](https://www.jorgesanz.net)
+* Name: [Jorge Sanz](https://links.jorgesanz.net)
 * Twitter: [@xurxosanz](https://twitter.com/xurxosanz)
+* Mastodon: [@xurxosanz@mastodon.social](https://mastodon.social/@xurxosanz)
 * Github: [@jsanz](https://github.com/jsanz)
 
 Bio: 
 
-  > Jorge is a Cartographer from Valencia, Spain, with more than 14 years of experience in the geospatial industry and a strong focus in both Open Source and Data. Before joining [Elastic](https://www.elastic.co/) and the [Kibana Maps](https://www.elastic.co/products/maps) team, he managed a Technical Support team and did sales engineering at [CARTO](https://carto.com/).
+  > Jorge is a Cartographer from Valencia, Spain, with more than 15 years of experience in the geospatial industry and a strong focus in both Open Source and Data. He joined [Elastic](https://www.elastic.co/) and the [Kibana Maps](https://www.elastic.co/products/maps) team in September 2019.
 
 ## Agenda
 
@@ -21,4 +22,3 @@ Bio:
 - Kibana overview: Dashboards, Lens, Maps, and Canvas
 - Elasticsearch (geo) queries
 - Webmapping 1o1
-
