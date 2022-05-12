@@ -185,7 +185,6 @@ services:
     init: true
     build: ./opensky-loader/
     container_name: opensky-loader
-    volumes: 
     volumes:
       - ./certs:/usr/share/app/certs
       - ./elastic-config.js:/usr/src/app/config.js

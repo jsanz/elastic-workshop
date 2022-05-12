@@ -2,19 +2,17 @@
 
 ## Elastic Stack set up
 
-There are three ways to set up the Elastic Stack for this laboratory:
+There are two recommended ways to set up the Elastic Stack for this laboratory:
 
 * Create a trial account with the [Elastic Cloud][1]
 * Use Docker Composer to start the stack locally
-* Run manually Elasticsearch and Kibana on your computer
 
 ### Set up: Elastic Stack with [Elastic Cloud][1]
 
 This is the easiest way to start this lab, simply create a new account at the [Elastic Cloud][1] and start a deployment. You can leave the default settings. Once you have the cluster up and running you need to save three important settings: 
 
 * Cloud ID
-* Username, should be `elastic` by default
-* Password, you need to store this string somewhere since it's presented only once, but you can regenerate it anytime
+* Username and password will be available to download as CSV: **do it**.
 
 From the deployment page you can also get your endpoint URLs for Kibana and Elastic.
 
@@ -24,13 +22,15 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 ### Set up: Docker Compose
 
-On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose up --no-start` from a location with good bandwidth *before* the workshop to ensure you have all the docker images installed.
+On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. It refers to a number of variables stored in the `.env` file. You may want to adapt this file but by default it should be fine.
 
-To start the Elastic Stack services you can run `docker-compose start workshop-elasticsearch workshop-kibana` and then check their status with `docker-compose ps` and `docker-compose logs -f`.
+First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose pull` and `docker-compose build` from a location with good bandwidth **before** the workshop to ensure you have all the docker images installed.
 
-### Set up: Local installation
+To start the Elastic Stack services you can run `docker-compose up -d es01 es02 kibana`. This command will start two nodes of Elasticsearch and a Kibana instance.
 
-You can download both Elasticsearch and Kibana from <https://www.elastic.co/start> and follow the simple instructions: just download and run both services.
+Once running you can check their status with `docker-compose ps` and `docker-compose logs -f`.
+
+If everything goes as expected you can visit kibana from `http://localhost:5603`.
 
 ## Getting [Open Sky][3] data into Elastic
 
@@ -38,7 +38,7 @@ Apart from having access to a Elastic Stack (both Elasticsearch and Kibana), you
 
 ### Configuration
 
-Inside the `lab/opensky-loader/config` you need a `index.js` file with some settings:
+The file `lab/elastic-config.js` is configured with some settings:
 
 * Elasticsearch client configuration
 * Name of the index for your data
@@ -46,7 +46,29 @@ Inside the `lab/opensky-loader/config` you need a `index.js` file with some sett
 
 You only need to adapt the Elasticsearch configuration, that will differs depending if you are running in Elastic Cloud, Docker Compose, or Local.
 
-From **Cloud** your `index.js` will look like this:
+The default is configured for the `docker-compose` set up and will look like this:
+
+```js
+const fs = require('fs');
+
+module.exports = {
+    es_config: {
+        node: 'https://es01:9200',
+        auth: {
+            username: 'elastic',
+            password: 'changeme'
+        },
+        tls: {
+          ca: fs.readFileSync('/usr/share/app/certs/ca/ca.crt'),
+          rejectUnauthorized: true
+        }
+    },
+    index_name: 'flight_tracking',
+    sleep_seconds: 60
+};
+```
+
+To run the script from **Cloud**:
 
 ```js
 module.exports = {
@@ -64,29 +86,6 @@ module.exports = {
 };
 ```
 
-From **Docker Compose** (this is the default setting):
-
-```js
-module.exports = {
-    es_config: {
-        node: 'http://workshop-elasticsearch:9200/',
-    },
-    index_name: 'flight_tracking',
-    sleep_seconds: 60
-};
-```
-
-From **`localhost`**:
-
-```js
-module.exports = {
-    es_config: {
-        node: 'http://localhost:9200',
-    },
-    index_name: 'flight_tracking',
-    sleep_seconds: 60
-};
-```
 
 ### Running the script
 
@@ -99,8 +98,10 @@ $ docker-compose start opensky-loader
 If you prefer to run the script directly you just need to go to the `opensky-loader` folder and run:
 
 ```sh
-$ npm start
+$ npm install && npm start
 ```
+
+**Note**: to run the script locally you need to have `node` and `npm` tools installed in your computer.
 
 ### Confirmation
 
@@ -112,7 +113,7 @@ GET /flight_tracking*/_count
 
 ```
 {
-  "count" : 214847,
+  "count" : 737482,
   "_shards" : {
     "total" : 1,
     "successful" : 1,
