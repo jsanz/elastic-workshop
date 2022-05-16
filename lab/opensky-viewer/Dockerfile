@@ -6,6 +6,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install --quiet
+RUN npm install
 
 CMD npm start

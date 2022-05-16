@@ -40,27 +40,38 @@ GET flight_tracking*/_search
           } } } } } }
 ```
 
-### Polygon query
+### Shape query
 
 Let's find how many positions go over a [polygon][poly] that covers the city of Wuhan:
 
 ```json
-GET flight_tracking*/_search
+GET flight_tracking*/_count
 {
   "query": {
     "bool": {
-      "must": [ { "match_all": {} } ],
+      "must": [
+        {
+          "match_all": {}
+        }
+      ],
       "filter": {
-        "geo_polygon": {
+        "geo_shape": {
           "location": {
-            "points": [
-              [114.3757,30.3934], [114.088,30.554],
-              [114.1897,30.672], [114.384,30.704],
-              [114.5824,30.5674], [114.6106,30.448],
-              [114.3757,30.3934]
-            ]
+            "shape": """POLYGON((
+              114.52 30.35,
+              114.19 30.38,
+              114.05 30.50,
+              114.05 30.61,
+              114.22 30.77,
+              114.54 30.81,
+              114.65 30.69,
+              114.69 30.53,
+              114.52 30.35))
+            """
           } } } } } }
 ```
+
+
 
 **TIP**: You can get quickly a polygon representation using [this tool][bbox_tool] and getting the `GeoJSON` output.
 
@@ -183,7 +194,7 @@ GET flight_tracking*/_search
 
 [geo_distance]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.html
 [bbox]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html
-[poly]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-polygon-query.html
+[poly]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
 [bbox_tool]: https://boundingbox.klokantech.com/
 [geo_bounds]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geobounds-aggregation.html
 [centroids]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geocentroid-aggregation.html
