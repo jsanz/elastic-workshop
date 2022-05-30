@@ -24,6 +24,10 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. It refers to a number of variables stored in the `.env` file. You may want to adapt this file but by default it should be fine.
 
+{% warning %}
+**Warning:** You should always set up a strong password for `elastic` and `kibana_system` users if your environment is exposed to the internet. Do not leave the defaults if your cluster is accessible to others!
+{% endwarning %}
+
 First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker compose pull` and `docker compose build` from a location with good bandwidth **before** the workshop to ensure you have all the docker images installed.
 
 To start the Elastic Stack services you can run `docker compose up -d es01 es02 kibana`. This command will start two nodes of Elasticsearch and a Kibana instance.
