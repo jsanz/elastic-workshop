@@ -184,6 +184,8 @@ services:
       - ./certs:/usr/share/app/certs
       - ./elastic-config.js:/usr/src/app/config.js
     restart: always
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     depends_on:
       es01:
         condition: service_healthy
@@ -195,6 +197,7 @@ services:
     build: ./opensky-viewer/
     container_name: opensky-viewer
     environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - PORT=3000
     ports:
       - $OPENSKY_VIEWER_PORT:3000
