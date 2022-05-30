@@ -4,8 +4,8 @@
 
 There are two recommended ways to set up the Elastic Stack for this laboratory:
 
-* Create a trial account with the [Elastic Cloud][1]
-* Use Docker Composer to start the stack locally
+* Create a trial account with the [Elastic Cloud][1]. This is the easiest and **recommended** procedure.
+* Use [Docker](https://docs.docker.com/get-started/overview/) and [Composer](https://docs.docker.com/compose/) to start the stack locally
 
 ### Set up: Elastic Stack with [Elastic Cloud][1]
 
@@ -38,78 +38,60 @@ If everything goes as expected you can visit kibana from `http://localhost:5601`
 
 ## Getting [Open Sky][3] data into Elastic
 
-Apart from having access to a Elastic Stack (both Elasticsearch and Kibana), you need data to explore them so we are going to load flights data in real time from the [Open Sky Network][3] using a simple nodejs script at the `opensky-loader` folder. Depending on how you access the stack the script should be adapted minimally. The script can also be run in two different ways, if you have a Node development environment then you can run it locally, but if you don't have it you can use Docker Compose also to run this script.
+Apart from having access to a Elastic Stack (both Elasticsearch and Kibana), you need data to explore them so we are going to load flights data in real time from the [Open Sky Network][3] using a simple nodejs script at the `opensky-loader` folder. Depending on how you access the stack the environment needs to be adapted minimally. The script can also be run in two different ways, if you have a Node development environment then you can run it locally, but if you don't have it you can use Docker Compose also to run this script.
 
-### Configuration
+The file `lab/elastic-config.js` is configured with some default settings, a couple of them can be overridden by environment variables.
 
-The file `lab/elastic-config.js` is configured with some settings:
-
-* Elasticsearch client configuration
-* Name of the index for your data
+* Elasticsearch client configuration (host and password can be set up with environment variables).
+* Prefix for the name of indexes that will store the flights positions. 
 * How often you want to retrieve the data from OpenSky API (every 60 seconds is more than fine)
 
 You only need to adapt the Elasticsearch configuration, that will differs depending if you are running in Elastic Cloud, Docker Compose, or Local.
 
-The default is configured for the `docker compose` set up and will look like this:
+### Running the OpenSky loader and viewer applications
 
-```js
-const fs = require('fs');
+### Running the Elastic stack with Docker Compose
 
-module.exports = {
-    es_config: {
-        node: 'https://es01:9200',
-        auth: {
-            username: 'elastic',
-            password: 'changeme'
-        },
-        tls: {
-          ca: fs.readFileSync('/usr/share/app/certs/ca/ca.crt'),
-          rejectUnauthorized: true
-        }
-    },
-    index_name: 'flight_tracking',
-    sleep_seconds: 60
-};
+If you use docker compose to run the full stack you can start the applications with:
+
+```
+docker compose up
 ```
 
-To run the script from **Cloud**:
+#### Using Docker Compose and Elastic Cloud
 
-```js
-module.exports = {
-    es_config: {
-        cloud:{
-            id: 'yor_very_long_cloud_id'
-        },
-        auth: {
-            username: 'elastic',
-            password: 'your_elastic_password'
-          }
-    },
-    index_name: 'flight_tracking',
-    sleep_seconds: 60
-};
+If you are using Elastic Cloud and docker compose you need to set up in the `.env` file the following variables:
+
+* `ELASTIC_HOST` is the Elasticsearch endpoint. You can get this URL from Elastic cloud management UI.
+* `ELASTIC_PASSWORD` is the password for the `elastic` user and you should have this stored when you created your cluster.
+
+Now you can run just the OpenSky loader and viewer using this command:
+
+```
+docker compose -f docker-compose-opensky.yml up
 ```
 
+This will start the two services defined in the [alternate compose YAML file](../lab/docker-compose-opensky.yml) pointing to your cloud instance.
 
-### Running the script
+#### Running locally
 
-If you have docker compose, independently of how you are running the rest of the stack, you can run the script with:
+| 🗣 Note 🗣 |
+| :-- |
+| To run the script locally you need to have `node` and `npm` tools installed in your computer.|
+
+If you prefer to run the applications directly on your computer you just need on separate terminals to go to the `opensky-loader` and `opensky-viewer` folders and run:
 
 ```sh
-$ docker compose start opensky-loader
+$ export ELASTIC_HOST="https://your-elasticsearch-endpoint:9643"
+$ export ELASTIC_PASSWORD="your_elastic_user_password"
+$ npm install
+$ npm start
 ```
 
-If you prefer to run the script directly you just need to go to the `opensky-loader` folder and run:
-
-```sh
-$ npm install && npm start
-```
-
-**Note**: to run the script locally you need to have `node` and `npm` tools installed in your computer.
 
 ### Confirmation
 
-The easiest way to check if your data is coming is going to the Kibana DevTools application and run this query
+The easiest way to check if your data is being ingested is going to the Kibana DevTools application and run this query
 
 ```
 GET /flight_tracking*/_count
@@ -126,9 +108,11 @@ GET /flight_tracking*/_count
   }
 }
 ```
-![](images/kibana-dev-tools.png)
+![](./images/kibana-dev-tools.png)
 
+Also, your OpenSky viewer application should render data from the `flight_tracking*` index pattern.
 
+![](./images/open-sky-viewer.png)
 
 [1]: https://www.elastic.co/cloud/elasticsearch-service/signup
 [2]: https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html

@@ -1,0 +1,33 @@
+ #Minimal Docker Compose cluster for ElasticSearch and Kibana
+# Put this file any folder creating "logs" and "esdata" folders
+# to persist the cluster indices and kibana state
+
+version: "3.7"
+
+services:
+  opensky-loader:
+    init: true
+    build: ./opensky-loader/
+    container_name: opensky-loader
+    volumes:
+      - ./certs:/usr/share/app/certs
+      - ./elastic-config.js:/usr/src/app/config.js
+    restart: always
+    environment:
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+
+  opensky-viewer:
+    init: true
+    build: ./opensky-viewer/
+    container_name: opensky-viewer
+    environment:
+      - ELASTIC_HOST=${ELASTIC_HOST}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - PORT=3000
+    ports:
+      - $OPENSKY_VIEWER_PORT:3000
+    volumes:
+      - ./certs:/usr/share/app/certs
+      - ./elastic-config.js:/usr/src/app/config.js
+    restart: always

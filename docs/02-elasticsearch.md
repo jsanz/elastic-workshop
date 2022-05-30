@@ -92,7 +92,7 @@ POST workshop_test/_doc/4
 Let's define a new index with a mapping:
 
 ```json
-PUT workshop_airports
+PUT airports
 {
     "mappings": {
         "properties": {
@@ -117,25 +117,25 @@ We can insert more than one document in a single `_bulk` request:
 
 ```json
 PUT _bulk
-{ "index" : { "_index" : "workshop_airports", "_id" : "1" } }
+{ "index" : { "_index" : "airports", "_id" : "1" } }
 {"coords":[75.9570722,30.8503599],"name":"Sahnewal","abbrev":"LUH","type":"small"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "2" } }
+{ "index" : { "_index" : "airports", "_id" : "2" } }
 {"coords":[75.9330598,17.6254152],"name":"Solapur","abbrev":"SSE","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "3" } }
+{ "index" : { "_index" : "airports", "_id" : "3" } }
 {"coords":[85.323597,23.3177246],"name":"Birsa Munda","abbrev":"IXR","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "4" } }
+{ "index" : { "_index" : "airports", "_id" : "4" } }
 {"coords":[48.7471065,31.3431586],"name":"Ahwaz","abbrev":"AWZ","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "5" } }
+{ "index" : { "_index" : "airports", "_id" : "5" } }
 {"coords":[78.2172187,26.2854877],"name":"Gwalior","abbrev":"GWL","type":"mid and military"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "6" } }
+{ "index" : { "_index" : "airports", "_id" : "6" } }
 {"coords":[42.9710963,14.7552534],"name":"Hodeidah Int'l","abbrev":"HOD","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "7" } }
+{ "index" : { "_index" : "airports", "_id" : "7" } }
 {"coords":[75.8092915,22.7277492],"name":"Devi Ahilyabai Holkar Int'l","abbrev":"IDR","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "8" } }
+{ "index" : { "_index" : "airports", "_id" : "8" } }
 {"coords":[73.8105675,19.9660206],"name":"Gandhinagar","abbrev":"ISK","type":"mid"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "9" } }
+{ "index" : { "_index" : "airports", "_id" : "9" } }
 {"coords":[76.8017261,30.6707249],"name":"Chandigarh Int'l","abbrev":"IXC","type":"major and military"}
-{ "index" : { "_index" : "workshop_airports", "_id" : "10" } }
+{ "index" : { "_index" : "airports", "_id" : "10" } }
 {"coords":[75.3958433,19.867297],"name":"Aurangabad","abbrev":"IXU","type":"mid"}
 ```
 

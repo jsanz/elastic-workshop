@@ -9,7 +9,7 @@ const CONFIG = config.es_config || { node: process.env.ES_URL || 'http://elastic
 const client = new Client(CONFIG);
 
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 const server = http.createServer(async function (request, response) {
 
     // Set CORS headers
