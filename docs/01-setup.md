@@ -24,13 +24,13 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. It refers to a number of variables stored in the `.env` file. You may want to adapt this file but by default it should be fine.
 
-First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker-compose pull` and `docker-compose build` from a location with good bandwidth **before** the workshop to ensure you have all the docker images installed.
+First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker compose pull` and `docker compose build` from a location with good bandwidth **before** the workshop to ensure you have all the docker images installed.
 
-To start the Elastic Stack services you can run `docker-compose up -d es01 es02 kibana`. This command will start two nodes of Elasticsearch and a Kibana instance.
+To start the Elastic Stack services you can run `docker compose up -d es01 es02 kibana`. This command will start two nodes of Elasticsearch and a Kibana instance.
 
-Once running you can check their status with `docker-compose ps` and `docker-compose logs -f`.
+Once running you can check their status with `docker compose ps` and `docker compose logs -f`.
 
-If everything goes as expected you can visit kibana from `http://localhost:5603`.
+If everything goes as expected you can visit kibana from `http://localhost:5601`.
 
 ## Getting [Open Sky][3] data into Elastic
 
@@ -46,7 +46,7 @@ The file `lab/elastic-config.js` is configured with some settings:
 
 You only need to adapt the Elasticsearch configuration, that will differs depending if you are running in Elastic Cloud, Docker Compose, or Local.
 
-The default is configured for the `docker-compose` set up and will look like this:
+The default is configured for the `docker compose` set up and will look like this:
 
 ```js
 const fs = require('fs');
@@ -92,7 +92,7 @@ module.exports = {
 If you have docker compose, independently of how you are running the rest of the stack, you can run the script with:
 
 ```sh
-$ docker-compose start opensky-loader
+$ docker compose start opensky-loader
 ```
 
 If you prefer to run the script directly you just need to go to the `opensky-loader` folder and run:

@@ -40,12 +40,6 @@ services:
           "      - localhost\n"\
           "    ip:\n"\
           "      - 127.0.0.1\n"\
-          "  - name: es03\n"\
-          "    dns:\n"\
-          "      - es03\n"\
-          "      - localhost\n"\
-          "    ip:\n"\
-          "      - 127.0.0.1\n"\
           > config/certs/instances.yml;
           bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
           unzip config/certs/certs.zip -d config/certs;
@@ -76,11 +70,12 @@ services:
       - esdata01:/usr/share/elasticsearch/data
     ports:
       - ${ES_PORT}:9200
+    restart: always
     environment:
       - node.name=es01
       - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02
+      - discovery.seed_hosts=es02
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - bootstrap.memory_lock=true
       - xpack.security.enabled=true
@@ -117,6 +112,7 @@ services:
     volumes:
       - ./certs:/usr/share/elasticsearch/config/certs
       - esdata02:/usr/share/elasticsearch/data
+    restart: always
     environment:
       - node.name=es02
       - cluster.name=${CLUSTER_NAME}
@@ -162,6 +158,7 @@ services:
       - kibanadata:/usr/share/kibana/data
     ports:
       - ${KIBANA_PORT}:5601
+    restart: always
     environment:
       - SERVERNAME=kibana
       - ELASTICSEARCH_HOSTS=https://es01:9200
@@ -179,8 +176,6 @@ services:
       timeout: 10s
       retries: 120
 
-
-
   opensky-loader:
     init: true
     build: ./opensky-loader/
@@ -188,6 +183,7 @@ services:
     volumes:
       - ./certs:/usr/share/app/certs
       - ./elastic-config.js:/usr/src/app/config.js
+    restart: always
     depends_on:
       es01:
         condition: service_healthy
@@ -201,10 +197,11 @@ services:
     environment:
       - PORT=3000
     ports:
-      - 3000:3000
-    volumes: 
+      - $OPENSKY_VIEWER_PORT:3000
+    volumes:
       - ./certs:/usr/share/app/certs
       - ./elastic-config.js:/usr/src/app/config.js
+    restart: always
     depends_on:
       es01:
         condition: service_healthy
