@@ -7,7 +7,7 @@ const password = process.env.ELASTIC_PASSWORD || 'changeme';
 
 const tls = (node === default_node) ?
     {
-        ca: fs.readFileSync('/usr/share/app/certs/ca/ca.crt'),
+        ca: fs.readFileSync('/etc/ssl/opensky/ca/ca.crt'),
         rejectUnauthorized: true
     } : null
 

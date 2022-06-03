@@ -22,6 +22,12 @@ You have a full guide on how to set up the trial on the [Elastic Cloud Getting S
 
 ### Set up: Docker Compose
 
+
+| ⚠ Important ⚠ |
+| :-- |
+| On linux systems, even running on Docker, Elasticsearch needs a memory parameter in the host system to be tuned since the default is usually too low. You can run the following command if you want it just once `sysctl -w vm.max_map_count=262144` or add `vm.max_map_count=262144` to `/etc/sysctl.conf` to make it permanent. More details in the [Virtual memory](https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html) section of the documentation.
+ |
+
 On the `/lab` folder you have a `docker-compose.yaml` file with the definition of all the services for this lab. It refers to a number of variables stored in the `.env` file. You may want to adapt this file but by default it should be fine.
 
 | ⚠ Warning ⚠ |
@@ -30,7 +36,7 @@ On the `/lab` folder you have a `docker-compose.yaml` file with the definition o
 
 First time you run it will take some minutes since it needs to download all the images, so maybe you'll want to run `docker compose pull` and `docker compose build` from a location with good bandwidth **before** the workshop to ensure you have all the docker images installed.
 
-To start the Elastic Stack services you can run `docker compose up -d es01 es02 kibana`. This command will start two nodes of Elasticsearch and a Kibana instance.
+To start the Elastic Stack services you can run `docker compose up -d`. This command will start two nodes of Elasticsearch, a Kibana instance, and the OpenSky loader and viewer applications.
 
 Once running you can check their status with `docker compose ps` and `docker compose logs -f`.
 
@@ -50,13 +56,9 @@ You only need to adapt the Elasticsearch configuration, that will differs depend
 
 ### Running the OpenSky loader and viewer applications
 
-### Running the Elastic stack with Docker Compose
+#### Running the Elastic stack with Docker Compose
 
-If you use docker compose to run the full stack you can start the applications with:
-
-```
-docker compose up
-```
+Nothing to do, both applications started when you run `docker compose up -d`.
 
 #### Using Docker Compose and Elastic Cloud
 

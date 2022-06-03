@@ -72,7 +72,7 @@ async function createIndex(index_name) {
         properties: {
           icao24: { type: 'keyword' },
           callsign: {
-            "type": 'keyword',
+            "type": 'text',
             "fields": {
               "keyword": {
                 "type": "keyword",
