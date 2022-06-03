@@ -182,7 +182,7 @@ services:
     container_name: opensky-loader
     volumes:
       - ./certs/ca/ca.crt:/etc/ssl/opensky/ca/ca.crt:ro
-      - ./opensky-loader:/usr/src/app/
+      - ./opensky-loader/index.js:/usr/src/app/index.js
       - ./elastic-config.js:/usr/src/app/config.js
     restart: always
     environment:
@@ -204,7 +204,8 @@ services:
       - $OPENSKY_VIEWER_PORT:3000
     volumes:
       - ./certs/ca/ca.crt:/etc/ssl/opensky/ca/ca.crt:ro
-      - ./opensky-viewer:/usr/src/app
+      - ./opensky-viewer/index.js:/usr/src/app/index.js
+      - ./opensky-viewer/index.html:/usr/src/app/index.html
       - ./elastic-config.js:/usr/src/app/config.js
     restart: always
     depends_on:
