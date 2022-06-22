@@ -1,6 +1,8 @@
 # Minimal Docker Compose cluster for ElasticSearch and Kibana
 # Put this file any folder creating "logs" and "esdata" folders
 # to persist the cluster indices and kibana state
+#
+# More details at: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker-compose-file
 
 version: "3.7"
 

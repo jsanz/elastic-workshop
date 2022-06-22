@@ -125,6 +125,44 @@ GET flight_tracking*/_search
 **TIP**: yes, aggregations can be nested!!
 
 
+
+### Geoline aggregation
+
+This aggregation takes a group of points and returns the line that connects them given a sorting field. You usually want this aggregation to be combined with a filter or a terms aggregation to retrieve lines that connect the locations of a particular asset or grouped by an identifier like an airplane `callsign` field.
+
+In this example we filter the last 15 minutes data for the airplane `JST574`, and the request the [line] aggregation representation using the `timePosition` field.
+
+**IMPORTANT**: You need to adapt the `callsign` value to your own data.
+
+```json
+GET flight_tracking_*/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": { "timePosition": { "gte": "now-15m" }}
+        },
+        {
+          "match_phrase": { "callsign": "JST574" }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "line": {
+      "geo_line": {
+        "point": {"field": "location"},
+        "sort": {"field": "timePosition"}
+      }
+    }
+  }
+}
+```
+
+
+
 ## Bucket aggregations
 
 Group your query results using geospatial aggregations.
@@ -153,7 +191,7 @@ GET flight_tracking*/_search
       } } } }
 ```
 
-### Tiles
+### Tile grid
 
 In the geospatial industry there is a common way to bucket the Earth using the square grid many online maps use. This schema uses a `Z/X/Y` notation that Elasticsearch can use to return your buckets.
 
@@ -167,15 +205,18 @@ GET flight_tracking*/_search
   "aggregations": {
     "europe": {
       "filter": {
-        "geo_polygon": {
+        "geo_shape": {
           "location": {
-            "points": [
+            "shape": { 
+            "type": "Polygon",
+            "coordinates": [[ 
               [ 3.315, 42.207 ],[ -2.332, 43.607 ],
               [ -5.166, 48.439 ],[ -1.98, 49.749 ],
               [ 1.975, 51.244 ],[ 8.478, 49.077 ],
               [ 6.567, 46.765 ],[ 7.973, 43.384 ],
               [ 3.315, 42.207 ]
-            ]
+              ]]
+            }
           }
         }
       },
@@ -192,11 +233,53 @@ GET flight_tracking*/_search
 **TIP**: You can get quickly a polygon representation using [this tool][bbox_tool] and getting the `GeoJSON` output.
 
 
+### Hex grid
+
+You can perform a similar query to the previous but instead of getting back buckets in the `Z/X/Y` schema, you get [hexagons] with the Uber's [h3] cell identifier. Same note about the `precision` parameter applies to this aggregation.
+
+**TIP**: You may find [this viewer](https://wolf-h3-viewer.glitch.me/) useful to render the location of a given h3 cell id.
+
+```
+GET flight_tracking*/_search
+{
+  "size": 0,
+  "query": { "match_all": {} },
+  "aggregations": {
+    "europe": {
+      "filter": {
+        "geo_shape": {
+          "location": {
+            "shape": { 
+            "type": "Polygon",
+            "coordinates": [[ 
+              [ 3.315, 42.207 ],[ -2.332, 43.607 ],
+              [ -5.166, 48.439 ],[ -1.98, 49.749 ],
+              [ 1.975, 51.244 ],[ 8.478, 49.077 ],
+              [ 6.567, 46.765 ],[ 7.973, 43.384 ],
+              [ 3.315, 42.207 ]
+              ]]
+            }
+          }
+        }
+      },
+      "aggregations": {
+        "zoom6": {
+          "geohex_grid": {
+            "field": "location",
+            "precision": 3
+          } } } } } }
+```
+
+
+
 [geo_distance]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-distance-query.html
 [bbox]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-bounding-box-query.html
 [poly]: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-geo-shape-query.html
 [bbox_tool]: https://boundingbox.klokantech.com/
 [geo_bounds]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geobounds-aggregation.html
 [centroids]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geocentroid-aggregation.html
+[line]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-geo-line.html
 [rings]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geodistance-aggregation.html
+[hexagons]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohexgrid-aggregation.html
 
+[h3]: https://h3geo.org

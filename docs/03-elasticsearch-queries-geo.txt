@@ -82,6 +82,31 @@ GET flight_tracking*/_search
           "geo_centroid": { "field": "location" }
         } } } } }
 
+# Geo-line of the last 15 min positions of flight JST574
+GET flight_tracking_*/_search
+{
+  "size": 0,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": { "timePosition": { "gte": "now-15m" }}
+        },
+        {
+          "match_phrase": { "callsign": "JST574" }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "line": {
+      "geo_line": {
+        "point": {"field": "location"},
+        "sort": {"field": "timePosition"}
+      }
+    }
+  }
+}
 
 # Count positions around CDG airport (buffers)
 GET flight_tracking*/_search
@@ -111,15 +136,18 @@ GET flight_tracking*/_search
   "aggregations": {
     "europe": {
       "filter": {
-        "geo_polygon": {
+        "geo_shape": {
           "location": {
-            "points": [
+            "shape": { 
+            "type": "Polygon",
+            "coordinates": [[ 
               [ 3.315, 42.207 ],[ -2.332, 43.607 ],
               [ -5.166, 48.439 ],[ -1.98, 49.749 ],
               [ 1.975, 51.244 ],[ 8.478, 49.077 ],
               [ 6.567, 46.765 ],[ 7.973, 43.384 ],
               [ 3.315, 42.207 ]
-            ]
+              ]]
+            }
           }
         }
       },
@@ -128,5 +156,35 @@ GET flight_tracking*/_search
           "geotile_grid": {
             "field": "location",
             "precision": 6
+          } } } } } }
+ 
+# Count positions at h3 level 3 in mainland France
+GET flight_tracking*/_search
+{
+  "size": 0,
+  "query": { "match_all": {} },
+  "aggregations": {
+    "europe": {
+      "filter": {
+        "geo_shape": {
+          "location": {
+            "shape": { 
+            "type": "Polygon",
+            "coordinates": [[ 
+              [ 3.315, 42.207 ],[ -2.332, 43.607 ],
+              [ -5.166, 48.439 ],[ -1.98, 49.749 ],
+              [ 1.975, 51.244 ],[ 8.478, 49.077 ],
+              [ 6.567, 46.765 ],[ 7.973, 43.384 ],
+              [ 3.315, 42.207 ]
+              ]]
+            }
+          }
+        }
+      },
+      "aggregations": {
+        "zoom6": {
+          "geohex_grid": {
+            "field": "location",
+            "precision": 3
           } } } } } }
 
