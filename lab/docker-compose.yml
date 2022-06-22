@@ -70,7 +70,6 @@ services:
       - esdata01:/usr/share/elasticsearch/data
     ports:
       - ${ES_PORT}:9200
-    restart: always
     environment:
       - node.name=es01
       - cluster.name=${CLUSTER_NAME}
@@ -112,7 +111,6 @@ services:
     volumes:
       - ./certs:/usr/share/elasticsearch/config/certs
       - esdata02:/usr/share/elasticsearch/data
-    restart: always
     environment:
       - node.name=es02
       - cluster.name=${CLUSTER_NAME}
@@ -158,7 +156,6 @@ services:
       - kibanadata:/usr/share/kibana/data
     ports:
       - ${KIBANA_PORT}:5601
-    restart: always
     environment:
       - SERVERNAME=kibana
       - ELASTICSEARCH_HOSTS=https://es01:9200
@@ -184,7 +181,6 @@ services:
       - ./certs/ca/ca.crt:/etc/ssl/opensky/ca/ca.crt:ro
       - ./opensky-loader/index.js:/usr/src/app/index.js
       - ./elastic-config.js:/usr/src/app/config.js
-    restart: always
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     depends_on:
@@ -207,7 +203,6 @@ services:
       - ./opensky-viewer/index.js:/usr/src/app/index.js
       - ./opensky-viewer/index.html:/usr/src/app/index.html
       - ./elastic-config.js:/usr/src/app/config.js
-    restart: always
     depends_on:
       es01:
         condition: service_healthy
@@ -221,3 +216,4 @@ volumes:
     driver: local
   kibanadata:
     driver: local
+
