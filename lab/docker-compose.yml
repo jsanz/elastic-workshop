@@ -105,6 +105,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   es02:
     depends_on:
@@ -145,6 +151,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 60s
 
   kibana:
     depends_on:
