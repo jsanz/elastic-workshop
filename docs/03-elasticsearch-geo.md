@@ -115,7 +115,7 @@ GET flight_tracking*/_search
   },
   "aggs": {
     "centroids_by_callsign":{
-      "terms": { "field": "callsign", "size": 5 },
+      "terms": { "field": "callsign.keyword", "size": 5 },
       "aggs": {
         "cetroid": {
           "geo_centroid": { "field": "location" }
@@ -132,7 +132,7 @@ This aggregation takes a group of points and returns the line that connects them
 
 In this example we filter the last 15 minutes data for the airplane `JST574`, and the request the [line] aggregation representation using the `timePosition` field.
 
-**IMPORTANT**: You need to adapt the `callsign` value to your own data.
+**IMPORTANT**: You need to adapt the `callsign` and the date filter values to your own data, using Discover or Maps.
 
 ```
 GET flight_tracking_*/_search
@@ -263,7 +263,7 @@ GET flight_tracking*/_search
         }
       },
       "aggregations": {
-        "zoom6": {
+        "h3_z3": {
           "geohex_grid": {
             "field": "location",
             "precision": 3
