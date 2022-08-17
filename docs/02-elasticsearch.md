@@ -13,7 +13,7 @@ There's plenty of resources to learn more about Elasticsearch, you may want to s
 
 Create an index with a given mapping that contains a [`geo_point`][geo_point] type:
 
-```json
+```
 PUT workshop_test
 {
   "settings": {
@@ -42,7 +42,7 @@ Inserting documents in Elasticsearch means making a `POST` request with your doc
 
 As a string: latitude, longitude
 
-```json
+```
 POST workshop_test/_doc/1
 {
   "location": "41.12,-71.34",
@@ -53,7 +53,7 @@ POST workshop_test/_doc/1
 
 As a [geohash][geohash]:
 
-```json
+```
 POST workshop_test/_doc/2
 {
   "location": "drm3btev3e86",
@@ -64,7 +64,7 @@ POST workshop_test/_doc/2
 
 As an array: longitude, latitude
 
-```json
+```
 POST workshop_test/_doc/3
 {
   "location": [ -71.34, 41.12 ] ,
@@ -75,7 +75,7 @@ POST workshop_test/_doc/3
 
 As an object:
 
-```json
+```
 POST workshop_test/_doc/4
 {
   "location": {
@@ -91,7 +91,7 @@ POST workshop_test/_doc/4
 
 Let's define a new index with a mapping:
 
-```json
+```
 PUT airports
 {
     "mappings": {
@@ -115,7 +115,7 @@ PUT airports
 
 We can insert more than one document in a single `_bulk` request:
 
-```json
+```
 PUT _bulk
 { "index" : { "_index" : "airports", "_id" : "1" } }
 {"coords":[75.9570722,30.8503599],"name":"Sahnewal","abbrev":"LUH","type":"small"}
@@ -145,7 +145,7 @@ You can find a complete dataset with airports from all over the world in the `/l
 
 [Filter][bool] by value, get only a number of columns and order the results
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 5,
@@ -169,7 +169,7 @@ GET flight_tracking*/_search
 
 Just get the number of results using `_count` instead of `_search` using a [`bool`][bool] query with a filter.
 
-```json
+```
 GET flight_tracking*/_count
 {
   "query":{
@@ -186,7 +186,7 @@ GET flight_tracking*/_count
 
 A more complex [`query_string`][query_string] query using wildcards and operators
 
-```json
+```
 GET flight_tracking*/_search
 {
   "query": {
@@ -201,7 +201,7 @@ GET flight_tracking*/_search
 
 Combining queries with filters using the [`bool` compounded query][bool].
 
-```json
+```
 GET flight_tracking*/_search
 {
   "_source": [ "callsign", "timePosition", "onGround" ],
@@ -229,7 +229,7 @@ GET flight_tracking*/_search
 
 Get some aggregations (metrics and histogram buckets) for positions that are not on the ground, for the last 30 minutes, and with positive altitudes.
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 0,

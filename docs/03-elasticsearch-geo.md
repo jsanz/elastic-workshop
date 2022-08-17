@@ -8,7 +8,7 @@ Find documents in your index using geospatial conditions.
 
 With the [`geo_distance`][geo_distance] query type get the positions near Barajas airport:
 
-```json
+```
 GET flight_tracking*/_search
 {
   "query":{
@@ -26,7 +26,7 @@ GET flight_tracking*/_search
 
 Get the locations in the approximate [bounding box][bbox] of the JFK airport:
 
-```json
+```
 GET flight_tracking*/_search
 {
   "query": {
@@ -44,7 +44,7 @@ GET flight_tracking*/_search
 
 Let's find how many positions go over a [polygon][poly] that covers the city of Wuhan:
 
-```json
+```
 GET flight_tracking*/_count
 {
   "query": {
@@ -82,7 +82,7 @@ GET flight_tracking*/_count
 
 Let's find the bounding box of all positions where `countryOrigin` is Monaco using the [`geo_bounds`][geo_bounds] aggregation:
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 0, 
@@ -106,7 +106,7 @@ GET flight_tracking*/_search
 
 Get the [centroids][centroids] of the top 5 Ryanair flights with more positions:
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 0, 
@@ -134,7 +134,7 @@ In this example we filter the last 15 minutes data for the airplane `JST574`, an
 
 **IMPORTANT**: You need to adapt the `callsign` value to your own data.
 
-```json
+```
 GET flight_tracking_*/_search
 {
   "size": 0,
@@ -171,7 +171,7 @@ Group your query results using geospatial aggregations.
 
 Group positions around CDG airport in [rings][rings] (also known as **buffers** in the geospatial world) of 10, 20, and 30 kilometers and return results using an object instead of an array:
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 0,
@@ -197,7 +197,7 @@ In the geospatial industry there is a common way to bucket the Earth using the s
 
 Let's find the zoom level 6 buckets for positions in mainland France.
 
-```json
+```
 GET flight_tracking*/_search
 {
   "size": 0,
