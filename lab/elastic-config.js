@@ -24,7 +24,7 @@ module.exports = {
         tls
     },
     index_name: 'flight_tracking',
-    sleep_seconds: 60,
+    sleep_seconds: 90,
     opensky: {
         user: opensky_user,
         password: opensky_password,
