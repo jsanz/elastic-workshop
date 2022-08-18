@@ -1,7 +1,7 @@
 'use strict'
 
 const { Client } = require('@elastic/elasticsearch');
-const rp = require('request-promise-native');
+const axios = require('axios').default;
 const config = require('./config');
 
 const CONFIG = config.es_config || { node: 'http://localhost:9200' }
@@ -16,9 +16,9 @@ function checkConnection() {
     while (!isConnected) {
       try {
         sleep(1000);
-        console.log("Checking connection to ElasticSearch...");
+        console.debug("Checking connection to ElasticSearch...");
         await client.cluster.health({});
-        console.log("Successfully connected to ElasticSearch");
+        console.debug("Successfully connected to ElasticSearch");
         isConnected = true;
       } catch (e) {
         console.log(e)
@@ -29,9 +29,9 @@ function checkConnection() {
 }
 
 async function loadFlights() {
-  console.log('---- OPENSKY CONFIG ----');
-  console.log(`Elasticsearch node: ${config?.es_config?.node}`);
-  console.log('---- OPENSKY CONFIG ----');
+  console.log('---- OPENSKY LOADER CONFIG ----');
+  console.log(config);
+  console.log('---- OPENSKY LOADER CONFIG ----');
 
   await checkConnection();
 
@@ -42,6 +42,7 @@ async function loadFlights() {
     const index_name = ES_INDEX_NAME + '_' + today;
     try {
 
+      await checkConnection();
       // Create the index if necessary
       const doesIndexExistResp = await client.indices.exists({ index: index_name, });
 
@@ -110,8 +111,8 @@ async function indexFlights(index_name, flights) {
   });
 
   const bulkObj = { body: bulk };
-  if (config.pipeline_name){
-    console.log('Using pipeline ',config.pipeline_name);
+  if (config.pipeline_name) {
+    console.log('Using pipeline ', config.pipeline_name);
     bulkObj['pipeline'] = config.pipeline_name;
   }
   const resp = await client.bulk(bulkObj);
@@ -125,15 +126,20 @@ async function getFlights() {
   console.log(`Fetching flights @ ${(new Date()).toISOString()}`);
 
   const options = {
-    uri: 'https://opensky-network.org/api/states/all',
-    headers: { 'User-Agent': 'Request-Promise' },
-    json: true
+    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+    auth: config.opensky.user = undefined
+      ? {}
+      : {
+        username: config.opensky.user,
+        password: config.opensky.password
+      }
   };
-  const response = await rp(options);
 
-  console.log(`Fetched ${response.states.length} flights`);
+  const response = await axios.get(config.opensky.url, options);
 
-  return response.states.map(convertStateToFlight);
+  console.log(`Fetched ${response.data.states.length} flights`);
+
+  return response.data.states.map(convertStateToFlight);
 }
 
 function convertStateToFlight(state) {

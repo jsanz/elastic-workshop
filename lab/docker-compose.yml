@@ -197,6 +197,8 @@ services:
       - ./elastic-config.js:/usr/src/app/config.js
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - OPENSKY_USER=${OPENSKY_USER}
+      - OPENSKY_PASSWORD=${OPENSKY_PASSWORD}
     depends_on:
       es01:
         condition: service_healthy

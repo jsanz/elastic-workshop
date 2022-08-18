@@ -16,6 +16,8 @@ services:
     environment:
       - ELASTIC_HOST=${ELASTIC_HOST}
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - OPENSKY_USER=${OPENSKY_USER}
+      - OPENSKY_PASSWORD=${OPENSKY_PASSWORD}
 
   opensky-viewer:
     init: true

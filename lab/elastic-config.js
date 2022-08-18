@@ -5,6 +5,9 @@ const default_node = 'https://es01:9200';
 const node = process.env.ELASTIC_HOST || default_node;
 const password = process.env.ELASTIC_PASSWORD || 'changeme';
 
+const opensky_user = process.env.OPENSKY_USER;
+const opensky_password = process.env.OPENSKY_PASSWORD;
+
 const tls = (node === default_node) ?
     {
         ca: fs.readFileSync('/etc/ssl/opensky/ca/ca.crt'),
@@ -21,6 +24,11 @@ module.exports = {
         tls
     },
     index_name: 'flight_tracking',
-    sleep_seconds: 60
+    sleep_seconds: 60,
+    opensky: {
+        user: opensky_user,
+        password: opensky_password,
+        url: 'https://opensky-network.org/api/states/all'
+    }
 };
 
