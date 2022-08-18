@@ -127,7 +127,7 @@ async function getFlights() {
 
   const options = {
     headers: { 'X-Requested-With': 'XMLHttpRequest' },
-    auth: config.opensky.user = undefined
+    auth: config.opensky.user == undefined
       ? {}
       : {
         username: config.opensky.user,
