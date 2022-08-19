@@ -44,13 +44,14 @@ If everything goes as expected you can visit kibana from `http://localhost:5601`
 
 ## Getting [Open Sky][3] data into Elastic
 
-Apart from having access to a Elastic Stack (both Elasticsearch and Kibana), you need data to explore them so we are going to load flights data in real time from the [Open Sky Network][3] using a simple nodejs script at the `opensky-loader` folder. Depending on how you access the stack the environment needs to be adapted minimally. The script can also be run in two different ways, if you have a Node development environment then you can run it locally, but if you don't have it you can use Docker Compose also to run this script.
+Apart from having access to a Elastic Stack (both Elasticsearch and Kibana), you need data to explore them. Kibana has three well-know datasets that include geospatial information and are ready to load from the home page. For this lab we are going to load flights data in real time from the [Open Sky Network][3] using a simple nodejs script at the `opensky-loader` folder. Depending on how you access the stack the environment needs to be adapted minimally. The script can also be run in two different ways, if you have a Node development environment then you can run it locally, but if you don't have it you can use Docker Compose also to run this script.
 
 The file `lab/elastic-config.js` is configured with some default settings, a couple of them can be overridden by environment variables.
 
 * Elasticsearch client configuration (host and password can be set up with environment variables).
 * Prefix for the name of indexes that will store the flights positions. 
 * How often you want to retrieve the data from OpenSky API (every 60 seconds is more than fine)
+* OpenSky optional credentials pulled from environment variables (read from the `.env` file if running from Docker).
 
 You only need to adapt the Elasticsearch configuration, that will differs depending if you are running in Elastic Cloud, Docker Compose, or Local.
 
@@ -86,6 +87,8 @@ If you prefer to run the applications directly on your computer you just need on
 ```sh
 $ export ELASTIC_HOST="https://your-elasticsearch-endpoint:9643"
 $ export ELASTIC_PASSWORD="your_elastic_user_password"
+$ export OPENSKY_USER="your_opensky_user"
+$ export OPENSKY_PASSWORD="your_opensky_password"
 $ npm install
 $ npm start
 ```
