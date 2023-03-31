@@ -1,0 +1,12 @@
+{
+  "name": "vector-tile-viewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "http-server --cors=\"*\""
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
