@@ -51,8 +51,8 @@
 <body>
     <div id='map'></div>
     <div id="info">
-        <h3>311 noise claims<br/> between 2015 and 2020</h3>
-        <p>Hover an hex to get the count</p>
+        <h3>311 noise claims<br /> between 2015 and 2020</h3>
+        <p>Click on a hex to get the count</p>
         <p>Count: <strong><span id="count"></span></strong></p>
     </div>
     <script>
@@ -71,10 +71,10 @@
         /* VT query for hits */
         const ES_SEARCH_BODY = {
             size: 0,
-            grid_precision: 6,
+            grid_precision: 5,
             exact_bounds: false,
             extent: 4096,
-            grid_agg: "geohex",
+            grid_agg: "geotile",
             grid_type: "grid",
             with_labels: true,
             fields: [
@@ -118,6 +118,7 @@
         const MIN_ZOOM = 8;
         const MAX_ZOOM = 14;
         const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
+
 
         const map = new maplibregl.Map({
             container: 'map',
@@ -187,7 +188,7 @@
                             ['linear'],
                             ['get', '_count'],
                             0, ['to-color', 'white'],
-                            80000, ['to-color', 'red']
+                            10000, ['to-color', 'red']
                         ]
                     }
                 }
@@ -209,26 +210,30 @@
 
         const updatePalette = function () {
             map.setPaintProperty(
-                'data', 
+                'data',
                 'fill-color',
-                getFillColor(map.getZoom()));
+                getFillColor());
         }
 
         map.on('zoomend', updatePalette);
+
+        map.on('zoomend', function () {
+            console
+        })
 
 
         /* A very simple pop up implementation */
 
         // Create a popup, but don't add it to the map yet.
         var popup = new maplibregl.Popup({
-        closeButton: false,
-        closeOnClick: false
+            closeButton: false,
+            closeOnClick: false
         });
 
         /* change cursor on hover */
-        map.on('mousemove', 'data', function (e) { 
+        map.on('mousemove', 'data', function (e) {
             const feature = e.features[0];
-            if (!feature){return;}
+            if (!feature) { return; }
 
             map.getCanvas().style.cursor = 'pointer';
             var coordinates = e.lngLat;
@@ -240,8 +245,8 @@
         });
 
         /* reset cursor when leaving a feature */
-        map.on('mouseleave', 'data', function () { 
-            map.getCanvas().style.cursor = ''; 
+        map.on('mouseleave', 'data', function () {
+            map.getCanvas().style.cursor = '';
             popup.remove();
         });
 
