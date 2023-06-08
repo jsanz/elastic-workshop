@@ -1,12 +1,24 @@
 {
-  "name": "vector-tile-viewer",
+  "name": "elasticsearch-webmapping",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "http-server --cors=\"*\""
+    "clean": "rimraf dist",
+    "start": "eleventy --config=.eleventy.js --output=dist --serve",
+    "build": "eleventy --config=.eleventy.js --output=dist",
+    "prepreview": "yarn clean && yarn build",
+    "preview": "http-server dist",
+    "publish": "gsutil rsync dist gs://jsanz-bucket/vector-tile-viewer/"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "@11ty/eleventy": "^2.0.1",
+    "@picocss/pico": "^1.5.10",
+    "http-server": "^14.1.1",
+    "maplibre-gl": "^3.0.0",
+    "rimraf": "^5.0.1"
+  },
+  "dependencies": {
+    "pmtiles": "^2.7.2"
   }
 }

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+    
+    <link rel="stylesheet" href="assets/css/maplibre-gl.css"> <link rel="stylesheet" href="assets/css/map-and-info.css">
+
+    <script src='assets/js/maplibre-gl-dev.js'></script> <script src='assets/js/pmtiles.js'></script> <script>
+      /* Basemap style provided by Maptiler */
+      const MAP_STYLE = './assets/style.json';
+      /* ES instance with geodata and anonymous access enabled */
+      const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
+
+      /* initialize pmtiles support */
+      let protocol = new pmtiles.Protocol();
+      maplibregl.addProtocol("pmtiles",protocol.tile);
+</script>
+
+    <title>Individual documents</title>
+  </head>
+  <body>
+
+
+<div id='map'></div>
+<div id="info">
+    <h3>311 noise claims from 2019 Q1</h3>
+    <p>Click on a point to get details</p>
+    <p>Count: <strong><span id="count"></span></strong></p>
+    <form>
+        <label for="id">
+            Filter by type
+            <input id="search" placeholder="Noise" />
+        </label>
+        <button onclick="updateSearch()">Search</button>
+    </form>
+</div>
+<script>
+    /* ES index and geometry field */
+    const ES_INDEX = '311';
+    const ES_FIELD = 'location';
+
+    /* VT request */
+    const ES_TILES = `${ES_HOST}/${ES_INDEX}/_mvt/${ES_FIELD}/{z}/{x}/{y}`;
+
+    /* VT query for hits */
+    const ES_SEARCH_BODY = {
+        grid_precision: 0,
+        exact_bounds: true,
+        extent: 4096,
+        track_total_hits: 10001,
+        fields: [
+            "Complaint Type",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
+        query: {
+            "bool": {
+                "filter": [
+                    {
+                        "range": {
+                            "Created Date": {
+                                "gte": "2019-01-01",
+                                "lte": "2019-04-01"
+                            }
+                        }
+                    },
+                    {
+                        "terms": {
+                            "Complaint Type": [
+                                "Noise - Residential",
+                                "Noise - Street/sidewalk",
+                                "Noise - Vehicle",
+                                "Noise - Commercial",
+                                "Noise - Helicopter",
+                                "Noise - Park",
+                                "Noise"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    };
+
+    const updateSearch = function(e) {
+        console.log("Reloading the layer with the new search");
+        map.setTransformRequest(getTransFormRequest);
+        map.getSource('ES').setTiles([ES_TILES]);
+    }
+
+    const getBody = function () {
+        const body = { ...ES_SEARCH_BODY };
+
+        const query = document.getElementById("search").value;
+
+        if (query && query.length > 0){
+            body['query']['bool']['must'] = [{
+            "query_string": {
+                "query": `*${query}*`,
+                "analyze_wildcard": true
+            }
+        }]
+        } else {
+            body['query']['bool']['must'] = null;
+        }
+
+        return body;
+    };
+
+    const getTransFormRequest = function (url, resourceType) {
+            /* This function enriches the HTTP request to include
+            the ES search body, change to a POST request, and include
+            the Content-Type header */
+            if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
+                return {
+                    url: url,
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json'
+                    },
+                    type: 'arrayBuffer',
+                    body: JSON.stringify(getBody())
+                }
+            }
+        }
+
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: MAP_STYLE,
+            center: [-73.95, 40.7],
+            zoom: 10,
+            hash: true,
+            transformRequest: getTransFormRequest
+        });
+
+        map.addControl(new maplibregl.NavigationControl());
+
+        map.on('load', function () {
+            /* Source for ES data */
+            map.addSource('ES', {
+                'type': 'vector',
+                'tiles': [ES_TILES],
+                'minzoom': 0,
+                'maxzoom': 14,
+                'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
+            });
+
+            map.addLayer(
+                {
+                    'id': 'data',
+                    'type': 'circle',
+                    'source': 'ES',
+                    'source-layer': 'hits',
+                    'paint': {
+                        'circle-radius': 6,
+                        /* Thematic mapping for the Complaint Type field */
+                        'circle-color': [
+                            'match',
+                            ['get', 'Complaint Type'],
+                            "Noise - Residential", "#54B399",
+                            "Noise", "#6092C0",
+                            "Noise - Commercial", "#D36086",
+                            "Noise - Street/Sidewalk", "#9170B8",
+                            "Noise - Vehicle", "#CA8EAE",
+                            "Noise - Park", "#D6BF57",
+                            "Noise - Helicopter", "#B9A888",
+                            "Noise - House of Worship", "#DA8B45",
+                            "Noise Survey", "#AA6556",
+                        /*other*/ '#ccc'
+                        ],
+                        'circle-opacity': 0.9,
+                    }
+                }
+            );
+        });
+
+        /* A very simple pop up implementation */
+
+        map.on('click', 'data', function (e) {
+            const feature = e.features[0];
+
+            var coordinates = feature.geometry.coordinates.slice();
+            var description = `
+        <hgroup>
+            <h3>${feature.properties['Complaint Type']} [${feature.properties['Status']}]</h3>
+            <h4>${feature.properties['Incident Address']}</h4>
+            <h4>${feature.properties['Agency Name']}</h4>
+        </hgroup>
+        <ul>
+            <li><strong>Closed Date</strong>: ${feature.properties['Closed Date']}</li>
+            <li><strong>Location Type</strong>: ${feature.properties['Location Type']}</li>
+            <li><strong>Resolution Description</strong>: ${feature.properties['Resolution Description']}</li>
+        </ul>
+        `;
+
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+
+        /* change cursor on hover */
+        map.on('mouseenter', 'data', function () { map.getCanvas().style.cursor = 'pointer'; });
+        /* reset cursor when leaving a feature */
+        map.on('mouseleave', 'data', function () { map.getCanvas().style.cursor = ''; });
+
+        /* Adding a count based entirely on client features */
+        map.on('data', counts);
+        map.on('moveend', counts);
+
+        const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
+        function counts() {
+            const features = map.queryRenderedFeatures();
+            const countEl = document.getElementById('count');
+            const preCount = countEl.textContent;
+            // Features can be single documents or aggregated hex or grid
+            const count = features
+                .filter(f => f?.layer?.id == 'data')
+                .length;
+
+            if (!count) return;
+
+            // Render the count
+            const formattedCount = intFormatter.format(count);
+            if (preCount != formattedCount) {
+                countEl.textContent = formattedCount;
+            }
+        };
+</script>
+
+  </body>
+</html>
+
