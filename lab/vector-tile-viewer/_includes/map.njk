@@ -1,21 +1,25 @@
 ---
 layout: base.njk
-css:  >
-      <link rel="stylesheet" href="assets/css/maplibre-gl.css">
-      <link rel="stylesheet" href="assets/css/map-and-info.css">
-js: >
-      <script src='assets/js/maplibre-gl-dev.js'></script>
-      <script src='assets/js/pmtiles.js'></script>
-      <script>
-            /* Basemap style provided by Maptiler */
-            const MAP_STYLE = './assets/style.json';
-            /* ES instance with geodata and anonymous access enabled */
-            const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
-
-            /* initialize pmtiles support */
-            let protocol = new pmtiles.Protocol();
-            maplibregl.addProtocol("pmtiles",protocol.tile);
-      </script>
+css:
+  - maplibre-gl.css
+  - map-and-info.css
+js:
+  - maplibre-gl-dev.js
+  - pmtiles.js
 ---
+<!-- Map initialization  -->
+<script>
+      /* Basemap style provided by Maptiler */
+      const MAP_STYLE = './assets/style.json';
+      /* ES instance with geodata and anonymous access enabled */
+      const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
+      /* ES API Key to access our data */
+      const ES_APIKEY="{{ env.ELASTIC_APIKEY }}";
 
+      /* initialize pmtiles support */
+      let protocol = new pmtiles.Protocol();
+      maplibregl.addProtocol("pmtiles",protocol.tile);
+</script>
+
+<!-- Map Code -->
 {{ content | safe }}

@@ -4,28 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    
-    <link rel="stylesheet" href="assets/css/maplibre-gl.css"> <link rel="stylesheet" href="assets/css/map-and-info.css">
 
-    <script src='assets/js/maplibre-gl-dev.js'></script> <script src='assets/js/pmtiles.js'></script> <script>
+    <title>Rendering tiles</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/maplibre-gl.css">
+    <link rel="stylesheet" href="assets/css/map-and-info.css">
+    <!-- Scripts -->
+    <script src="assets/js/maplibre-gl-dev.js"></script>
+    <script src="assets/js/pmtiles.js"></script>
+    </head>
+  <body>
+<!-- Map initialization  -->
+<script>
       /* Basemap style provided by Maptiler */
       const MAP_STYLE = './assets/style.json';
       /* ES instance with geodata and anonymous access enabled */
       const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
+      /* ES API Key to access our data */
+      const ES_APIKEY="WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
 
       /* initialize pmtiles support */
       let protocol = new pmtiles.Protocol();
       maplibregl.addProtocol("pmtiles",protocol.tile);
 </script>
 
-    <title>Rendering tiles</title>
-  </head>
-  <body>
+<!-- Map Code -->
 
-
-<div id='map'></div>
+<div id="map"></div>
 <div id="info">
-    <h3>311 noise claims<br /> between 2015 and 2020</h3>
+    <h3>311 noise claims<br> between 2015 and 2020</h3>
     <p>Click on a hex to get the count</p>
     <p>Count: <strong><span id="count"></span></strong></p>
 </div>

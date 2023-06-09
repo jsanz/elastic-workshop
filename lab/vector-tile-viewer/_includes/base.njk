@@ -7,10 +7,17 @@ title: Elasticsearch Webmapping
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    
-    {{ css | safe }}
-    {{ js | safe }}
+
     <title>{{ title }}</title>
+
+    <!-- Styles -->
+    {% for style in css -%}
+    <link rel="stylesheet" href="assets/css/{{ style }}">
+    {% endfor -%}
+    <!-- Scripts -->
+    {% for script in js -%}
+    <script src='assets/js/{{script}}'></script>
+    {% endfor -%}
   </head>
   <body>
 {{ content | safe }}

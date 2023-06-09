@@ -4,20 +4,171 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-    
-    <link rel="stylesheet" href="assets/css/pico.css">
 
-    
     <title>Elasticsearch and Webmapping</title>
-  </head>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/pico.css">
+    <!-- Scripts -->
+    </head>
   <body>
 <main class="container">
+
+
 <h1>Elasticsearch and Webmapping</h1>
+
+<h2>🗺 Maps! 🗺</h2>
+
 <ul>
-<li><a href="./documents.html">Rendering individual documents</a></li>
-<li><a href="./hexagons.html">Rendering aggregated hexagons</a></li>
-<li><a href="./tiles.html">Rendering aggregated tiles</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/basemap.html">Just the basemap</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/documents.html">Individual documents</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/hexagons.html">Rendering Hexagons</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/tiles.html">Rendering tiles</a></li>
 </ul>
+
+
+<h2>Data preparation</h2>
+<blockquote>
+<p>Full details on how to install these datasets and others can be found <a href="https://gist.github.com/jsanz/235570f46634269ee354c831f87caf65">here</a></p>
+</blockquote>
+<p>On an Elasticsearch 8.x cluster add this setting to the <code>elasticsearch.yml</code> file to allow restoring snapshots from a <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/snapshots-read-only-repository.html">Read-only URL repository</a>.</p>
+<pre><code class="language-yaml">repositories.url.allowed_urls: 
+        - &quot;https://storage.googleapis.com/jsanz-bucket/*&quot;
+</code></pre>
+<p>Restart the cluster to activate this URL and then you can create a couple of snapshots repositories and restore some indices with <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC 311</a> data and the <a href="http://www.geonames.org/">Geonames database</a>.</p>
+<pre><code class="language-text"># Add the NYC 311 snapshots repository
+PUT /_snapshot/nyc311
+{
+  &quot;type&quot;: &quot;url&quot;,
+  &quot;settings&quot;: {
+    &quot;url&quot;: &quot;https://storage.googleapis.com/jsanz-bucket/nyc311_repo/&quot;
+  }
+}
+
+# Check two snapshots are available
+GET _snapshot/nyc311/*
+
+# Restore 311 data (async)
+POST /_snapshot/nyc311/snapshot_1/_restore
+
+# Restore NYC boroughs data (async)
+POST /_snapshot/nyc311/snapshot_2/_restore
+
+
+# Add the Geonames snapshots repository
+PUT /_snapshot/geonames
+{
+  &quot;type&quot;: &quot;url&quot;,
+  &quot;settings&quot;: {
+    &quot;url&quot;: &quot;https://storage.googleapis.com/jsanz-bucket/v8/geospatial_demos/&quot;
+  }
+}
+
+# Check the geonames snapshot is available available
+GET _snapshot/geonames/geonames
+
+# Restore Geonames data (async)
+POST /_snapshot/geonames/geonames/_restore
+</code></pre>
+<p>You need to wait for the data to be downloaded and restored. Check the indices in your cluster with:</p>
+<pre><code>GET _cat/indices?v&amp;h=index,docs.count&amp;s=index
+</code></pre>
+<p>Create the corresponding data views for Kibana from the Stack Management interface or with the following Console commands for the <a href="https://www.elastic.co/guide/en/kibana/master/data-views-api-create.html">Create Data View API</a></p>
+<pre><code>POST kbn://api/data_views/data_view
+{
+  &quot;data_view&quot;: {
+    &quot;title&quot;: &quot;311&quot;,
+    &quot;name&quot;: &quot;NYC 311 calls&quot;,
+    &quot;timeFieldName&quot;: &quot;Created Date&quot;
+  }
+}
+
+POST kbn://api/data_views/data_view
+{
+  &quot;data_view&quot;: {
+    &quot;title&quot;: &quot;nyc_boroughs&quot;,
+    &quot;name&quot;: &quot;NYC Boroughs&quot;
+  }
+}
+
+POST kbn://api/data_views/data_view
+{
+  &quot;data_view&quot;: {
+    &quot;title&quot;: &quot;NYC&quot;,
+    &quot;name&quot;: &quot;NYC 311 calls&quot;,
+    &quot;timeFieldName&quot;: &quot;Created Date&quot;
+  }
+}
+</code></pre>
+<h2>Setting up Elasticsearch API key</h2>
+<p>Create a <code>workshop</code> API key that can view the indices we just created and that will expire in five days.</p>
+<pre><code class="language-json">POST /_security/api_key
+{
+  &quot;name&quot;: &quot;workshop-api-key&quot;,
+  &quot;expiration&quot;: &quot;5d&quot;,   
+  &quot;role_descriptors&quot;: { 
+    &quot;workshop&quot;: {
+      &quot;index&quot;: [
+      {
+        &quot;names&quot;: [
+          &quot;geonames&quot;,
+          &quot;311&quot;,
+          &quot;nyc_boroughs&quot;
+        ],
+        &quot;privileges&quot;: [
+          &quot;read&quot;,
+          &quot;view_index_metadata&quot;
+        ],
+        &quot;field_security&quot;: {
+          &quot;grant&quot;: [
+            &quot;*&quot;
+          ]
+        }
+      }
+      ]
+    }
+  }
+}
+</code></pre>
+<p>Write down the result as you'll need those fields on your requests.</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;YqAxoIgBclR1XK5t5Ixm&quot;,
+  &quot;name&quot;: &quot;workshop-api-key&quot;,
+  &quot;expiration&quot;: 1688906804330,
+  &quot;api_key&quot;: &quot;your-api-key-here&quot;,
+  &quot;encoded&quot;: &quot;your-encoded-name-and-api-key-here&quot;
+}
+</code></pre>
+<p>You can test your API key from curl:</p>
+<pre><code class="language-bash">ELASTIC_HOST=&quot;https://your-cluster-url&quot;
+ELASTIC_APIKEY=&quot;your-encoded-name-and-api-key-here&quot;
+curl -H &quot;Authorization: ApiKey ${ELASTIC_APIKEY}&quot; \
+  &quot;${ELASTIC_HOST}/geonames/_count?pretty=true&quot;
+</code></pre>
+<p>This should return:</p>
+<pre><code class="language-json">{
+  &quot;count&quot; : 11968314,
+  &quot;_shards&quot; : {
+    &quot;total&quot; : 1,
+    &quot;successful&quot; : 1,
+    &quot;skipped&quot; : 0,
+    &quot;failed&quot; : 0
+  }
+}
+</code></pre>
+<h2>Starting the viewer</h2>
+<p>You can simply serve the <code>dist</code> folder from any webserver of your choice:</p>
+<ul>
+<li>Python: <code>python -m http.server --directory dist 8080</code></li>
+<li>NodeJS: <code>npx http-server -p 8080 dist</code></li>
+<li>etc.</li>
+</ul>
+<p>Or if you are familiar with the NodeJS stack then you can download the dependencies (<code>yarn install</code> or  <code>npm install</code>) and start a development server (<code>yarn start</code> or <code>npm start</code>) so you can edit the code in the source files and the page will reload automatically.</p>
+<ul>
+<li><code>_includes/map.njk</code> contains the common code to initialize the different map pages</li>
+<li><code>pages/X.html</code> contains the HTML markup and the JavaScript code to run that page.</li>
+</ul>
+<p>The target <code>yarn build</code> or <code>npm build</code> will generate the output files in the <code>dist</code> folder that can be uploaded to any static webserver (Github Pages, Vercel, Netlify, and so on).</p>
 
 </main>
 
