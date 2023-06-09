@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>Documents: render everything between two dates</title>
+    <title>Documents: terms query and thematic mapping</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -51,6 +51,16 @@
         exact_bounds: true,
         extent: 4096,
         track_total_hits: 10001,
+        fields: [
+            "Complaint Type",
+            "Descriptor",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
         query: {
             "bool": {
                 "filter": [
@@ -60,6 +70,19 @@
                                 "gte": "2019-01-01",
                                 "lte": "2019-04-01"
                             }
+                        }
+                    },
+                    {
+                        "terms": {
+                            "Complaint Type": [
+                                "Noise - Residential",
+                                "Noise - Street/sidewalk",
+                                "Noise - Vehicle",
+                                "Noise - Commercial",
+                                "Noise - Helicopter",
+                                "Noise - Park",
+                                "Noise"
+                            ]
                         }
                     }
                 ]
@@ -114,7 +137,21 @@
                     'source-layer': 'hits',
                     'paint': {
                         'circle-radius': 3,
-                        'circle-color': "#54B399",
+                        /* Thematic mapping for the Complaint Type field */
+                        'circle-color': [
+                            'match',
+                            ['get', 'Complaint Type'],
+                            "Noise - Residential", "#54B399",
+                            "Noise", "#6092C0",
+                            "Noise - Commercial", "#D36086",
+                            "Noise - Street/Sidewalk", "#9170B8",
+                            "Noise - Vehicle", "#CA8EAE",
+                            "Noise - Park", "#D6BF57",
+                            "Noise - Helicopter", "#B9A888",
+                            "Noise - House of Worship", "#DA8B45",
+                            "Noise Survey", "#AA6556",
+                        /*other*/ '#ccc'
+                        ],
                         'circle-opacity': 0.9,
                     }
                 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>Hexagons</title>
+    <title>Geotile: heatmap</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -34,8 +34,6 @@
 <div id="map"></div>
 <div id="info">
     <h3>311 noise claims<br> between 2015 and 2020</h3>
-    <p>Hover an hex to get the count</p>
-    <p>Count: <strong><span id="count"></span></strong></p>
 </div>
 <script>
     /* ES index and geometry field */
@@ -48,12 +46,21 @@
     /* VT query for hits */
     const ES_SEARCH_BODY = {
         size: 0,
-        grid_precision: 6,
+        grid_precision: 8,
         exact_bounds: false,
         extent: 4096,
-        grid_agg: "geohex",
+        grid_agg: "geotile",
         grid_type: "grid",
         with_labels: true,
+        fields: [
+            "Complaint Type",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
         query: {
             "bool": {
                 "filter": [
@@ -83,9 +90,10 @@
         }
     };
     const INITIAL_ZOOM = 10;
-    const MIN_ZOOM = 8;
+    const MIN_ZOOM = 10;
     const MAX_ZOOM = 14;
     const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
+
 
     const map = new maplibregl.Map({
         container: 'map',
@@ -114,7 +122,6 @@
         }
     });
 
-
     map.addControl(new maplibregl.NavigationControl());
 
     map.on('load', function () {
@@ -130,75 +137,42 @@
         map.addLayer(
             {
                 'id': 'data',
-                'type': 'fill',
+                'type': 'heatmap',
                 'source': 'ES',
                 'source-layer': 'aggs',
                 'paint': {
-                    'fill-opacity': 0.8,
-                    'fill-color': [
+                    'heatmap-weight': [
                         'interpolate',
                         ['linear'],
-                        ['get', '_count'],
-                        0, ['to-color', '#ECEFF4'],
-                        50000, ['to-color', '#B48EAD']
-                    ]
+                        ['get','_count'],
+                        0,
+                        0,
+                        10000,
+                        1
+                    ],
+                    'heatmap-color': [
+                        'interpolate',
+                        ['linear'],
+                        ['heatmap-density'],
+                        0,
+                        'rgba(0,0,0,0)',
+                        0.2,
+                        '#fe9f6d',
+                        0.4,
+                        '#de4968',
+                        0.6,
+                        '#8c2981',
+                        0.8,
+                        '#3b0f70',
+                        1,
+                        '#000004'
+                    ],
+                    // Adjust the heatmap radius by zoom level
+                    'heatmap-radius': 20
                 }
             }
         );
     });
-
-
-
-    /* A very simple pop up implementation */
-
-    // Create a popup, but don't add it to the map yet.
-    var popup = new maplibregl.Popup({
-    closeButton: false,
-    closeOnClick: false
-    });
-
-    /* change cursor on hover */
-    map.on('mousemove', 'data', function (e) { 
-        const feature = e.features[0];
-        if (!feature){return;}
-
-        map.getCanvas().style.cursor = 'pointer';
-        var coordinates = e.lngLat;
-        var description = `<p>${intFormatter.format(feature.properties._count)}</p>`;
-
-        popup.setLngLat(coordinates)
-            .setHTML(description)
-            .addTo(map);
-    });
-
-    /* reset cursor when leaving a feature */
-    map.on('mouseleave', 'data', function () { 
-        map.getCanvas().style.cursor = ''; 
-        popup.remove();
-    });
-
-    /* Adding a count based entirely on client features */
-    map.on('data', counts);
-    map.on('moveend', counts);
-
-    function counts() {
-        const features = map.queryRenderedFeatures()
-        const countEl = document.getElementById('count');
-        const preCount = countEl.textContent;
-
-        // Features can be single documents or aggregated hex or grid
-        const count = features
-            .filter(f => f?.layer?.id == 'data')
-            .reduce((acc, cur) => acc + cur.properties._count, 0) / 2;
-
-        if (!count) return;
-
-        // Render the count
-        const formattedCount = intFormatter.format(count);
-        if (preCount != formattedCount) {
-            countEl.textContent = formattedCount;
-        }
-    };
 </script>
 
 </body>

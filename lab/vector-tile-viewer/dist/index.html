@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/css/pico.css">
     <!-- Scripts -->
     </head>
-  <body>
+<body>
 <main class="container">
 
 
@@ -21,12 +21,19 @@
 
 <ul>
   <li><a href="/jsanz-bucket/vector-tile-viewer/basemap.html">Just the basemap</a></li>
-  <li><a href="/jsanz-bucket/vector-tile-viewer/documents.html">Individual documents</a></li>
-  <li><a href="/jsanz-bucket/vector-tile-viewer/hexagons.html">Rendering Hexagons</a></li>
-  <li><a href="/jsanz-bucket/vector-tile-viewer/tiles.html">Rendering tiles</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/documents.html">Documents: render everything between two dates</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/documents-filter.html">Documents: terms query and thematic mapping</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/documents-popup.html">Documents: add a popup</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/documents-search.html">Documents: search</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/hexagons.html">Hexagons</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/hexagons-adaptative.html">Hexagons: adaptative legend</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/geotile-square.html">Geotile: square tiles</a></li>
+  <li><a href="/jsanz-bucket/vector-tile-viewer/geotile-heatmap.html">Geotile: heatmap</a></li>
 </ul>
 
 
+<h2>Slides</h2>
+<p><a href="https://ela.st/2023-webmapping-elasticsearch-slides">https://ela.st/2023-webmapping-elasticsearch-slides</a></p>
 <h2>Data preparation</h2>
 <blockquote>
 <p>Full details on how to install these datasets and others can be found <a href="https://gist.github.com/jsanz/235570f46634269ee354c831f87caf65">here</a></p>
@@ -35,6 +42,16 @@
 <pre><code class="language-yaml">repositories.url.allowed_urls: 
         - &quot;https://storage.googleapis.com/jsanz-bucket/*&quot;
 </code></pre>
+<p>To accept requests for vector tiles from a browser we also need to enable CORS in Elasticsearch so, again in the <code>elasticsearch.yml</code>:</p>
+<pre><code class="language-yaml">http.cors: 
+    enabled : true
+    allow-origin: &quot;*&quot;
+    allow-methods: OPTIONS, HEAD, GET, POST
+    allow-headers: &quot;X-Requested-With, Content-Type, Content-Length, Authorization, Accept, User-Agent, X-Elastic-Client-Meta, Cache-Control&quot;
+</code></pre>
+<blockquote>
+<p>⚠ Be sure to read the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html">networking documentation</a> carefully if you are working with a production cluster to understand the implications of allowing CORS requests</p>
+</blockquote>
 <p>Restart the cluster to activate this URL and then you can create a couple of snapshots repositories and restore some indices with <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC 311</a> data and the <a href="http://www.geonames.org/">Geonames database</a>.</p>
 <pre><code class="language-text"># Add the NYC 311 snapshots repository
 PUT /_snapshot/nyc311
@@ -172,6 +189,6 @@ curl -H &quot;Authorization: ApiKey ${ELASTIC_APIKEY}&quot; \
 
 </main>
 
-  </body>
+</body>
 </html>
 

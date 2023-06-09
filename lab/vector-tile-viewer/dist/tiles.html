@@ -14,15 +14,15 @@
     <script src="assets/js/maplibre-gl-dev.js"></script>
     <script src="assets/js/pmtiles.js"></script>
     </head>
-  <body>
+<body>
 <!-- Map initialization  -->
 <script>
       /* Basemap style provided by Maptiler */
       const MAP_STYLE = './assets/style.json';
       /* ES instance with geodata and anonymous access enabled */
-      const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
+      const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
       /* ES API Key to access our data */
-      const ES_APIKEY="WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
+      const ES_APIKEY = "WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
 
       /* initialize pmtiles support */
       let protocol = new pmtiles.Protocol();
@@ -247,6 +247,6 @@
     };
 </script>
 
-  </body>
+</body>
 </html>
 

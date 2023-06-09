@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en" data-theme="light">
   <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>Hexagons</title>
+    <title>Rendering Hexagons</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -14,15 +15,15 @@
     <script src="assets/js/maplibre-gl-dev.js"></script>
     <script src="assets/js/pmtiles.js"></script>
     </head>
-<body>
+  <body>
 <!-- Map initialization  -->
 <script>
       /* Basemap style provided by Maptiler */
       const MAP_STYLE = './assets/style.json';
       /* ES instance with geodata and anonymous access enabled */
-      const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
+      const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
       /* ES API Key to access our data */
-      const ES_APIKEY = "WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
+      const ES_APIKEY="WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
 
       /* initialize pmtiles support */
       let protocol = new pmtiles.Protocol();
@@ -54,6 +55,15 @@
         grid_agg: "geohex",
         grid_type: "grid",
         with_labels: true,
+        fields: [
+            "Complaint Type",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
         query: {
             "bool": {
                 "filter": [
@@ -103,10 +113,7 @@
                 return {
                     url: url,
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json' ,
-                        'Authorization': `ApiKey ${ES_APIKEY}`
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     type: 'arrayBuffer',
                     body: JSON.stringify(ES_SEARCH_BODY)
                 }
@@ -114,6 +121,24 @@
         }
     });
 
+    const getFillColor = function () {
+        let max;
+        if (map.getLayer('data')) {
+            const features = map.queryRenderedFeatures({ 'layers': ['data'] });
+            max = Math.max(...features .map(f => f.properties._count));
+            console.log('Max value from tiles: ' + max);
+        } else {
+            console.error("Can't set up a value for the max");
+        }
+
+        return [
+            'interpolate',
+            ['linear'],
+            ['get', '_count'],
+            0, ['to-color', 'white'],
+            max, ['to-color', 'red']
+        ];
+    }
 
     map.addControl(new maplibregl.NavigationControl());
 
@@ -139,14 +164,35 @@
                         'interpolate',
                         ['linear'],
                         ['get', '_count'],
-                        0, ['to-color', '#ECEFF4'],
-                        50000, ['to-color', '#B48EAD']
+                        0, ['to-color', 'white'],
+                        80000, ['to-color', 'red']
                     ]
+                }
+            }
+        );
+        map.addLayer(
+            {
+                'id': 'border-data',
+                'type': 'line',
+                'source': 'ES',
+                'source-layer': 'aggs',
+                'paint': {
+                    'line-color': '#ccc',
+                    'line-width': 1.5
                 }
             }
         );
     });
 
+
+    const updatePalette = function () {
+        map.setPaintProperty(
+            'data', 
+            'fill-color',
+            getFillColor(map.getZoom()));
+    }
+
+    map.on('zoomend', updatePalette);
 
 
     /* A very simple pop up implementation */
@@ -185,7 +231,6 @@
         const features = map.queryRenderedFeatures()
         const countEl = document.getElementById('count');
         const preCount = countEl.textContent;
-
         // Features can be single documents or aggregated hex or grid
         const count = features
             .filter(f => f?.layer?.id == 'data')
@@ -201,6 +246,6 @@
     };
 </script>
 
-</body>
+  </body>
 </html>
 

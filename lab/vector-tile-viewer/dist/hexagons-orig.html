@@ -1,17 +1,43 @@
----
-layout: map.njk
-title: Rendering tiles
-permalink: tiles.html
-ordering: 4
----
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-<div id='map'></div>
+    <title>Rendering Hexagons (original)</title>
+
+    <!-- Styles -->
+    <!-- Scripts -->
+    </head>
+<body>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/maplibre-gl.css">
+    <link rel="stylesheet" href="assets/css/map-and-info.css">
+    <!-- Scripts -->
+    <script src="assets/js/maplibre-gl-dev.js"></script>
+    <script src="assets/js/pmtiles.js"></script>
+    
+
+<div id="map"></div>
 <div id="info">
-    <h3>311 noise claims<br /> between 2015 and 2020</h3>
-    <p>Click on a hex to get the count</p>
+    <h3>311 noise claims<br> between 2015 and 2020</h3>
+    <p>Hover an hex to get the count</p>
     <p>Count: <strong><span id="count"></span></strong></p>
 </div>
 <script>
+    /* Basemap style provided by Maptiler */
+    const MAP_STYLE = './assets/style.json';
+    /* ES instance with geodata and anonymous access enabled */
+    const ES_HOST = 'https://jorge-sanz.es.eastus2.azure.elastic-cloud.com';
+    /* ES API Key to access our data */
+    const ES_APIKEY="WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
+
+    /* initialize pmtiles support */
+    let protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles",protocol.tile);
+
     /* ES index and geometry field */
     const ES_INDEX = '311';
     const ES_FIELD = 'location';
@@ -22,10 +48,10 @@ ordering: 4
     /* VT query for hits */
     const ES_SEARCH_BODY = {
         size: 0,
-        grid_precision: 5,
+        grid_precision: 6,
         exact_bounds: false,
         extent: 4096,
-        grid_agg: "geotile",
+        grid_agg: "geohex",
         grid_type: "grid",
         with_labels: true,
         fields: [
@@ -69,7 +95,6 @@ ordering: 4
     const MIN_ZOOM = 8;
     const MAX_ZOOM = 14;
     const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
-
 
     const map = new maplibregl.Map({
         container: 'map',
@@ -139,7 +164,7 @@ ordering: 4
                         ['linear'],
                         ['get', '_count'],
                         0, ['to-color', 'white'],
-                        10000, ['to-color', 'red']
+                        80000, ['to-color', 'red']
                     ]
                 }
             }
@@ -160,11 +185,10 @@ ordering: 4
 
 
     const updatePalette = function () {
-        console.log("Updating the palette")
         map.setPaintProperty(
-            'data',
+            'data', 
             'fill-color',
-            getFillColor());
+            getFillColor(map.getZoom()));
     }
 
     map.on('zoomend', updatePalette);
@@ -174,14 +198,14 @@ ordering: 4
 
     // Create a popup, but don't add it to the map yet.
     var popup = new maplibregl.Popup({
-        closeButton: false,
-        closeOnClick: false
+    closeButton: false,
+    closeOnClick: false
     });
 
     /* change cursor on hover */
-    map.on('mousemove', 'data', function (e) {
+    map.on('mousemove', 'data', function (e) { 
         const feature = e.features[0];
-        if (!feature) { return; }
+        if (!feature){return;}
 
         map.getCanvas().style.cursor = 'pointer';
         var coordinates = e.lngLat;
@@ -193,8 +217,8 @@ ordering: 4
     });
 
     /* reset cursor when leaving a feature */
-    map.on('mouseleave', 'data', function () {
-        map.getCanvas().style.cursor = '';
+    map.on('mouseleave', 'data', function () { 
+        map.getCanvas().style.cursor = ''; 
         popup.remove();
     });
 
@@ -220,3 +244,11 @@ ordering: 4
         }
     };
 </script>
+
+  </body>
+</html>
+
+
+
+
+

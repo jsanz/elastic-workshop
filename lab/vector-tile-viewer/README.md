@@ -19,6 +19,19 @@ repositories.url.allowed_urls:
         - "https://storage.googleapis.com/jsanz-bucket/*"
 ```
 
+To accept requests for vector tiles from a browser we also need to enable CORS in Elasticsearch so, again in the `elasticsearch.yml`:
+
+```yaml
+http.cors: 
+    enabled : true
+    allow-origin: "*"
+    allow-methods: OPTIONS, HEAD, GET, POST
+    allow-headers: "X-Requested-With, Content-Type, Content-Length, Authorization, Accept, User-Agent, X-Elastic-Client-Meta, Cache-Control"
+```
+
+> ⚠ Be sure to read the [networking documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html) carefully if you are working with a production cluster to understand the implications of allowing CORS requests
+
+
 Restart the cluster to activate this URL and then you can create a couple of snapshots repositories and restore some indices with [NYC 311](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9) data and the [Geonames database](http://www.geonames.org/).
 
 ```text

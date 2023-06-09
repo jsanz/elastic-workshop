@@ -1,8 +1,8 @@
 ---
 layout: map.njk
-title: Individual documents
-permalink: documents.html
-ordering: 2
+title: "Documents: terms query and thematic mapping"
+permalink: documents-filter.html
+ordering: 22
 ---
 
 <div id='map'></div>
@@ -10,13 +10,6 @@ ordering: 2
     <h3>311 noise claims from 2019 Q1</h3>
     <p>Click on a point to get details</p>
     <p>Count: <strong><span id="count"></span></strong></p>
-    <form>
-        <label for="id">
-            Filter by type
-            <input id="search" placeholder="Noise" />
-        </label>
-        <button onclick="updateSearch()">Search</button>
-    </form>
 </div>
 <script>
     /* ES index and geometry field */
@@ -34,6 +27,7 @@ ordering: 2
         track_total_hits: 10001,
         fields: [
             "Complaint Type",
+            "Descriptor",
             "Agency Name",
             "Closed Date",
             "Incident Address",
@@ -70,31 +64,6 @@ ordering: 2
         }
     };
 
-    const updateSearch = function(e) {
-        console.log("Reloading the layer with the new search");
-        map.setTransformRequest(getTransFormRequest);
-        map.getSource('ES').setTiles([ES_TILES]);
-    }
-
-    const getBody = function () {
-        const body = { ...ES_SEARCH_BODY };
-
-        const query = document.getElementById("search").value;
-
-        if (query && query.length > 0){
-            body['query']['bool']['must'] = [{
-            "query_string": {
-                "query": `*${query}*`,
-                "analyze_wildcard": true
-            }
-        }]
-        } else {
-            body['query']['bool']['must'] = null;
-        }
-
-        return body;
-    };
-
     const getTransFormRequest = function (url, resourceType) {
             /* This function enriches the HTTP request to include
             the ES search body, change to a POST request, and include
@@ -104,10 +73,11 @@ ordering: 2
                     url: url,
                     method: 'POST',
                     headers: { 
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `ApiKey ${ES_APIKEY}`
                     },
                     type: 'arrayBuffer',
-                    body: JSON.stringify(getBody())
+                    body: JSON.stringify(ES_SEARCH_BODY)
                 }
             }
         }
@@ -140,7 +110,7 @@ ordering: 2
                     'source': 'ES',
                     'source-layer': 'hits',
                     'paint': {
-                        'circle-radius': 6,
+                        'circle-radius': 3,
                         /* Thematic mapping for the Complaint Type field */
                         'circle-color': [
                             'match',
@@ -162,40 +132,6 @@ ordering: 2
             );
         });
 
-        /* A very simple pop up implementation */
-
-        map.on('click', 'data', function (e) {
-            const feature = e.features[0];
-
-            var coordinates = feature.geometry.coordinates.slice();
-            var description = `
-        <hgroup>
-            <h3>${feature.properties['Complaint Type']} [${feature.properties['Status']}]</h3>
-            <h4>${feature.properties['Incident Address']}</h4>
-            <h4>${feature.properties['Agency Name']}</h4>
-        </hgroup>
-        <ul>
-            <li><strong>Closed Date</strong>: ${feature.properties['Closed Date']}</li>
-            <li><strong>Location Type</strong>: ${feature.properties['Location Type']}</li>
-            <li><strong>Resolution Description</strong>: ${feature.properties['Resolution Description']}</li>
-        </ul>
-        `;
-
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
-
-            new maplibregl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-        });
-
-        /* change cursor on hover */
-        map.on('mouseenter', 'data', function () { map.getCanvas().style.cursor = 'pointer'; });
-        /* reset cursor when leaving a feature */
-        map.on('mouseleave', 'data', function () { map.getCanvas().style.cursor = ''; });
-
         /* Adding a count based entirely on client features */
         map.on('data', counts);
         map.on('moveend', counts);
@@ -213,7 +149,7 @@ ordering: 2
             if (!count) return;
 
             // Render the count
-            const formattedCount = intFormatter.format(count);
+            const formattedCount = intFormatter.format(count) / 2;
             if (preCount != formattedCount) {
                 countEl.textContent = formattedCount;
             }

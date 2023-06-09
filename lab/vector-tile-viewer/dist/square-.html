@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>Hexagons</title>
+    <title>Square tiles</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -34,7 +34,7 @@
 <div id="map"></div>
 <div id="info">
     <h3>311 noise claims<br> between 2015 and 2020</h3>
-    <p>Hover an hex to get the count</p>
+    <p>Click on a hex to get the count</p>
     <p>Count: <strong><span id="count"></span></strong></p>
 </div>
 <script>
@@ -48,12 +48,21 @@
     /* VT query for hits */
     const ES_SEARCH_BODY = {
         size: 0,
-        grid_precision: 6,
+        grid_precision: 5,
         exact_bounds: false,
         extent: 4096,
-        grid_agg: "geohex",
+        grid_agg: "geotile",
         grid_type: "grid",
         with_labels: true,
+        fields: [
+            "Complaint Type",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
         query: {
             "bool": {
                 "filter": [
@@ -87,6 +96,7 @@
     const MAX_ZOOM = 14;
     const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
 
+
     const map = new maplibregl.Map({
         container: 'map',
         style: MAP_STYLE,
@@ -114,6 +124,24 @@
         }
     });
 
+    const getFillColor = function () {
+        let max;
+        if (map.getLayer('data')) {
+            const features = map.queryRenderedFeatures({ 'layers': ['data'] });
+            max = Math.max(...features .map(f => f.properties._count));
+            console.log('Max value from tiles: ' + max);
+        } else {
+            console.error("Can't set up a value for the max");
+        }
+
+        return [
+            'interpolate',
+            ['linear'],
+            ['get', '_count'],
+            0, ['to-color', '#ECEFF4'],
+            max, ['to-color', '#B48EAD']
+        ];
+    }
 
     map.addControl(new maplibregl.NavigationControl());
 
@@ -140,7 +168,7 @@
                         ['linear'],
                         ['get', '_count'],
                         0, ['to-color', '#ECEFF4'],
-                        50000, ['to-color', '#B48EAD']
+                        10000, ['to-color', '#B48EAD']
                     ]
                 }
             }
@@ -148,19 +176,29 @@
     });
 
 
+    const updatePalette = function () {
+        console.log("Updating the palette")
+        map.setPaintProperty(
+            'data',
+            'fill-color',
+            getFillColor());
+    }
+
+    map.on('zoomend', updatePalette);
+
 
     /* A very simple pop up implementation */
 
     // Create a popup, but don't add it to the map yet.
     var popup = new maplibregl.Popup({
-    closeButton: false,
-    closeOnClick: false
+        closeButton: false,
+        closeOnClick: false
     });
 
     /* change cursor on hover */
-    map.on('mousemove', 'data', function (e) { 
+    map.on('mousemove', 'data', function (e) {
         const feature = e.features[0];
-        if (!feature){return;}
+        if (!feature) { return; }
 
         map.getCanvas().style.cursor = 'pointer';
         var coordinates = e.lngLat;
@@ -172,8 +210,8 @@
     });
 
     /* reset cursor when leaving a feature */
-    map.on('mouseleave', 'data', function () { 
-        map.getCanvas().style.cursor = ''; 
+    map.on('mouseleave', 'data', function () {
+        map.getCanvas().style.cursor = '';
         popup.remove();
     });
 
@@ -185,7 +223,6 @@
         const features = map.queryRenderedFeatures()
         const countEl = document.getElementById('count');
         const preCount = countEl.textContent;
-
         // Features can be single documents or aggregated hex or grid
         const count = features
             .filter(f => f?.layer?.id == 'data')
