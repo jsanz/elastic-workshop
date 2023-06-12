@@ -6,6 +6,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
     <title>Just the basemap</title>
+    <meta name="description" content="Just rendereing the basemap from PMTiles vector tiles and  Elastic OSM Bright desaturated schema
+">
+    <meta name="author" content="Jorge Sanz ">
+
+    <meta property="og:title" content="Just the basemap">
+    <meta property="og:image" content="./assets/banner.png">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -17,19 +23,18 @@
 <body>
 <!-- Map initialization  -->
 <script>
-      /* Basemap style provided by Maptiler */
-      const MAP_STYLE = './assets/style.json';
-      /* ES instance with geodata and anonymous access enabled */
-      const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
-      /* ES API Key to access our data */
-      const ES_APIKEY = "WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
+    /* Basemap style provided by Maptiler */
+    const MAP_STYLE = './assets/style.json';
+    /* ES instance with geodata and anonymous access enabled */
+    const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
+    /* ES API Key to access our data */
+    const ES_APIKEY = "V2lJd3NJZ0JrLWZOVlduTFJGX1Q6U2xfdjhrXzlTbW1KNm1xOWF2OGFyUQ==";
 
-      /* initialize pmtiles support */
-      let protocol = new pmtiles.Protocol();
-      maplibregl.addProtocol("pmtiles",protocol.tile);
+    /* initialize pmtiles support */
+    let protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles",protocol.tile);
 </script>
 
-<!-- Map Code -->
 
 <div id="map"></div>
 <script>

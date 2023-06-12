@@ -6,6 +6,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
     <title>Hexagons</title>
+    <meta name="description" content="Aggregate 311 calls using the H3 hexagon spatial index.
+">
+    <meta name="author" content="Jorge Sanz ">
+
+    <meta property="og:title" content="Hexagons">
+    <meta property="og:image" content="./assets/banner.png">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
@@ -17,19 +23,78 @@
 <body>
 <!-- Map initialization  -->
 <script>
-      /* Basemap style provided by Maptiler */
-      const MAP_STYLE = './assets/style.json';
-      /* ES instance with geodata and anonymous access enabled */
-      const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
-      /* ES API Key to access our data */
-      const ES_APIKEY = "WktBX29JZ0JjbFIxWEs1dEw0dzk6aFVVUVZKMnpSTW1tWktlai1sd1k3dw==";
+    /* Basemap style provided by Maptiler */
+    const MAP_STYLE = './assets/style.json';
+    /* ES instance with geodata and anonymous access enabled */
+    const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
+    /* ES API Key to access our data */
+    const ES_APIKEY = "V2lJd3NJZ0JrLWZOVlduTFJGX1Q6U2xfdjhrXzlTbW1KNm1xOWF2OGFyUQ==";
 
-      /* initialize pmtiles support */
-      let protocol = new pmtiles.Protocol();
-      maplibregl.addProtocol("pmtiles",protocol.tile);
+    /* initialize pmtiles support */
+    let protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles",protocol.tile);
 </script>
 
-<!-- Map Code -->
+
+<!-- getTransformRequest  -->
+<script>
+const getTransFormRequest = function (url, resourceType) {
+    /* This function enriches the HTTP request to include
+    the ES search body, change to a POST request, and include
+    the Content-Type and authorization headers */
+    if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
+        return {
+            url: url,
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `ApiKey ${ES_APIKEY}`
+            },
+            type: 'arrayBuffer',
+            body: JSON.stringify(ES_SEARCH_BODY)
+        }
+    }
+}
+
+<!-- Rendering counts -->
+const intFormatter = new Intl.NumberFormat('en-US',{
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+const getCount = function(features){
+    const dataFeatures = features.filter(f => f?.layer?.id == 'data');
+    let count;
+   
+    // Features can be single documents or aggregated hex or grid
+    if (! dataFeatures) {
+        return;
+    } else if (dataFeatures[0]?.properties.hasOwnProperty('_count')){
+        count = dataFeatures.reduce((acc, cur) => acc + cur.properties._count, 0);
+    } else {
+        count = dataFeatures.length ;
+    }
+
+    // Fix NYC 311 duplicate data issue
+    return count / 2;
+}
+const counts = function() {
+    const features = map.queryRenderedFeatures();
+    const countEl = document.getElementById('count');
+    const preCount = countEl.textContent;
+    
+    const count = getCount(features);
+
+    if (!count) return;
+
+    // Render the count
+    const formattedCount = intFormatter.format(count);
+    if (preCount != formattedCount) {
+        countEl.textContent = formattedCount;
+    }
+};
+</script>
+
 
 <div id="map"></div>
 <div id="info">
@@ -85,7 +150,6 @@
     const INITIAL_ZOOM = 10;
     const MIN_ZOOM = 8;
     const MAX_ZOOM = 14;
-    const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
 
     const map = new maplibregl.Map({
         container: 'map',
@@ -95,25 +159,8 @@
         minZoom: MIN_ZOOM,
         maxZoom: MAX_ZOOM,
         hash: true,
-        transformRequest: function (url, resourceType) {
-            /* This function enriches the HTTP request to include
-            the ES search body, change to a POST request, and include
-            the Content-Type header */
-            if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
-                return {
-                    url: url,
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json' ,
-                        'Authorization': `ApiKey ${ES_APIKEY}`
-                    },
-                    type: 'arrayBuffer',
-                    body: JSON.stringify(ES_SEARCH_BODY)
-                }
-            }
-        }
+        transformRequest: getTransFormRequest
     });
-
 
     map.addControl(new maplibregl.NavigationControl());
 
@@ -147,9 +194,9 @@
         );
     });
 
-
-
-    /* A very simple pop up implementation */
+    /* Adding a count based entirely on client features */
+    map.on('data', counts);
+    map.on('moveend', counts);
 
     // Create a popup, but don't add it to the map yet.
     var popup = new maplibregl.Popup({
@@ -176,30 +223,8 @@
         map.getCanvas().style.cursor = ''; 
         popup.remove();
     });
-
-    /* Adding a count based entirely on client features */
-    map.on('data', counts);
-    map.on('moveend', counts);
-
-    function counts() {
-        const features = map.queryRenderedFeatures()
-        const countEl = document.getElementById('count');
-        const preCount = countEl.textContent;
-
-        // Features can be single documents or aggregated hex or grid
-        const count = features
-            .filter(f => f?.layer?.id == 'data')
-            .reduce((acc, cur) => acc + cur.properties._count, 0) / 2;
-
-        if (!count) return;
-
-        // Render the count
-        const formattedCount = intFormatter.format(count);
-        if (preCount != formattedCount) {
-            countEl.textContent = formattedCount;
-        }
-    };
 </script>
+
 
 </body>
 </html>
