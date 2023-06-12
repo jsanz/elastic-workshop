@@ -1,6 +1,8 @@
 ---
 layout: map-docs.njk
 title: "Geotile: heatmap"
+description: >
+  Use a heatmap styling to render geotile aggregated data. 
 permalink: geotile-heatmap.html
 ordering: 42
 ---
@@ -59,7 +61,18 @@ ordering: 42
                             ]
                         }
                     }
-                ]
+                ],
+                "must_not": [
+                    {
+                        "geo_distance": {
+                            "distance": "0.09km",
+                            "location": [
+                                -73.8598,
+                                40.89214
+                            ]
+                        }
+                    }
+                ],
             }
         }
     };
