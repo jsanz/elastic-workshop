@@ -2,20 +2,38 @@
 layout: base.njk
 css:
   - pico.css
+  - nord.css
+js:
+  - highlight.min.js
 ---
-<main class="container">
 
+<script>hljs.highlightAll();</script>
 
+<main class="container-fluid">
+
+<hgroup>
 <h1>{{ title }}</h1>
+<h2>{{ description }}</h2>
+</hgroup>
 
-<h2>🗺 Maps! 🗺</h2>
+<div style="text-align: center; margin: 0 0 2em 0;">
+  <img style="max-width: 90%;" src="assets/banner.png"/>
+</div>
 
-<ul>
-{%- for post in collections.maps %}
-  <li><a href="{{post.url}}">{{ post.data.title }}</a></li>
-{%- endfor %}
-</ul>
+<section>
+  {{content | safe }}
+</section>
+
+<section>
+  <h2>🗺 Maps! 🗺</h2>
+  
+  <dl>
+  {%- for post in collections.maps %}
+    <dt><a href="{{post.url}}">{{ post.data.title }}</a></dt>
+    <dd>{{post.data.description}}</dd>
+  {%- endfor %}
+  </dl>
+</section>
 
 
-{{content | safe }}
 </main>

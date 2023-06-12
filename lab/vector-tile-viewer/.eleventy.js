@@ -17,6 +17,8 @@ module.exports = function(eleventyConfig) {
     "./node_modules/maplibre-gl/dist/maplibre-gl.css": "assets/css/maplibre-gl.css",
     "./node_modules/pmtiles/dist/index.js": "assets/js/pmtiles.js",
     "./node_modules/@picocss/pico/css/pico.css": "assets/css/pico.css",
+    "static/js/highlight.min.js": "assets/js/highlight.min.js",
+    "node_modules/highlight.js/styles/nord.css": "assets/css/nord.css",
     "static/*": "assets/",
     "static/css/*": "assets/css/"
   });

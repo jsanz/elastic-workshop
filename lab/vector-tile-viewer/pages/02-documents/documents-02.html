@@ -1,6 +1,9 @@
 ---
-layout: map.njk
+layout: map-docs.njk
 title: "Documents: terms query and thematic mapping"
+description: >
+  Extend your basic layer with a color palette depending
+  on the value of a document field.
 permalink: documents-filter.html
 ordering: 22
 ---
@@ -64,94 +67,57 @@ ordering: 22
         }
     };
 
-    const getTransFormRequest = function (url, resourceType) {
-            /* This function enriches the HTTP request to include
-            the ES search body, change to a POST request, and include
-            the Content-Type header */
-            if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
-                return {
-                    url: url,
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Authorization': `ApiKey ${ES_APIKEY}`
-                    },
-                    type: 'arrayBuffer',
-                    body: JSON.stringify(ES_SEARCH_BODY)
-                }
-            }
-        }
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: MAP_STYLE,
+        center: [-73.95, 40.7],
+        zoom: 10,
+        hash: true,
+        transformRequest: getTransFormRequest
+    });
 
-        const map = new maplibregl.Map({
-            container: 'map',
-            style: MAP_STYLE,
-            center: [-73.95, 40.7],
-            zoom: 10,
-            hash: true,
-            transformRequest: getTransFormRequest
+    map.addControl(new maplibregl.NavigationControl());
+
+    map.on('load', function () {
+        /* Source for ES data */
+        map.addSource('ES', {
+            'type': 'vector',
+            'tiles': [ES_TILES],
+            'minzoom': 0,
+            'maxzoom': 14,
+            'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
         });
 
-        map.addControl(new maplibregl.NavigationControl());
-
-        map.on('load', function () {
-            /* Source for ES data */
-            map.addSource('ES', {
-                'type': 'vector',
-                'tiles': [ES_TILES],
-                'minzoom': 0,
-                'maxzoom': 14,
-                'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
-            });
-
-            map.addLayer(
-                {
-                    'id': 'data',
-                    'type': 'circle',
-                    'source': 'ES',
-                    'source-layer': 'hits',
-                    'paint': {
-                        'circle-radius': 3,
-                        /* Thematic mapping for the Complaint Type field */
-                        'circle-color': [
-                            'match',
-                            ['get', 'Complaint Type'],
-                            "Noise - Residential", "#54B399",
-                            "Noise", "#6092C0",
-                            "Noise - Commercial", "#D36086",
-                            "Noise - Street/Sidewalk", "#9170B8",
-                            "Noise - Vehicle", "#CA8EAE",
-                            "Noise - Park", "#D6BF57",
-                            "Noise - Helicopter", "#B9A888",
-                            "Noise - House of Worship", "#DA8B45",
-                            "Noise Survey", "#AA6556",
-                        /*other*/ '#ccc'
-                        ],
-                        'circle-opacity': 0.9,
-                    }
+        map.addLayer(
+            {
+                'id': 'data',
+                'type': 'circle',
+                'source': 'ES',
+                'source-layer': 'hits',
+                'paint': {
+                    'circle-radius': 3,
+                    /* Thematic mapping for the Complaint Type field */
+                    'circle-color': [
+                        'match',
+                        ['get', 'Complaint Type'],
+                        "Noise - Residential", "#54B399",
+                        "Noise", "#6092C0",
+                        "Noise - Commercial", "#D36086",
+                        "Noise - Street/Sidewalk", "#9170B8",
+                        "Noise - Vehicle", "#CA8EAE",
+                        "Noise - Park", "#D6BF57",
+                        "Noise - Helicopter", "#B9A888",
+                        "Noise - House of Worship", "#DA8B45",
+                        "Noise Survey", "#AA6556",
+                    /*other*/ '#ccc'
+                    ],
+                    'circle-opacity': 0.9,
                 }
-            );
-        });
-
-        /* Adding a count based entirely on client features */
-        map.on('data', counts);
-        map.on('moveend', counts);
-
-        const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
-        function counts() {
-            const features = map.queryRenderedFeatures();
-            const countEl = document.getElementById('count');
-            const preCount = countEl.textContent;
-            // Features can be single documents or aggregated hex or grid
-            const count = features
-                .filter(f => f?.layer?.id == 'data')
-                .length;
-
-            if (!count) return;
-
-            // Render the count
-            const formattedCount = intFormatter.format(count) / 2;
-            if (preCount != formattedCount) {
-                countEl.textContent = formattedCount;
             }
-        };
+        );
+    });
+
+    /* Adding a count based entirely on client features */
+    map.on('data', counts);
+    map.on('moveend', counts);
 </script>

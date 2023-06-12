@@ -1,8 +1,20 @@
 ---
 layout: title.njk
 title: Elasticsearch and Webmapping
+description: >
+  Two hours workshop on how different ways
+  to render Elasticsearch data on a web map application using 
+  Maplibre.
 permalink: /
 ---
+
+## About
+
+> This is part of the larger [Elastic Workshop](https://github.com/jsanz/elastic-workshop/) repository.
+
+In this two hours session, first, there are details on how to set up an Elasticsearch cluster to accept search and aggregation requests using Vector Tiles as the output format.
+
+With a cluster ready, we can explore two main types of data rendering: individual documents and grid aggregations using different spatial indices.
 
 ## Slides
 
@@ -34,6 +46,9 @@ http.cors:
 
 Restart the cluster to activate this URL and then you can create a couple of snapshots repositories and restore some indices with [NYC 311](https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9) data and the [Geonames database](http://www.geonames.org/).
 
+<details>
+<summary>Loading datasets 🔽</summary>
+
 ```text
 # Add the NYC 311 snapshots repository
 PUT /_snapshot/nyc311
@@ -53,7 +68,6 @@ POST /_snapshot/nyc311/snapshot_1/_restore
 # Restore NYC boroughs data (async)
 POST /_snapshot/nyc311/snapshot_2/_restore
 
-
 # Add the Geonames snapshots repository
 PUT /_snapshot/geonames
 {
@@ -69,16 +83,20 @@ GET _snapshot/geonames/geonames
 # Restore Geonames data (async)
 POST /_snapshot/geonames/geonames/_restore
 ```
+</details>
 
 You need to wait for the data to be downloaded and restored. Check the indices in your cluster with:
 
-```
+```text
 GET _cat/indices?v&h=index,docs.count&s=index
 ```
 
 Create the corresponding data views for Kibana from the Stack Management interface or with the following Console commands for the [Create Data View API](https://www.elastic.co/guide/en/kibana/master/data-views-api-create.html)
 
-```
+<details>
+<summary>Creating Kibana Data Views 🔽</summary>
+
+```text
 POST kbn://api/data_views/data_view
 {
   "data_view": {
@@ -105,12 +123,17 @@ POST kbn://api/data_views/data_view
   }
 }
 ```
+</details>
 
 ## Setting up Elasticsearch API key
 
 Create a `workshop` API key that can view the indices we just created and that will expire in five days.
 
-```json
+
+<details>
+<summary>Create an API key 🔽</summary>
+
+```text
 POST /_security/api_key
 {
   "name": "workshop-api-key",
@@ -139,6 +162,7 @@ POST /_security/api_key
   }
 }
 ```
+</details>
 
 Write down the result as you'll need those fields on your requests.
 
@@ -156,9 +180,9 @@ Write down the result as you'll need those fields on your requests.
 You can test your API key from curl:
 
 ```bash
-ELASTIC_HOST="https://your-cluster-url"
-ELASTIC_APIKEY="your-encoded-name-and-api-key-here"
-curl -H "Authorization: ApiKey ${ELASTIC_APIKEY}" \
+$ ELASTIC_HOST="https://your-cluster-url"
+$ ELASTIC_APIKEY="your-encoded-name-and-api-key-here"
+$ curl -H "Authorization: ApiKey ${ELASTIC_APIKEY}" \
   "${ELASTIC_HOST}/geonames/_count?pretty=true"
 ```
 

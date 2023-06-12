@@ -9,17 +9,16 @@ js:
 ---
 <!-- Map initialization  -->
 <script>
-      /* Basemap style provided by Maptiler */
-      const MAP_STYLE = './assets/style.json';
-      /* ES instance with geodata and anonymous access enabled */
-      const ES_HOST = "{{ env.ELASTIC_HOST }}";
-      /* ES API Key to access our data */
-      const ES_APIKEY = "{{ env.ELASTIC_APIKEY }}";
+    /* Basemap style provided by Maptiler */
+    const MAP_STYLE = './assets/style.json';
+    /* ES instance with geodata and anonymous access enabled */
+    const ES_HOST = "{{ env.ELASTIC_HOST }}";
+    /* ES API Key to access our data */
+    const ES_APIKEY = "{{ env.ELASTIC_APIKEY }}";
 
-      /* initialize pmtiles support */
-      let protocol = new pmtiles.Protocol();
-      maplibregl.addProtocol("pmtiles",protocol.tile);
+    /* initialize pmtiles support */
+    let protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles",protocol.tile);
 </script>
 
-<!-- Map Code -->
 {{ content | safe }}

@@ -1,5 +1,5 @@
 ---
-layout: map.njk
+layout: map-docs.njk
 title: "Geotile: heatmap"
 permalink: geotile-heatmap.html
 ordering: 42
@@ -66,7 +66,6 @@ ordering: 42
     const INITIAL_ZOOM = 10;
     const MIN_ZOOM = 10;
     const MAX_ZOOM = 14;
-    const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
 
 
     const map = new maplibregl.Map({
@@ -77,23 +76,7 @@ ordering: 42
         minZoom: MIN_ZOOM,
         maxZoom: MAX_ZOOM,
         hash: true,
-        transformRequest: function (url, resourceType) {
-            /* This function enriches the HTTP request to include
-            the ES search body, change to a POST request, and include
-            the Content-Type header */
-            if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
-                return {
-                    url: url,
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json' ,
-                        'Authorization': `ApiKey ${ES_APIKEY}`
-                    },
-                    type: 'arrayBuffer',
-                    body: JSON.stringify(ES_SEARCH_BODY)
-                }
-            }
-        }
+        transformRequest: getTransFormRequest
     });
 
     map.addControl(new maplibregl.NavigationControl());
@@ -105,7 +88,7 @@ ordering: 42
             'tiles': [ES_TILES],
             'minzoom': 0,
             'maxzoom': MAX_ZOOM,
-            'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
+            'attribution': 'NYC311'
         });
 
         map.addLayer(
@@ -124,6 +107,13 @@ ordering: 42
                         10000,
                         1
                     ],
+                    // increase intensity as zoom level increases
+                    'heatmap-intensity': {
+                        'stops': [
+                        [11, 1],
+                        [15, 3]
+                        ]
+                    },
                     'heatmap-color': [
                         'interpolate',
                         ['linear'],
@@ -141,7 +131,6 @@ ordering: 42
                         1,
                         '#000004'
                     ],
-                    // Adjust the heatmap radius by zoom level
                     'heatmap-radius': 20
                 }
             }

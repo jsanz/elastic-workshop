@@ -1,6 +1,9 @@
 ---
-layout: map.njk
+layout: map-docs.njk
 title: "Documents: search"
+description: >
+  Filter data on the map by including a text string from an input form
+  that will search for all fields in our index.
 permalink: documents-search.html
 ordering: 24
 ---
@@ -71,15 +74,8 @@ ordering: 24
         }
     };
 
-    const updateSearch = function(e) {
-        console.log("Reloading the layer with the new search");
-        map.setTransformRequest(getTransFormRequest);
-        map.getSource('ES').setTiles([ES_TILES]);
-    }
-
     const getBody = function () {
         const body = { ...ES_SEARCH_BODY };
-
         const query = document.getElementById("search").value;
 
         if (query && query.length > 0){
@@ -96,7 +92,7 @@ ordering: 24
         return body;
     };
 
-    const getTransFormRequest = function (url, resourceType) {
+    const getDynamicTransFormRequest = function (url, resourceType) {
             /* This function enriches the HTTP request to include
             the ES search body, change to a POST request, and include
             the Content-Type header */
@@ -114,63 +110,72 @@ ordering: 24
             }
         }
 
-        const map = new maplibregl.Map({
-            container: 'map',
-            style: MAP_STYLE,
-            center: [-73.95, 40.7],
-            zoom: 10,
-            hash: true,
-            transformRequest: getTransFormRequest
+    const updateSearch = function(e) {
+        console.log("Updating the map with a new transformRequest");
+        map.setTransformRequest(getDynamicTransFormRequest);
+        map.getSource('ES').setTiles([ES_TILES]);
+    }
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: MAP_STYLE,
+        center: [-73.95, 40.7],
+        zoom: 10,
+        hash: true,
+        transformRequest: getDynamicTransFormRequest
+    });
+
+    map.addControl(new maplibregl.NavigationControl());
+
+    map.on('load', function () {
+        /* Source for ES data */
+        map.addSource('ES', {
+            'type': 'vector',
+            'tiles': [ES_TILES],
+            'minzoom': 0,
+            'maxzoom': 14,
+            'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
         });
 
-        map.addControl(new maplibregl.NavigationControl());
-
-        map.on('load', function () {
-            /* Source for ES data */
-            map.addSource('ES', {
-                'type': 'vector',
-                'tiles': [ES_TILES],
-                'minzoom': 0,
-                'maxzoom': 14,
-                'attribution': '<a href=¨"https://elastic.co">Elasticsearch data</a>'
-            });
-
-            map.addLayer(
-                {
-                    'id': 'data',
-                    'type': 'circle',
-                    'source': 'ES',
-                    'source-layer': 'hits',
-                    'paint': {
-                        'circle-radius': 6,
-                        /* Thematic mapping for the Complaint Type field */
-                        'circle-color': [
-                            'match',
-                            ['get', 'Complaint Type'],
-                            "Noise - Residential", "#54B399",
-                            "Noise", "#6092C0",
-                            "Noise - Commercial", "#D36086",
-                            "Noise - Street/Sidewalk", "#9170B8",
-                            "Noise - Vehicle", "#CA8EAE",
-                            "Noise - Park", "#D6BF57",
-                            "Noise - Helicopter", "#B9A888",
-                            "Noise - House of Worship", "#DA8B45",
-                            "Noise Survey", "#AA6556",
-                        /*other*/ '#ccc'
-                        ],
-                        'circle-opacity': 0.9,
-                    }
+        map.addLayer(
+            {
+                'id': 'data',
+                'type': 'circle',
+                'source': 'ES',
+                'source-layer': 'hits',
+                'paint': {
+                    'circle-radius': 6,
+                    /* Thematic mapping for the Complaint Type field */
+                    'circle-color': [
+                        'match',
+                        ['get', 'Complaint Type'],
+                        "Noise - Residential", "#54B399",
+                        "Noise", "#6092C0",
+                        "Noise - Commercial", "#D36086",
+                        "Noise - Street/Sidewalk", "#9170B8",
+                        "Noise - Vehicle", "#CA8EAE",
+                        "Noise - Park", "#D6BF57",
+                        "Noise - Helicopter", "#B9A888",
+                        "Noise - House of Worship", "#DA8B45",
+                        "Noise Survey", "#AA6556",
+                    /*other*/ '#ccc'
+                    ],
+                    'circle-opacity': 0.9,
                 }
-            );
-        });
+            }
+        );
+    });
 
-        /* A very simple pop up implementation */
+    /* Adding a count based entirely on client features */
+    map.on('data', counts);
+    map.on('moveend', counts);
 
-        map.on('click', 'data', function (e) {
-            const feature = e.features[0];
+    /* A very simple pop up implementation */
+    map.on('click', 'data', function (e) {
+        const feature = e.features[0];
 
-            var coordinates = feature.geometry.coordinates.slice();
-            var description = `
+        var coordinates = feature.geometry.coordinates.slice();
+        var description = `
         <hgroup>
             <h3>${feature.properties['Descriptor']}</h3>
             <h4>${feature.properties['Complaint Type']} [${feature.properties['Status']}]</h4>
@@ -182,43 +187,20 @@ ordering: 24
             <li><strong>Location Type</strong>: ${feature.properties['Location Type']}</li>
             <li><strong>Resolution Description</strong>: ${feature.properties['Resolution Description']}</li>
         </ul>
-        `;
+    `;
 
-            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-            }
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
 
-            new maplibregl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-        });
+        new maplibregl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
 
-        /* change cursor on hover */
-        map.on('mouseenter', 'data', function () { map.getCanvas().style.cursor = 'pointer'; });
-        /* reset cursor when leaving a feature */
-        map.on('mouseleave', 'data', function () { map.getCanvas().style.cursor = ''; });
-
-        /* Adding a count based entirely on client features */
-        map.on('data', counts);
-        map.on('moveend', counts);
-
-        const intFormatter = new Intl.NumberFormat('en-US', { maximumSignificantDigits: 3 });
-        function counts() {
-            const features = map.queryRenderedFeatures();
-            const countEl = document.getElementById('count');
-            const preCount = countEl.textContent;
-            // Features can be single documents or aggregated hex or grid
-            const count = features
-                .filter(f => f?.layer?.id == 'data')
-                .length;
-
-            if (!count) return;
-
-            // Render the count
-            const formattedCount = intFormatter.format(count) / 2;
-            if (preCount != formattedCount) {
-                countEl.textContent = formattedCount;
-            }
-        };
+    /* change cursor on hover */
+    map.on('mouseenter', 'data', function () { map.getCanvas().style.cursor = 'pointer'; });
+    /* reset cursor when leaving a feature */
+    map.on('mouseleave', 'data', function () { map.getCanvas().style.cursor = ''; });
 </script>

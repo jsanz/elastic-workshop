@@ -8,7 +8,12 @@ title: Elasticsearch Webmapping
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>{{ title }}</title>
+    <title>{{ title or meta.siteName | trim }}</title>
+    <meta name="description" content="{{ description or meta.siteDescription  | trim }}">
+    <meta name="author" content="{{ meta.authorName}}" />
+
+    <meta property="og:title" content="{{ title or meta.siteName | trim }}" />
+    <meta property="og:image" content="./assets/banner.png" />
 
     <!-- Styles -->
     {% for style in css -%}
