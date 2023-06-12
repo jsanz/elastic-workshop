@@ -55,7 +55,7 @@ const getTransFormRequest = function (url, resourceType) {
     }
 }
 
-<!-- Rendering counts -->
+// Rendering counts
 const intFormatter = new Intl.NumberFormat('en-US',{
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
@@ -178,7 +178,7 @@ const counts = function() {
             'tiles': [ES_TILES],
             'minzoom': 0,
             'maxzoom': MAX_ZOOM,
-            'attribution': 'NYC311'
+            'attribution': '<a href="https://portal.311.nyc.gov/">NYC 311</a>'
         });
 
         map.addLayer(
