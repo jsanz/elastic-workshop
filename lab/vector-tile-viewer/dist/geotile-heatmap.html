@@ -6,7 +6,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
     <title>Geotile: heatmap</title>
-    <meta name="description" content="A workshop on how to use Elasticsearch in web mapping projects">
+    <meta name="description" content="Use a heatmap styling to render geotile aggregated data. 
+">
     <meta name="author" content="Jorge Sanz ">
 
     <meta property="og:title" content="Geotile: heatmap">
@@ -149,7 +150,18 @@ const counts = function() {
                             ]
                         }
                     }
-                ]
+                ],
+                "must_not": [
+                    {
+                        "geo_distance": {
+                            "distance": "0.09km",
+                            "location": [
+                                -73.8598,
+                                40.89214
+                            ]
+                        }
+                    }
+                ],
             }
         }
     };

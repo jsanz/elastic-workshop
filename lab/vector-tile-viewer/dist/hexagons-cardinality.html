@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
 
-    <title>Hexagons: adaptative legend</title>
-    <meta name="description" content="Change the legend of the hexagons aggregated Maplibre layer depending on the zoom level.
+    <title>Hexagons: additional metric</title>
+    <meta name="description" content="Include a new custom metric in the data aggregation.
 ">
     <meta name="author" content="Jorge Sanz ">
 
-    <meta property="og:title" content="Hexagons: adaptative legend">
+    <meta property="og:title" content="Hexagons: additional metric">
     <meta property="og:image" content="./assets/banner.png">
 
     <!-- Styles -->
@@ -98,8 +98,8 @@ const counts = function() {
 
 <div id="map"></div>
 <div id="info">
-    <h3>311 noise claims<br> between 2015 and 2020</h3>
-    <p>Hover an hex to get the count</p>
+    <h3>311 calls between 2015 and 2020<br> by complaint types</h3>
+    <p>Hover an hex to get the types count</p>
     <p>Count: <strong><span id="count"></span></strong></p>
 </div>
 <script>
@@ -119,6 +119,13 @@ const counts = function() {
         grid_agg: "geohex",
         grid_type: "grid",
         with_labels: true,
+        "aggs": {
+            "cardinality_complaint_type": {
+                "cardinality": {
+                    "field": "Complaint Type"
+                }
+            }
+        },
         query: {
             "bool": {
                 "filter": [
@@ -129,32 +136,8 @@ const counts = function() {
                                 "lte": "2021-01-01"
                             }
                         }
-                    },
-                    {
-                        "terms": {
-                            "Complaint Type": [
-                                "Noise - Residential",
-                                "Noise - Street/sidewalk",
-                                "Noise - Vehicle",
-                                "Noise - Commercial",
-                                "Noise - Helicopter",
-                                "Noise - Park",
-                                "Noise"
-                            ]
-                        }
                     }
-                ],
-                "must_not": [
-                    {
-                        "geo_distance": {
-                            "distance": "0.09km",
-                            "location": [
-                                -73.8598,
-                                40.89214
-                            ]
-                        }
-                    }
-                ],
+                ]
             }
         }
     };
@@ -196,12 +179,10 @@ const counts = function() {
                     'fill-color': [
                         'interpolate',
                         ['linear'],
-                        ['get', '_count'],
-                        0, ['to-color', '#ffffcc'],
-                        2500, ['to-color', '#a1dab4'],
-                        5000, ['to-color', '#41b6c4'],
-                        7500, ['to-color', '#2c7fb8'],
-                        10000, ['to-color', '#253494']
+                        ['get', 'cardinality_complaint_type.value'],
+                        0, ['to-color', '#fee8c8'],
+                        90, ['to-color', '#fdbb84'],
+                        180, ['to-color', '#e34a33']
                     ]
                 }
             }
@@ -225,7 +206,7 @@ const counts = function() {
 
         map.getCanvas().style.cursor = 'pointer';
         var coordinates = e.lngLat;
-        var description = `<p>${intFormatter.format(feature.properties._count)}</p>`;
+        var description = `<p>${intFormatter.format(feature.properties['cardinality_complaint_type.value'])}</p>`;
 
         popup.setLngLat(coordinates)
             .setHTML(description)
@@ -242,7 +223,7 @@ const counts = function() {
         let max;
         if (map.getLayer('data')) {
             const features = map.queryRenderedFeatures({ 'layers': ['data'] });
-            max = Math.max(...features .map(f => f.properties._count));
+            max = Math.max(...features .map(f => f.properties['cardinality_complaint_type.value']));
             console.log('Max value from tiles: ' + max);
         } else {
             console.error("Can't set up a value for the max");
@@ -251,12 +232,10 @@ const counts = function() {
         return [
             'interpolate',
             ['linear'],
-            ['get', '_count'],
-            0, ['to-color', '#ffffcc'],
-            max*0.25, ['to-color', '#a1dab4'],
-            max*0.5, ['to-color', '#41b6c4'],
-            max*0.75, ['to-color', '#2c7fb8'],
-            max, ['to-color', '#253494']
+            ['get', 'cardinality_complaint_type.value'],
+            0, ['to-color', '#fee8c8'],
+            max*.4, ['to-color', '#fdbb84'],
+            max*.8, ['to-color', '#e34a33']
         ];
     }
 
