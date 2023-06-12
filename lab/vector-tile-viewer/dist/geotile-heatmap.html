@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+
+    <title>Geotile: heatmap</title>
+    <meta name="description" content="A workshop on how to use Elasticsearch in web mapping projects">
+    <meta name="author" content="Jorge Sanz ">
+
+    <meta property="og:title" content="Geotile: heatmap">
+    <meta property="og:image" content="./assets/banner.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/maplibre-gl.css">
+    <link rel="stylesheet" href="assets/css/map-and-info.css">
+    <!-- Scripts -->
+    <script src="assets/js/maplibre-gl-dev.js"></script>
+    <script src="assets/js/pmtiles.js"></script>
+    </head>
+<body>
+<!-- Map initialization  -->
+<script>
+    /* Basemap style provided by Maptiler */
+    const MAP_STYLE = './assets/style.json';
+    /* ES instance with geodata and anonymous access enabled */
+    const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
+    /* ES API Key to access our data */
+    const ES_APIKEY = "V2lJd3NJZ0JrLWZOVlduTFJGX1Q6U2xfdjhrXzlTbW1KNm1xOWF2OGFyUQ==";
+
+    /* initialize pmtiles support */
+    let protocol = new pmtiles.Protocol();
+    maplibregl.addProtocol("pmtiles",protocol.tile);
+</script>
+
+
+<!-- getTransformRequest  -->
+<script>
+const getTransFormRequest = function (url, resourceType) {
+    /* This function enriches the HTTP request to include
+    the ES search body, change to a POST request, and include
+    the Content-Type and authorization headers */
+    if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
+        return {
+            url: url,
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `ApiKey ${ES_APIKEY}`
+            },
+            type: 'arrayBuffer',
+            body: JSON.stringify(ES_SEARCH_BODY)
+        }
+    }
+}
+
+<!-- Rendering counts -->
+const intFormatter = new Intl.NumberFormat('en-US',{
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+const getCount = function(features){
+    const dataFeatures = features.filter(f => f?.layer?.id == 'data');
+    let count;
+   
+    // Features can be single documents or aggregated hex or grid
+    if (! dataFeatures) {
+        return;
+    } else if (dataFeatures[0]?.properties.hasOwnProperty('_count')){
+        count = dataFeatures.reduce((acc, cur) => acc + cur.properties._count, 0);
+    } else {
+        count = dataFeatures.length ;
+    }
+
+    // Fix NYC 311 duplicate data issue
+    return count / 2;
+}
+const counts = function() {
+    const features = map.queryRenderedFeatures();
+    const countEl = document.getElementById('count');
+    const preCount = countEl.textContent;
+    
+    const count = getCount(features);
+
+    if (!count) return;
+
+    // Render the count
+    const formattedCount = intFormatter.format(count);
+    if (preCount != formattedCount) {
+        countEl.textContent = formattedCount;
+    }
+};
+</script>
+
+
+<div id="map"></div>
+<div id="info">
+    <h3>311 noise claims<br> between 2015 and 2020</h3>
+</div>
+<script>
+    /* ES index and geometry field */
+    const ES_INDEX = '311';
+    const ES_FIELD = 'location';
+
+    /* VT request */
+    const ES_TILES = `${ES_HOST}/${ES_INDEX}/_mvt/${ES_FIELD}/{z}/{x}/{y}`;
+
+    /* VT query for hits */
+    const ES_SEARCH_BODY = {
+        size: 0,
+        grid_precision: 8,
+        exact_bounds: false,
+        extent: 4096,
+        grid_agg: "geotile",
+        grid_type: "grid",
+        with_labels: true,
+        fields: [
+            "Complaint Type",
+            "Agency Name",
+            "Closed Date",
+            "Incident Address",
+            "Location Type",
+            "Resolution Description",
+            "Status"
+        ],
+        query: {
+            "bool": {
+                "filter": [
+                    {
+                        "range": {
+                            "Created Date": {
+                                "gte": "2015-01-01",
+                                "lte": "2021-01-01"
+                            }
+                        }
+                    },
+                    {
+                        "terms": {
+                            "Complaint Type": [
+                                "Noise - Residential",
+                                "Noise - Street/sidewalk",
+                                "Noise - Vehicle",
+                                "Noise - Commercial",
+                                "Noise - Helicopter",
+                                "Noise - Park",
+                                "Noise"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    };
+    const INITIAL_ZOOM = 10;
+    const MIN_ZOOM = 10;
+    const MAX_ZOOM = 14;
+
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: MAP_STYLE,
+        center: [-73.95, 40.7],
+        zoom: INITIAL_ZOOM,
+        minZoom: MIN_ZOOM,
+        maxZoom: MAX_ZOOM,
+        hash: true,
+        transformRequest: getTransFormRequest
+    });
+
+    map.addControl(new maplibregl.NavigationControl());
+
+    map.on('load', function () {
+        /* Source for ES data */
+        map.addSource('ES', {
+            'type': 'vector',
+            'tiles': [ES_TILES],
+            'minzoom': 0,
+            'maxzoom': MAX_ZOOM,
+            'attribution': 'NYC311'
+        });
+
+        map.addLayer(
+            {
+                'id': 'data',
+                'type': 'heatmap',
+                'source': 'ES',
+                'source-layer': 'aggs',
+                'paint': {
+                    'heatmap-weight': [
+                        'interpolate',
+                        ['linear'],
+                        ['get','_count'],
+                        0,
+                        0,
+                        10000,
+                        1
+                    ],
+                    // increase intensity as zoom level increases
+                    'heatmap-intensity': {
+                        'stops': [
+                        [11, 1],
+                        [15, 3]
+                        ]
+                    },
+                    'heatmap-color': [
+                        'interpolate',
+                        ['linear'],
+                        ['heatmap-density'],
+                        0,
+                        'rgba(0,0,0,0)',
+                        0.2,
+                        '#fe9f6d',
+                        0.4,
+                        '#de4968',
+                        0.6,
+                        '#8c2981',
+                        0.8,
+                        '#3b0f70',
+                        1,
+                        '#000004'
+                    ],
+                    'heatmap-radius': 20
+                }
+            }
+        );
+    });
+</script>
+
+
+</body>
+</html>
+

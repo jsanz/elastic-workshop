@@ -1,0 +1,31 @@
+---
+title: Elasticsearch Webmapping
+---
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+
+    <title>{{ title or meta.siteName | trim }}</title>
+    <meta name="description" content="{{ description or meta.siteDescription  | trim }}">
+    <meta name="author" content="{{ meta.authorName}}" />
+
+    <meta property="og:title" content="{{ title or meta.siteName | trim }}" />
+    <meta property="og:image" content="./assets/banner.png" />
+
+    <!-- Styles -->
+    {% for style in css -%}
+    <link rel="stylesheet" href="assets/css/{{ style }}">
+    {% endfor -%}
+    <!-- Scripts -->
+    {% for script in js -%}
+    <script src='assets/js/{{script}}'></script>
+    {% endfor -%}
+  </head>
+<body>
+{{ content | safe }}
+</body>
+</html>
+

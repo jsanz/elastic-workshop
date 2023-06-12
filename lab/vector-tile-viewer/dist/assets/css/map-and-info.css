@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+}
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+#info {
+  display: table;
+  position: relative;
+  margin: 10px auto 0 10px;
+  word-wrap: anywhere;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #222;
+  background: #fff;
+  border: 2px solid darkslateblue;
+}
+#info h3,
+#info p {
+  margin: 0 0 5px 0;
+}
