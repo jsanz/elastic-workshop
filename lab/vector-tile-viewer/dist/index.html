@@ -65,7 +65,8 @@
 <p>Restart the cluster to activate this URL and then you can create a couple of snapshots repositories and restore some indices with <a href="https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9">NYC 311</a> data and the <a href="http://www.geonames.org/">Geonames database</a>.</p>
 <details>
 <summary>Loading datasets 🔽</summary>
-<pre><code class="language-text"># Add the NYC 311 snapshots repository
+<pre><code class="language-text"># ==== NYC 311 ====
+# Add the NYC 311 snapshots repository
 PUT /_snapshot/nyc311
 {
   &quot;type&quot;: &quot;url&quot;,
@@ -83,6 +84,9 @@ POST /_snapshot/nyc311/snapshot_1/_restore
 # Restore NYC boroughs data (async)
 POST /_snapshot/nyc311/snapshot_2/_restore
 
+
+# ==== Geonames ====
+
 # Add the Geonames snapshots repository
 PUT /_snapshot/geonames
 {
@@ -97,6 +101,24 @@ GET _snapshot/geonames/geonames
 
 # Restore Geonames data (async)
 POST /_snapshot/geonames/geonames/_restore
+
+
+# ==== OSM Andorra ====
+
+# Add the OSM snapshots repository
+PUT /_snapshot/osm
+{
+  &quot;type&quot;: &quot;url&quot;,
+  &quot;settings&quot;: {
+    &quot;url&quot;: &quot;https://storage.googleapis.com/jsanz-bucket/v8/osm/&quot;
+  }
+}
+
+# Check the osm_andorra snapshot is available available
+GET _snapshot/osm/osm_andorra
+
+# Restore osm_andorra data (async)
+POST /_snapshot/osm/osm_andorra/_restore
 </code></pre>
 </details>
 <p>You need to wait for the data to be downloaded and restored. Check the indices in your cluster with:</p>
@@ -130,6 +152,16 @@ POST kbn://api/data_views/data_view
     &quot;timeFieldName&quot;: &quot;Created Date&quot;
   }
 }
+
+
+POST kbn://api/data_views/data_view
+{
+  &quot;data_view&quot;: {
+    &quot;title&quot;: &quot;osm_andorra&quot;,
+    &quot;name&quot;: &quot;OpenStreetMap Andorra&quot;,
+    &quot;timeFieldName&quot;: &quot;timestamp&quot;
+  }
+}
 </code></pre>
 </details>
 <h2>Setting up Elasticsearch API key</h2>
@@ -147,7 +179,8 @@ POST kbn://api/data_views/data_view
         &quot;names&quot;: [
           &quot;geonames&quot;,
           &quot;311&quot;,
-          &quot;nyc_boroughs&quot;
+          &quot;nyc_boroughs&quot;,
+          &quot;osm_*&quot;
         ],
         &quot;privileges&quot;: [
           &quot;read&quot;,
@@ -200,7 +233,7 @@ $ curl -H &quot;Authorization: ApiKey ${ELASTIC_APIKEY}&quot; \
 </ul>
 <p>Or if you are familiar with the NodeJS stack then you can download the dependencies (<code>yarn install</code> or  <code>npm install</code>) and start a development server (<code>yarn start</code> or <code>npm start</code>) so you can edit the code in the source files and the page will reload automatically.</p>
 <ul>
-<li><code>_includes/map.njk</code> contains the common code to initialize the different map pages</li>
+<li><code>_includes/map.njk</code> and <code> _includes/map-docs.njk</code> contain the common code to initialize the different map pages</li>
 <li><code>pages/X.html</code> contains the HTML markup and the JavaScript code to run that page.</li>
 </ul>
 <p>The target <code>yarn build</code> or <code>npm build</code> will generate the output files in the <code>dist</code> folder that can be uploaded to any static webserver (Github Pages, Vercel, Netlify, and so on).</p>
