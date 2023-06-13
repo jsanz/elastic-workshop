@@ -1,0 +1,134 @@
+---
+layout: map-docs.njk
+title: "Documents: geometry types"
+description: >
+    Render some OpenStreetMap data from different geometry types
+permalink: documents-geometries.html
+ordering: 25
+---
+
+<div id='map'></div>
+<div id="info">
+    <h3>OSM data</h3>
+    <p>Click on a feature to get details</p>
+    <p>Count: <strong><span id="count"></span></strong></p>
+</div>
+<script>
+    const LAYERS = ['highways', ' building'];
+    const ES_FIELD = 'geometry';
+
+    /* ES index and geometry field */
+    const getIndex = function (layer) {
+        return layer == LAYERS[0] ? 'osm_highways_andorra' : 'osm_buildings_andorra';
+    }
+
+    /* VT request */
+    const getTiles = function (layer) {
+        return `${ES_HOST}/${getIndex(layer)}/_mvt/${ES_FIELD}/{z}/{x}/{y}`;
+    }
+
+    /* VT query for OSM highways hits */
+    const getSearchBody = function (layer) {
+        return {
+            grid_precision: 0,
+            exact_bounds: true,
+            extent: 4096,
+            track_total_hits: 10001,
+            fields: [layer],
+            query: { "match_all": {} },
+        };
+    }
+
+    const getDynamicTransFormRequest = function (url, resourceType) {
+        /* This function enriches the HTTP request to include
+        the ES search body, change to a POST request, and include
+        the Content-Type header */
+        if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
+            // Get which layer are we working with
+            const body = url.includes(LAYERS[0])
+                ? getSearchBody(LAYERS[0])
+                : getSearchBody(LAYERS[1]);
+
+            return {
+                url: url,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `ApiKey ${ES_APIKEY}`
+                },
+                type: 'arrayBuffer',
+                body: JSON.stringify(body)
+            }
+        }
+    }
+
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://api.maptiler.com/maps/dataviz-light/style.json?key=LqOKqjXlNHCUvaHo6msW',
+        center: [1.523, 42.505],
+        zoom: 15,
+        hash: true,
+        transformRequest: getDynamicTransFormRequest
+    });
+
+    map.addControl(new maplibregl.NavigationControl());
+
+    map.on('load', function () {
+        /* Source for ES data */
+        map.addSource('ES_HIGHWAYS', {
+            'type': 'vector',
+            'tiles': [getTiles(LAYERS[0])],
+            'minzoom': 8,
+            'maxzoom': 14
+        });
+
+        /* Source for ES data */
+        map.addSource('ES_BUILDINGS', {
+            'type': 'vector',
+            'tiles': [getTiles(LAYERS[1])],
+            'minzoom': 11,
+            'maxzoom': 14
+        });
+
+        map.addLayer(
+            {
+                'id': 'data_highways',
+                'type': 'line',
+                'source': 'ES_HIGHWAYS',
+                'source-layer': 'hits',
+                'paint': {
+                    'line-width': 3,
+                    /* Thematic mapping for the highway field */
+                    'line-color': [
+                        'match',
+                        ['get', 'highway'],
+                        "trunk", "#54B399",
+                        "primary", "#6092C0",
+                        "secondary", "#D36086",
+                        "tertiary", "#9170B8",
+                        "service", "#CA8EAE",
+                        "residential", "#D6BF57",
+                        "footway", "#B9A888",
+                        "path", "#DA8B45",
+                    /*other*/ '#ccc'
+                    ],
+                }
+            },
+            'border_country'
+        );
+
+        map.addLayer(
+            {
+                'id': 'data_buildings',
+                'type': 'fill',
+                'source': 'ES_BUILDINGS',
+                'source-layer': 'hits',
+                'paint': {
+                    /* Thematic mapping for the building field */
+                    'fill-color': '#54B399',
+                }
+            },
+            'data_highways'
+        );
+    });
+</script>
