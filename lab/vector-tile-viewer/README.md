@@ -50,6 +50,7 @@ Restart the cluster to activate this URL and then you can create a couple of sna
 <summary>Loading datasets 🔽</summary>
 
 ```text
+# ==== NYC 311 ====
 # Add the NYC 311 snapshots repository
 PUT /_snapshot/nyc311
 {
@@ -68,6 +69,9 @@ POST /_snapshot/nyc311/snapshot_1/_restore
 # Restore NYC boroughs data (async)
 POST /_snapshot/nyc311/snapshot_2/_restore
 
+
+# ==== Geonames ====
+
 # Add the Geonames snapshots repository
 PUT /_snapshot/geonames
 {
@@ -82,6 +86,24 @@ GET _snapshot/geonames/geonames
 
 # Restore Geonames data (async)
 POST /_snapshot/geonames/geonames/_restore
+
+
+# ==== OSM Andorra ====
+
+# Add the OSM snapshots repository
+PUT /_snapshot/osm
+{
+  "type": "url",
+  "settings": {
+    "url": "https://storage.googleapis.com/jsanz-bucket/v8/osm/"
+  }
+}
+
+# Check the osm_andorra snapshot is available available
+GET _snapshot/osm/osm_andorra
+
+# Restore osm_andorra data (async)
+POST /_snapshot/osm/osm_andorra/_restore
 ```
 </details>
 
@@ -122,6 +144,16 @@ POST kbn://api/data_views/data_view
     "timeFieldName": "Created Date"
   }
 }
+
+
+POST kbn://api/data_views/data_view
+{
+  "data_view": {
+    "title": "osm_andorra",
+    "name": "OpenStreetMap Andorra",
+    "timeFieldName": "timestamp"
+  }
+}
 ```
 </details>
 
@@ -145,7 +177,8 @@ POST /_security/api_key
         "names": [
           "geonames",
           "311",
-          "nyc_boroughs"
+          "nyc_boroughs",
+          "osm_*"
         ],
         "privileges": [
           "read",
@@ -210,7 +243,7 @@ You can simply serve the `dist` folder from any webserver of your choice:
 
 Or if you are familiar with the NodeJS stack then you can download the dependencies (`yarn install` or  `npm install`) and start a development server (`yarn start` or `npm start`) so you can edit the code in the source files and the page will reload automatically.
 
-* `_includes/map.njk` contains the common code to initialize the different map pages
+* `_includes/map.njk` and ` _includes/map-docs.njk` contain the common code to initialize the different map pages
 * `pages/X.html` contains the HTML markup and the JavaScript code to run that page.
 
 The target `yarn build` or `npm build` will generate the output files in the `dist` folder that can be uploaded to any static webserver (Github Pages, Vercel, Netlify, and so on).

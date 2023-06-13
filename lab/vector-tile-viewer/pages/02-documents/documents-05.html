@@ -2,19 +2,18 @@
 layout: map-docs.njk
 title: "Documents: geometry types"
 description: >
-    Render some OpenStreetMap data from different geometry types
+  Render some OpenStreetMap data from different geometry types
 permalink: documents-geometries.html
 ordering: 25
 ---
 
 <div id='map'></div>
 <div id="info">
-    <h3>OSM data</h3>
-    <p>Click on a feature to get details</p>
-    <p>Count: <strong><span id="count"></span></strong></p>
+    <h3>Andoraa roads and buildings</h3>
+    <h4>OpenStreetMap Data</h4>
 </div>
 <script>
-    const LAYERS = ['highways', ' building'];
+    const LAYERS = ['highway', ' building'];
     const ES_FIELD = 'geometry';
 
     /* ES index and geometry field */
@@ -28,7 +27,7 @@ ordering: 25
     }
 
     /* VT query for OSM highways hits */
-    const getSearchBody = function (layer) {
+    const getBody = function (layer) {
         return {
             grid_precision: 0,
             exact_bounds: true,
@@ -45,9 +44,11 @@ ordering: 25
         the Content-Type header */
         if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
             // Get which layer are we working with
-            const body = url.includes(LAYERS[0])
-                ? getSearchBody(LAYERS[0])
-                : getSearchBody(LAYERS[1]);
+            const body = getBody(
+                url.includes(LAYERS[0])
+                    ? LAYERS[0]
+                    : LAYERS[1]
+            );
 
             return {
                 url: url,
@@ -64,8 +65,9 @@ ordering: 25
 
     const map = new maplibregl.Map({
         container: 'map',
-        style: 'https://api.maptiler.com/maps/dataviz-light/style.json?key=LqOKqjXlNHCUvaHo6msW',
+        style: './assets/style-ad.json',
         center: [1.523, 42.505],
+        minZoom: 10,
         zoom: 15,
         hash: true,
         transformRequest: getDynamicTransFormRequest
@@ -114,7 +116,7 @@ ordering: 25
                     ],
                 }
             },
-            'border_country'
+            'waterway-name'
         );
 
         map.addLayer(
