@@ -119,6 +119,89 @@ GET _snapshot/osm/osm_andorra
 
 # Restore osm_andorra data (async)
 POST /_snapshot/osm/osm_andorra/_restore
+
+# Expose this index with two filtered aliases
+POST _aliases
+{
+  &quot;actions&quot;: [
+    {
+      &quot;add&quot;: {
+        &quot;index&quot;: &quot;osm_andorra&quot;,
+        &quot;alias&quot;: &quot;osm_highways_andorra&quot;,
+        &quot;filter&quot;: {
+          &quot;bool&quot;: {
+            &quot;filter&quot;: [
+              {
+                &quot;bool&quot;: {
+                  &quot;minimum_should_match&quot;: 1,
+                  &quot;should&quot;: [
+                    {
+                      &quot;exists&quot;: {
+                        &quot;field&quot;: &quot;highway&quot;
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                &quot;bool&quot;: {
+                  &quot;minimum_should_match&quot;: 1,
+                  &quot;should&quot;: [
+                    {
+                      &quot;term&quot;: {
+                        &quot;osm_type&quot;: {
+                          &quot;value&quot;: &quot;way&quot;
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      &quot;add&quot;: {
+        &quot;index&quot;: &quot;osm_andorra&quot;,
+        &quot;alias&quot;: &quot;osm_buildings_andorra&quot;,
+        &quot;filter&quot;: {
+          &quot;bool&quot;: {
+            &quot;filter&quot;: [
+              {
+                &quot;bool&quot;: {
+                  &quot;minimum_should_match&quot;: 1,
+                  &quot;should&quot;: [
+                    {
+                      &quot;exists&quot;: {
+                        &quot;field&quot;: &quot;building&quot;
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                &quot;bool&quot;: {
+                  &quot;minimum_should_match&quot;: 1,
+                  &quot;should&quot;: [
+                    {
+                      &quot;term&quot;: {
+                        &quot;osm_type&quot;: {
+                          &quot;value&quot;: &quot;area&quot;
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
 </code></pre>
 </details>
 <p>You need to wait for the data to be downloaded and restored. Check the indices in your cluster with:</p>
