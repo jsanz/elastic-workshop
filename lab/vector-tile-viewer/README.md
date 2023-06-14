@@ -104,6 +104,89 @@ GET _snapshot/osm/osm_andorra
 
 # Restore osm_andorra data (async)
 POST /_snapshot/osm/osm_andorra/_restore
+
+# Expose this index with two filtered aliases
+POST _aliases
+{
+  "actions": [
+    {
+      "add": {
+        "index": "osm_andorra",
+        "alias": "osm_highways_andorra",
+        "filter": {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "exists": {
+                        "field": "highway"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "term": {
+                        "osm_type": {
+                          "value": "way"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "add": {
+        "index": "osm_andorra",
+        "alias": "osm_buildings_andorra",
+        "filter": {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "exists": {
+                        "field": "building"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": [
+                    {
+                      "term": {
+                        "osm_type": {
+                          "value": "area"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
 ```
 </details>
 
