@@ -8,16 +8,16 @@
     <title>Elasticsearch and Webmapping</title>
     <meta name="description" content="Two hours workshop on how different ways to render Elasticsearch data on a web map application using  Maplibre.
 ">
-    <meta name="author" content="Jorge Sanz ">
+    <meta name="author" content="Jorge Sanz " />
 
-    <meta property="og:title" content="Elasticsearch and Webmapping">
-    <meta property="og:image" content="./assets/banner.png">
+    <meta property="og:title" content="Elasticsearch and Webmapping" />
+    <meta property="og:image" content="./assets/banner.png" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/pico.css">
     <link rel="stylesheet" href="assets/css/nord.css">
     <!-- Scripts -->
-    <script src="assets/js/highlight.min.js"></script>
+    <script src='assets/js/highlight.min.js'></script>
     </head>
 <body>
 
@@ -32,7 +32,7 @@
 </hgroup>
 
 <div style="text-align: center; margin: 0 0 2em 0;">
-  <img style="max-width: 90%;" src="assets/banner.png">
+  <img style="max-width: 90%;" src="assets/banner.png"/>
 </div>
 
 <section>
@@ -327,37 +327,37 @@ $ curl -H &quot;Authorization: ApiKey ${ELASTIC_APIKEY}&quot; \
   <h2>🗺 Maps! 🗺</h2>
   
   <dl>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/basemap.html">Just the basemap</a></dt>
+    <dt><a href="/basemap.html">Just the basemap</a></dt>
     <dd>Just rendereing the basemap from PMTiles vector tiles and  Elastic OSM Bright desaturated schema
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/documents.html">Documents: render everything between two dates</a></dt>
+    <dt><a href="/documents.html">Documents: render everything between two dates</a></dt>
     <dd>Learn how to render Elasticsearch data with a simple query into a Maplibre layer.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/documents-filter.html">Documents: terms query and thematic mapping</a></dt>
+    <dt><a href="/documents-filter.html">Documents: terms query and thematic mapping</a></dt>
     <dd>Extend your basic layer with a color palette depending on the value of a document field.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/documents-popup.html">Documents: add a popup</a></dt>
+    <dt><a href="/documents-popup.html">Documents: add a popup</a></dt>
     <dd>Include more fields on the vector tiles retrieved to allow showing a pop up with details of each 311 call.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/documents-search.html">Documents: search</a></dt>
+    <dt><a href="/documents-search.html">Documents: search</a></dt>
     <dd>Filter data on the map by including a text string from an input form that will search for all fields in our index.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/documents-geometries.html">Documents: geometry types</a></dt>
+    <dt><a href="/documents-geometries.html">Documents: geometry types</a></dt>
     <dd>Render some OpenStreetMap data from different geometry types
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/hexagons.html">Hexagons</a></dt>
+    <dt><a href="/hexagons.html">Hexagons</a></dt>
     <dd>Aggregate 311 calls using the H3 hexagon spatial index.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/hexagons-adaptative.html">Hexagons: adaptative legend</a></dt>
+    <dt><a href="/hexagons-adaptative.html">Hexagons: adaptative legend</a></dt>
     <dd>Change the legend of the hexagons aggregated Maplibre layer depending on the zoom level.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/hexagons-cardinality.html">Hexagons: additional metric</a></dt>
+    <dt><a href="/hexagons-cardinality.html">Hexagons: additional metric</a></dt>
     <dd>Include a new custom metric in the data aggregation.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/geotile-square.html">Geotile: square tiles</a></dt>
+    <dt><a href="/geotile-square.html">Geotile: square tiles</a></dt>
     <dd>Aggregate using square tiles and extend the Elasticsearch  query to exclude some outlier data.
 </dd>
-    <dt><a href="/jsanz-bucket/vector-tile-viewer/geotile-heatmap.html">Geotile: heatmap</a></dt>
+    <dt><a href="/geotile-heatmap.html">Geotile: heatmap</a></dt>
     <dd>Use a heatmap styling to render geotile aggregated data. 
 </dd>
   </dl>

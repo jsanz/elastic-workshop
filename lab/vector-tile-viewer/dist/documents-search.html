@@ -8,17 +8,17 @@
     <title>Documents: search</title>
     <meta name="description" content="Filter data on the map by including a text string from an input form that will search for all fields in our index.
 ">
-    <meta name="author" content="Jorge Sanz ">
+    <meta name="author" content="Jorge Sanz " />
 
-    <meta property="og:title" content="Documents: search">
-    <meta property="og:image" content="./assets/banner.png">
+    <meta property="og:title" content="Documents: search" />
+    <meta property="og:image" content="./assets/banner.png" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/maplibre-gl.css">
     <link rel="stylesheet" href="assets/css/map-and-info.css">
     <!-- Scripts -->
-    <script src="assets/js/maplibre-gl-dev.js"></script>
-    <script src="assets/js/pmtiles.js"></script>
+    <script src='assets/js/maplibre-gl-dev.js'></script>
+    <script src='assets/js/pmtiles.js'></script>
     </head>
 <body>
 <!-- Map initialization  -->
@@ -96,7 +96,7 @@ const counts = function() {
 </script>
 
 
-<div id="map"></div>
+<div id='map'></div>
 <div id="info">
     <h3>311 noise claims from 2019 Q1</h3>
     <p>Click on a point to get details</p>
@@ -104,7 +104,7 @@ const counts = function() {
     <form>
         <label for="id">
             Search:
-            <input id="search" placeholder="Loud Music">
+            <input id="search" placeholder="Loud Music" />
         </label>
         <button onclick="updateSearch()">Search</button>
     </form>
