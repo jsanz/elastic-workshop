@@ -1,100 +1,11 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-
-    <title>Hexagons: adaptative legend</title>
-    <meta name="description" content="Change the legend of the hexagons aggregated Maplibre layer depending on the zoom level.
-">
-    <meta name="author" content="Jorge Sanz " />
-
-    <meta property="og:title" content="Hexagons: adaptative legend" />
-    <meta property="og:image" content="./assets/banner.png" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/maplibre-gl.css">
-    <link rel="stylesheet" href="assets/css/map-and-info.css">
-    <!-- Scripts -->
-    <script src='assets/js/maplibre-gl-dev.js'></script>
-    <script src='assets/js/pmtiles.js'></script>
-    </head>
-<body>
-<!-- Map initialization  -->
-<script>
-    /* Basemap style provided by Maptiler */
-    const MAP_STYLE = './assets/style.json';
-    /* ES instance with geodata and anonymous access enabled */
-    const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
-    /* ES API Key to access our data */
-    const ES_APIKEY = "Y2hrX3RJZ0JTQjNGVFhvOFlSZkg6WTVGM203ZGJUcS1xdDVRMUx3V01wQQ==";
-
-    /* initialize pmtiles support */
-    let protocol = new pmtiles.Protocol();
-    maplibregl.addProtocol("pmtiles",protocol.tile);
-</script>
-
-
-<!-- getTransformRequest  -->
-<script>
-const getTransFormRequest = function (url, resourceType) {
-    /* This function enriches the HTTP request to include
-    the ES search body, change to a POST request, and include
-    the Content-Type and authorization headers */
-    if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
-        return {
-            url: url,
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `ApiKey ${ES_APIKEY}`
-            },
-            type: 'arrayBuffer',
-            body: JSON.stringify(ES_SEARCH_BODY)
-        }
-    }
-}
-
-// Rendering counts
-const intFormatter = new Intl.NumberFormat('en-US',{
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-});
-
-const getCount = function(features){
-    const dataFeatures = features.filter(f => f?.layer?.id == 'data');
-    let count;
-   
-    // Features can be single documents or aggregated hex or grid
-    if (! dataFeatures) {
-        return;
-    } else if (dataFeatures[0]?.properties.hasOwnProperty('_count')){
-        count = dataFeatures.reduce((acc, cur) => acc + cur.properties._count, 0);
-    } else {
-        count = dataFeatures.length ;
-    }
-
-    // Fix NYC 311 duplicate data issue
-    return count / 2;
-}
-const counts = function() {
-    const features = map.queryRenderedFeatures();
-    const countEl = document.getElementById('count');
-    const preCount = countEl.textContent;
-    
-    const count = getCount(features);
-
-    if (!count) return;
-
-    // Render the count
-    const formattedCount = intFormatter.format(count);
-    if (preCount != formattedCount) {
-        countEl.textContent = formattedCount;
-    }
-};
-</script>
-
+---
+layout: map-docs.njk
+title: "Hexagons: adaptative legend"
+description: >
+  Change the legend of the hexagons aggregated Maplibre layer depending on the zoom level.
+permalink: 3-2-hexagons.html
+ordering: 32
+---
 
 <div id='map'></div>
 <div id="info">
@@ -269,8 +180,3 @@ const counts = function() {
 
     map.on('zoomend', updatePalette);
 </script>
-
-
-</body>
-</html>
-

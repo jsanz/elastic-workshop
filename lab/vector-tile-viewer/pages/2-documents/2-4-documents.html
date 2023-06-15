@@ -1,11 +1,11 @@
 ---
 layout: map-docs.njk
-title: "Documents: add a popup"
+title: "Documents: search"
 description: >
-   Include more fields on the vector tiles retrieved to allow showing
-   a pop up with details of each 311 call.
-permalink: documents-popup.html
-ordering: 23
+  Filter data on the map by including a text string from an input form
+  that will search for all fields in our index.
+permalink: 2-4-documents.html
+ordering: 24
 ---
 
 <div id='map'></div>
@@ -13,6 +13,13 @@ ordering: 23
     <h3>311 noise claims from 2019 Q1</h3>
     <p>Click on a point to get details</p>
     <p>Count: <strong><span id="count"></span></strong></p>
+    <form>
+        <label for="id">
+            Search:
+            <input id="search" placeholder="Loud Music" />
+        </label>
+        <button onclick="updateSearch()">Search</button>
+    </form>
 </div>
 <script>
     /* ES index and geometry field */
@@ -67,13 +74,55 @@ ordering: 23
         }
     };
 
+    const getBody = function () {
+        const body = { ...ES_SEARCH_BODY };
+        const query = document.getElementById("search").value;
+
+        if (query && query.length > 0){
+            body['query']['bool']['must'] = [{
+            "query_string": {
+                "query": `*${query}*`,
+                "analyze_wildcard": true
+            }
+        }]
+        } else {
+            body['query']['bool']['must'] = null;
+        }
+
+        return body;
+    };
+
+    const getDynamicTransFormRequest = function (url, resourceType) {
+            /* This function enriches the HTTP request to include
+            the ES search body, change to a POST request, and include
+            the Content-Type header */
+            if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
+                return {
+                    url: url,
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': `ApiKey ${ES_APIKEY}`
+                    },
+                    type: 'arrayBuffer',
+                    body: JSON.stringify(getBody())
+                }
+            }
+        }
+
+    const updateSearch = function(e) {
+        console.log("Updating the map with a new transformRequest");
+        map.setTransformRequest(getDynamicTransFormRequest);
+        map.getSource('ES').setTiles([ES_TILES]);
+    }
+
     const map = new maplibregl.Map({
         container: 'map',
         style: MAP_STYLE,
         center: [-73.95, 40.7],
         zoom: 10,
         hash: true,
-        transformRequest: getTransFormRequest
+        transformRequest: getDynamicTransFormRequest
     });
 
     map.addControl(new maplibregl.NavigationControl());

@@ -1,100 +1,12 @@
-<!doctype html>
-<html lang="en" data-theme="light">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
-
-    <title>Documents: terms query and thematic mapping</title>
-    <meta name="description" content="Extend your basic layer with a color palette depending on the value of a document field.
-">
-    <meta name="author" content="Jorge Sanz " />
-
-    <meta property="og:title" content="Documents: terms query and thematic mapping" />
-    <meta property="og:image" content="./assets/banner.png" />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/maplibre-gl.css">
-    <link rel="stylesheet" href="assets/css/map-and-info.css">
-    <!-- Scripts -->
-    <script src='assets/js/maplibre-gl-dev.js'></script>
-    <script src='assets/js/pmtiles.js'></script>
-    </head>
-<body>
-<!-- Map initialization  -->
-<script>
-    /* Basemap style provided by Maptiler */
-    const MAP_STYLE = './assets/style.json';
-    /* ES instance with geodata and anonymous access enabled */
-    const ES_HOST = "https://webmapping.es.europe-west1.gcp.cloud.es.io";
-    /* ES API Key to access our data */
-    const ES_APIKEY = "Y2hrX3RJZ0JTQjNGVFhvOFlSZkg6WTVGM203ZGJUcS1xdDVRMUx3V01wQQ==";
-
-    /* initialize pmtiles support */
-    let protocol = new pmtiles.Protocol();
-    maplibregl.addProtocol("pmtiles",protocol.tile);
-</script>
-
-
-<!-- getTransformRequest  -->
-<script>
-const getTransFormRequest = function (url, resourceType) {
-    /* This function enriches the HTTP request to include
-    the ES search body, change to a POST request, and include
-    the Content-Type and authorization headers */
-    if (resourceType == 'Tile' && url.startsWith(ES_HOST)) {
-        return {
-            url: url,
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Authorization': `ApiKey ${ES_APIKEY}`
-            },
-            type: 'arrayBuffer',
-            body: JSON.stringify(ES_SEARCH_BODY)
-        }
-    }
-}
-
-// Rendering counts
-const intFormatter = new Intl.NumberFormat('en-US',{
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0,
-});
-
-const getCount = function(features){
-    const dataFeatures = features.filter(f => f?.layer?.id == 'data');
-    let count;
-   
-    // Features can be single documents or aggregated hex or grid
-    if (! dataFeatures) {
-        return;
-    } else if (dataFeatures[0]?.properties.hasOwnProperty('_count')){
-        count = dataFeatures.reduce((acc, cur) => acc + cur.properties._count, 0);
-    } else {
-        count = dataFeatures.length ;
-    }
-
-    // Fix NYC 311 duplicate data issue
-    return count / 2;
-}
-const counts = function() {
-    const features = map.queryRenderedFeatures();
-    const countEl = document.getElementById('count');
-    const preCount = countEl.textContent;
-    
-    const count = getCount(features);
-
-    if (!count) return;
-
-    // Render the count
-    const formattedCount = intFormatter.format(count);
-    if (preCount != formattedCount) {
-        countEl.textContent = formattedCount;
-    }
-};
-</script>
-
+---
+layout: map-docs.njk
+title: "Documents: add a popup"
+description: >
+   Include more fields on the vector tiles retrieved to allow showing
+   a pop up with details of each 311 call.
+permalink: 2-3-documents.html
+ordering: 23
+---
 
 <div id='map'></div>
 <div id="info">
@@ -183,7 +95,7 @@ const counts = function() {
                 'source': 'ES',
                 'source-layer': 'hits',
                 'paint': {
-                    'circle-radius': 3,
+                    'circle-radius': 6,
                     /* Thematic mapping for the Complaint Type field */
                     'circle-color': [
                         'match',
@@ -208,9 +120,38 @@ const counts = function() {
     /* Adding a count based entirely on client features */
     map.on('data', counts);
     map.on('moveend', counts);
+
+    /* A very simple pop up implementation */
+    map.on('click', 'data', function (e) {
+        const feature = e.features[0];
+
+        var coordinates = feature.geometry.coordinates.slice();
+        var description = `
+        <hgroup>
+            <h3>${feature.properties['Descriptor']}</h3>
+            <h4>${feature.properties['Complaint Type']} [${feature.properties['Status']}]</h4>
+        </hgroup>
+        <ul>
+            <li><strong>Address</strong>: ${feature.properties['Incident Address']}</li>
+            <li><strong>Agency</strong>: ${feature.properties['Agency Name']}</li>
+            <li><strong>Closed Date</strong>: ${feature.properties['Closed Date']}</li>
+            <li><strong>Location Type</strong>: ${feature.properties['Location Type']}</li>
+            <li><strong>Resolution Description</strong>: ${feature.properties['Resolution Description']}</li>
+        </ul>
+    `;
+
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new maplibregl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
+
+    /* change cursor on hover */
+    map.on('mouseenter', 'data', function () { map.getCanvas().style.cursor = 'pointer'; });
+    /* reset cursor when leaving a feature */
+    map.on('mouseleave', 'data', function () { map.getCanvas().style.cursor = ''; });
 </script>
-
-
-</body>
-</html>
-
