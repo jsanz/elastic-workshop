@@ -22,10 +22,10 @@ ordering: 42
     /* VT query for hits */
     const ES_SEARCH_BODY = {
         size: 0,
-        grid_precision: 8,
+        grid_precision: 7,
         exact_bounds: false,
         extent: 4096,
-        grid_agg: "geotile",
+        grid_agg: "geohex",
         grid_type: "grid",
         with_labels: true,
         fields: [
