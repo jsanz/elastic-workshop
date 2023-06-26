@@ -21,10 +21,6 @@ js:
 </div>
 
 <section>
-  {{content | safe }}
-</section>
-
-<section>
   <h2>🗺 Maps! 🗺</h2>
   
   <dl>
@@ -33,6 +29,10 @@ js:
     <dd>{{post.data.description}}</dd>
   {%- endfor %}
   </dl>
+</section>
+
+<section>
+  {{content | safe }}
 </section>
 
 

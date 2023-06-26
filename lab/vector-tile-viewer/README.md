@@ -318,13 +318,7 @@ This should return:
 
 ## Starting the viewer
 
-You can simply serve the `dist` folder from any webserver of your choice:
-
-* Python: `python -m http.server --directory dist 8080`
-* NodeJS: `npx http-server -p 8080 dist`
-* etc.
-
-Or if you are familiar with the NodeJS stack then you can download the dependencies (`yarn install` or  `npm install`) and start a development server (`yarn start` or `npm start`) so you can edit the code in the source files and the page will reload automatically.
+If you are familiar with the NodeJS stack then you can download the dependencies (`yarn install` or  `npm install`) and start a development server (`yarn start` or `npm start`) so you can edit the code in the source files and the page will reload automatically.
 
 * `_includes/map.njk` and ` _includes/map-docs.njk` contain the common code to initialize the different map pages
 * `pages/X.html` contains the HTML markup and the JavaScript code to run that page.
