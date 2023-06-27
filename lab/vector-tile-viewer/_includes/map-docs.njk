@@ -16,7 +16,6 @@ const getTransFormRequest = function (url, resourceType) {
                 'Content-Type': 'application/json',
                 'Authorization': `ApiKey ${ES_APIKEY}`
             },
-            type: 'arrayBuffer',
             body: JSON.stringify(ES_SEARCH_BODY)
         }
     }
