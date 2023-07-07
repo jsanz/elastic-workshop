@@ -18,7 +18,7 @@ With a cluster ready, we can explore two main types of data rendering: individua
 
 ## Slides
 
-<https://ela.st/2023-webmapping-elasticsearch-slides>
+<https://ela.st/2023-elastic-foss4g-slides>
 
 ## Data preparation
 
