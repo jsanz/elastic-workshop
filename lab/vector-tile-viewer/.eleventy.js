@@ -34,4 +34,8 @@ module.exports = function(eleventyConfig) {
         return a.data.ordering - b.data.ordering;
     });
   });
+
+  return {
+    pathPrefix: "/jsanz-bucket/vector-tile-viewer/"
+  }
 };
